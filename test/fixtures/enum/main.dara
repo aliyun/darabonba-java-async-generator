@@ -1,0 +1,6 @@
+init(){}
+
+enum Integer: number {
+  LRS(value=1, description='LRS'),
+  ZRS(value=2, description='ZRS'),
+}

@@ -1,0 +1,35 @@
+init(){}
+
+model SelectObjectRequest {
+  bucketName?: string(name='BucketName', position='Host'),
+  objectName?: string(name='ObjectName', position='Path'),
+  porcess?: string(name='Porcess', position='Query'),
+  selectRequest?: {
+    inputSerialization?: {
+      compressionType?: string(name='CompressionType'),
+      inputSerializationCSV?: {
+        recordDelimiter?: string(name='RecordDelimiter'),
+        range?: string(name='Range'),
+        fieldDelimiter?: string(name='FieldDelimiter'),
+        quoteCharacter?: string(name='QuoteCharacter'),
+        commentCharacter?: string(name='CommentCharacter'),
+        fileHeaderInfo?: string(name='FileHeaderInfo'),
+      }(name='CSV'),
+    }(name='InputSerialization'),
+    expression?: string(name='Expression'),
+    outputSerialization?: {
+      outputSerializationCSV?: {
+        recordDelimiter?: string(name='RecordDelimiter'),
+        fieldDelimiter?: string(name='FieldDelimiter'),
+      }(name='CSV'),
+      outputRawData?: string(name='OutputRawData'),
+      outputHeader?: string(name='OutputHeader'),
+      enablePayloadCrc?: string(name='EnablePayloadCrc'),
+      keepAllColumns?: string(name='KeepAllColumns'),
+    }(name='OutputSerialization'),
+    options?: {
+      maxSkippedRecordsAllowed?: string(name='MaxSkippedRecordsAllowed'),
+      skipPartialDataRecord?: string(name='SkipPartialDataRecord'),
+    }(name='Options'),
+  }(name='SelectRequest', position='Body'),
+}

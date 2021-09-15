@@ -1,0 +1,68 @@
+/**
+ *
+ */
+import TeaAsyncHandler;
+import TeaRequest;
+import ClientConfiguration;
+import ClientExecutionParams;
+
+type @product = string
+type @version = string
+type @endpointRule = string
+type @endpointMap = map[string]string
+type @REQUEST = TeaRequest
+type @handler = TeaAsyncHandler
+
+init(configuration: ClientConfiguration){
+  @handler = new TeaAsyncHandler(configuration);
+  @product = 'Oss';
+  @version = '2019-05-17';
+  @endpointRule = '';
+  @endpointMap = {
+  };
+}
+
+model Owner {
+  ID?: string(name='ID', description='The ID of the owner'),
+  displayName?: string(name='DisplayName', description='The display name of the owner'),
+}
+
+model Bucket {
+  creationDate?: string(name='CreationDate', description='The time when the bucket is created.'),
+  extranetEndpoint?: string(name='ExtranetEndpoint', description='The public endpoint used to access the bucket over the Internet.'),
+  intranetEndpoint?: string(name='IntranetEndpoint', description='The internal endpoint used to access the bucket from ECS instances in the same region.'),
+  location?: string(name='Location', description='The data center in which the bucket is located.'),
+  name?: string(name='Name', description='The name of the bucket.'),
+  region?: string(name='Region', description='The physical location of the bucket.'),
+  storageClass?: StorageClass(name='StorageClass'),
+}
+
+enum StorageClass: string {
+  STANDARD(value='Standard', description='STANDARD'),
+  IA(value='IA', description='IA'),
+  ARCHIVE(value='Archive', description='ARCHIVE'),
+  COLDARCHIVE(value='ColdArchive', description='COLDARCHIVE'),
+}
+
+model ListBucketsRequest {
+  prefix?: string(name='prefix', position='Query'),
+  marker?: string(name='marker', position='Query'),
+  maxKeys?: long(name='max-keys', position='Query'),
+}
+
+model ListBucketsResponseBody = {
+  owner?: Owner(name='Owner', parentIgnore='ListAllMyBucketsResult'),
+  buckets?: [
+    Bucket
+  ](name='Bucket', parentIgnore='ListAllMyBucketsResult,Buckets'),
+}
+
+model ListBucketsResponse = {
+  headers: map[string]string(name='headers'),
+  body: ListBucketsResponseBody(name='body'),
+}
+
+async function listBuckets(request: ListBucketsRequest): ListBucketsResponse {
+  @handler.validateRequestModel(request);
+  return @handler.do('RESTFUL', 'ListBuckets', 'GET', '/ ', 'xml', false, '', request);
+}

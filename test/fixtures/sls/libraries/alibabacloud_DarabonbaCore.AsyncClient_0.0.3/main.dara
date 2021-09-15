@@ -1,0 +1,18 @@
+/**
+ *
+ */
+init(){}
+/**
+ * Execute request
+ * @return response
+ */
+api do(style: string, action: string, method: string, pathRegex: string, bodyType: string, bodyIsForm: boolean, reqBodyType: string, requestModel: $Model): any{
+}
+
+
+/**
+ * Validate params for RequestModel
+ */
+api validateRequestModel(model: $Model): void{
+}
+

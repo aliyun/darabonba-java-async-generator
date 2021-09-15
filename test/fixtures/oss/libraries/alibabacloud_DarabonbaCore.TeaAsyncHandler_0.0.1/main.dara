@@ -1,0 +1,24 @@
+/**
+ *
+ */
+
+import TeaRequest;
+import ClientConfiguration;
+
+init(configuration: ClientConfiguration){}
+/**
+ * Execute request
+ * @return response
+ */
+api do(style: string, action: string, method: string, pathRegex: string, bodyType: string, bodyIsForm: boolean, reqBodyType: string, requestModel: $Model): any{
+}
+
+
+/**
+ * Validate params for RequestModel
+ */
+function validateRequestModel(model: $Model): void{
+}
+
+function execute(teaRequest: TeaRequest, model: $Model): void{
+}

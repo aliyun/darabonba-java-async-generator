@@ -1,0 +1,3424 @@
+/**
+ *
+ */
+import TeaAsyncHandler;
+import TeaRequest;
+import ClientConfiguration;
+import ClientExecutionParams;
+type @product = string
+type @version = string
+type @endpointRule = string
+type @endpointMap = map[string]string
+type @REQUEST = TeaRequest
+type @handler = TeaAsyncHandler
+
+init(configuration: ClientConfiguration){
+  @handler = new TeaAsyncHandler(configuration);
+  @product = 'Sls';
+  @version = '2020-12-30';
+  @endpointRule = 'central';
+  @endpointMap = {
+    ap-southeast-1 = 'sls.ap-southeast-1.aliyuncs.com',
+    cn-hangzhou = 'sls.cn-hangzhou.aliyuncs.com',
+    cn-hongkong = 'sls.cn-hongkong.aliyuncs.com',
+    cn-huhehaote = 'sls.cn-huhehaote.aliyuncs.com',
+    cn-shanghai = 'sls.cn-shanghai.aliyuncs.com',
+    cn-shenzhen = 'sls.cn-shenzhen.aliyuncs.com',
+    cn-zhangjiakou = 'sls.cn-zhangjiakou.aliyuncs.com',
+    eu-central-1 = 'sls.eu-central-1.aliyuncs.com',
+  };
+}
+model GetExternalStoreRequest {
+  externalStoreName?: string(name='external_store_name', description='A short description of struct', position='Query'),
+}
+
+model GetExternalStoreResponseBody = {
+  vpcId?: string(name='vpc-id'),
+  instanceId?: string(name='instance-id'),
+  host?: string(name='host'),
+  port?: string(name='port'),
+  username?: string(name='username'),
+  password?: string(name='password'),
+  db?: string(name='db'),
+  table?: string(name='table'),
+  region?: string(name='region'),
+}
+
+model GetExternalStoreResponse = {
+  headers: map[string]string(name='headers'),
+  body: GetExternalStoreResponseBody(name='body'),
+}
+
+async function getExternalStore(request: GetExternalStoreRequest): GetExternalStoreResponse {
+  @handler.validateRequestModel(request);
+  return @handler.do('RESTFUL', 'GetExternalStore', 'GET', '/externalstores', 'json', false, '', request);
+}
+
+model DeleteLogstoreRequest {
+  logstoreName?: string(name='logstoreName', description='A short description of struct', position='Host'),
+}
+
+model DeleteLogstoreResponse = {
+  headers: map[string]string(name='headers'),
+}
+
+async function deleteLogstore(request: DeleteLogstoreRequest): DeleteLogstoreResponse {
+  @handler.validateRequestModel(request);
+  return @handler.do('RESTFUL', 'DeleteLogstore', 'DELETE', '/logstores/logstoreName', 'none', false, '', request);
+}
+
+model ListMachineGroupRequest {
+  offset?: long(name='offset', description='A short description of struct', position='Host'),
+  size?: long(name='size', position='Host'),
+  groupName?: string(name='groupName', position='Host'),
+}
+
+model ListMachineGroupResponseBody = {
+  count?: long(name='count', description='Id of the request'),
+  total?: long(name='total'),
+  machinegroups?: {
+    testMachineGroup1?: [ bytes ](name='test-machine-group-1'),
+    testMachineGroup2?: [ bytes ](name='test-machine-group-2'),
+  }(name='machinegroups'),
+}
+
+model ListMachineGroupResponse = {
+  headers: map[string]string(name='headers'),
+  body: ListMachineGroupResponseBody(name='body'),
+}
+
+async function listMachineGroup(request: ListMachineGroupRequest): ListMachineGroupResponse {
+  @handler.validateRequestModel(request);
+  return @handler.do('RESTFUL', 'ListMachineGroup', 'GET', '/machinegroups', 'json', false, '', request);
+}
+
+model GetCursorTimeRequest {
+  projectName?: string(name='projectName', description='A short description of struct', position='Host'),
+  logstoreName?: string(name='logstoreName', position='Host'),
+  shardID?: long(name='shardID', position='Host'),
+  cursor?: string(name='cursor', position='Host'),
+  type?: string(name='type', position='Host'),
+}
+
+model GetCursorTimeResponseBody = {
+  cursorTime?: string(name='cursor_time'),
+}
+
+model GetCursorTimeResponse = {
+  headers: map[string]string(name='headers'),
+  body: GetCursorTimeResponseBody(name='body'),
+}
+
+async function getCursorTime(request: GetCursorTimeRequest): GetCursorTimeResponse {
+  @handler.validateRequestModel(request);
+  return @handler.do('RESTFUL', 'GetCursorTime', 'GET', '/logstores/logstoreName/shards/shardID', 'json', false, '', request);
+}
+
+model DeleteConfigRequest {
+  projectName?: string(name='projectName', description='A short description of struct', position='Host'),
+  configName?: string(name='ConfigName', position='Host'),
+}
+
+model DeleteConfigResponse = {
+  headers: map[string]string(name='headers'),
+}
+
+async function deleteConfig(request: DeleteConfigRequest): DeleteConfigResponse {
+  @handler.validateRequestModel(request);
+  return @handler.do('RESTFUL', 'DeleteConfig', 'DELETE', '/configs/configName', 'none', false, '', request);
+}
+
+model EnableReportRequest {
+  project?: string(name='Project', description='A short description of struct', position='Query'),
+  name?: string(name='Name', position='Query'),
+}
+
+model EnableReportResponse = {
+  headers: map[string]string(name='headers'),
+}
+
+async function enableReport(request: EnableReportRequest): EnableReportResponse {
+  @handler.validateRequestModel(request);
+  return @handler.do('RESTFUL', 'EnableReport', 'PUT', '/jobs', 'none', false, '', request);
+}
+
+model RetryShipperTasksRequest {
+  project?: string(name='project', description='A short description of struct', position='Host'),
+  logStore?: string(name='logStore', position='Host'),
+  shipperName?: string(name='shipperName', position='Host'),
+}
+
+model RetryShipperTasksResponse = {
+  headers: map[string]string(name='headers'),
+}
+
+async function retryShipperTasks(request: RetryShipperTasksRequest): RetryShipperTasksResponse {
+  @handler.validateRequestModel(request);
+  return @handler.do('RESTFUL', 'RetryShipperTasks', 'PUT', '/logstores/{logStore}/shipper/{shipperName}/tasks', 'none', false, '', request);
+}
+
+model CreateMachineGroupRequest {
+  projectName?: string(name='projectName', position='Body'),
+  groupName?: string(name='groupName', position='Body'),
+  machineIdentifyType?: string(name='machineIdentifyType', position='Body'),
+  groupAttribute?: {
+    groupTopic?: string(name='groupTopic'),
+    externalName?: string(name='externalName'),
+  }(name='groupAttribute', position='Body'),
+  machineList?: [ bytes ](name='machineList', position='Body'),
+  groupType?: string(name='groupType', position='Body'),
+}
+
+model CreateMachineGroupResponse = {
+  headers: map[string]string(name='headers'),
+}
+
+async function createMachineGroup(request: CreateMachineGroupRequest): CreateMachineGroupResponse {
+  @handler.validateRequestModel(request);
+  return @handler.do('RESTFUL', 'CreateMachineGroup', 'POST', '/machinegroups', 'none', false, 'object', request);
+}
+
+model GetMachineGroupRequest {
+  projectName?: string(name='projectName', description='A short description of struct', position='Host'),
+  groupName?: string(name='groupName', position='Host'),
+}
+
+model GetMachineGroupResponseBody = {
+  groupName?: string(name='groupName'),
+  groupType?: string(name='groupType'),
+  machineIdentifyType?: string(name='machineIdentifyType'),
+  groupAttribute?: {
+    groupTopic?: string(name='groupTopic'),
+    externalName?: string(name='externalName'),
+  }(name='groupAttribute'),
+  machineList?: [ string ](name='machineList'),
+  createTime?: long(name='createTime'),
+  lastModifyTime?: long(name='lastModifyTime'),
+}
+
+model GetMachineGroupResponse = {
+  headers: map[string]string(name='headers'),
+  body: GetMachineGroupResponseBody(name='body'),
+}
+
+async function getMachineGroup(request: GetMachineGroupRequest): GetMachineGroupResponse {
+  @handler.validateRequestModel(request);
+  return @handler.do('RESTFUL', 'GetMachineGroup', 'GET', '/machinegroups/groupName', 'json', false, '', request);
+}
+
+model DeleteRebuildIndexRequest {
+  project?: string(name='Project', description='A short description of struct', position='Query'),
+  name?: string(name='Name', position='Query'),
+}
+
+model DeleteRebuildIndexResponse = {
+  headers: map[string]string(name='headers'),
+}
+
+async function deleteRebuildIndex(request: DeleteRebuildIndexRequest): DeleteRebuildIndexResponse {
+  @handler.validateRequestModel(request);
+  return @handler.do('RESTFUL', 'DeleteRebuildIndex', 'DELETE', '/jobs', 'none', false, '', request);
+}
+
+model DeleteShardRequest {
+}
+
+model DeleteShardResponseBody = {
+  requestId?: string(name='RequestId', description='Id of the request'),
+}
+
+model DeleteShardResponse = {
+  headers: map[string]string(name='headers'),
+  body: DeleteShardResponseBody(name='body'),
+}
+
+async function deleteShard(request: DeleteShardRequest): DeleteShardResponse {
+  @handler.validateRequestModel(request);
+  return @handler.do('RESTFUL', 'DeleteShard', 'DELETE', '/logstores/{logStore}/shards/{shardId}', 'json', false, '', request);
+}
+
+model GetContextLogsRequest {
+  projectName?: string(name='projectName', description='A short description of struct', position='Host'),
+  logstoreName?: string(name='logstoreName', position='Host'),
+  type?: string(name='type', position='Host'),
+  packId?: string(name='pack_id', position='Host'),
+  packMeta?: string(name='pack_meta', position='Host'),
+  backLines?: long(name='back_lines', position='Host'),
+  forwardLines?: long(name='forward_lines', position='Host'),
+}
+
+model GetContextLogsResponseBody = {
+  totalLines?: long(name='total_lines', description='Id of the request'),
+  backLines?: long(name='back_lines'),
+  forwardLines?: long(name='forward_lines'),
+  progress?: string(name='progress'),
+  logs?: [ 
+    {
+      indexNumber?: string(name='__index_number__'),
+      tagPackId?: string(name='__tag__:__pack_id__'),
+      packMeta?: string(name='__pack_meta__'),
+    }
+  ](name='logs'),
+}
+
+model GetContextLogsResponse = {
+  headers: map[string]string(name='headers'),
+  body: GetContextLogsResponseBody(name='body'),
+}
+
+async function getContextLogs(request: GetContextLogsRequest): GetContextLogsResponse {
+  @handler.validateRequestModel(request);
+  return @handler.do('RESTFUL', 'GetContextLogs', 'GET', '/logstores/logstoreName', 'json', false, '', request);
+}
+
+model CreateDashboardRequest {
+  dashboardName?: string(name='DashboardName', position='Body'),
+  description?: string(name='Description', position='Body'),
+  displayName?: string(name='DisplayName', position='Body'),
+  attribute?: string(name='Attribute', position='Body'),
+  chartList?: [ bytes ](name='ChartList', position='Body'),
+}
+
+model CreateDashboardResponse = {
+  headers: map[string]string(name='headers'),
+}
+
+async function createDashboard(request: CreateDashboardRequest): CreateDashboardResponse {
+  @handler.validateRequestModel(request);
+  return @handler.do('RESTFUL', 'CreateDashboard', 'POST', '/dashboards', 'none', false, 'object', request);
+}
+
+model DeleteIngestionRequest {
+  project?: string(name='project', description='A short description of struct', position='Query'),
+  name?: string(name='name', position='Query'),
+}
+
+model DeleteIngestionResponse = {
+  headers: map[string]string(name='headers'),
+}
+
+async function deleteIngestion(request: DeleteIngestionRequest): DeleteIngestionResponse {
+  @handler.validateRequestModel(request);
+  return @handler.do('RESTFUL', 'DeleteIngestion', 'DELETE', '/jobs', 'none', false, '', request);
+}
+
+model StartExportRequest {
+  project?: string(name='Project', description='A short description of struct', position='Query'),
+  name?: string(name='Name', position='Query'),
+}
+
+model StartExportResponse = {
+  headers: map[string]string(name='headers'),
+}
+
+async function startExport(request: StartExportRequest): StartExportResponse {
+  @handler.validateRequestModel(request);
+  return @handler.do('RESTFUL', 'StartExport', 'PUT', '/jobs', 'none', false, '', request);
+}
+
+model CreateLogStoreInternalRequest {
+  project?: string(name='project', description='A short description of struct', position='Host'),
+  internallogStore?: string(name='InternallogStore', position='Host'),
+  type?: string(name='Type', position='Query'),
+}
+
+model CreateLogStoreInternalResponse = {
+  headers: map[string]string(name='headers'),
+}
+
+async function createLogStoreInternal(request: CreateLogStoreInternalRequest): CreateLogStoreInternalResponse {
+  @handler.validateRequestModel(request);
+  return @handler.do('RESTFUL', 'CreateLogStoreInternal', 'POST', '/logstores', 'none', false, '', request);
+}
+
+model GetLogstoreRequest {
+  logstoreName?: string(name='logstoreName', description='A short description of struct', position='Host'),
+}
+
+model GetLogstoreResponseBody = {
+  logstoreName?: string(name='logstoreName', description='Id of the request'),
+  ttl?: long(name='ttl'),
+  shardCount?: long(name='shardCount'),
+  enableTracking?: boolean(name='enable_tracking'),
+  autoSplit?: boolean(name='autoSplit'),
+  maxSplitShard?: long(name='maxSplitShard'),
+  createTime?: string(name='createTime'),
+  lastModifyTime?: string(name='lastModifyTime'),
+  appendMeta?: boolean(name='appendMeta'),
+}
+
+model GetLogstoreResponse = {
+  headers: map[string]string(name='headers'),
+  body: GetLogstoreResponseBody(name='body'),
+}
+
+async function getLogstore(request: GetLogstoreRequest): GetLogstoreResponse {
+  @handler.validateRequestModel(request);
+  return @handler.do('RESTFUL', 'GetLogstore', 'GET', '/logstores/logstoreName', 'json', false, '', request);
+}
+
+model UpdateJobScheduleRequest {
+  project?: string(name='Project', description='A short description of struct', position='Query'),
+  schedule?: {
+    id?: string(name='Id'),
+    displayName?: string(name='DisplayName'),
+    description?: string(name='Description'),
+    jobName?: string(name='JobName'),
+    interval?: string(name='Interval'),
+    cronExpression?: string(name='CronExpression'),
+    delay?: long(name='Delay'),
+    dayOfWeek?: long(name='DayOfWeek'),
+    hour?: long(name='Hour'),
+    fromTime?: long(name='FromTime'),
+    toTime?: long(name='ToTime'),
+    status?: string(name='Status'),
+    createTime?: string(name='CreateTime'),
+    lastModifiedTime?: string(name='LastModifiedTime'),
+    startTime?: string(name='StartTime'),
+    completeTime?: string(name='CompleteTime'),
+    runImmediately?: string(name='RunImmediately'),
+    type?: {
+      value?: string(name='Value'),
+    }(name='Type'),
+  }(name='Schedule', position='Query'),
+}
+
+model UpdateJobScheduleShrinkRequest {
+  project?: string(name='Project', description='A short description of struct', position='Query'),
+  scheduleShrink?: string(name='Schedule', position='Query'),
+}
+
+model UpdateJobScheduleResponseBody = {
+  displayName?: string(name='DisplayName'),
+  description?: string(name='Description'),
+  jobName?: string(name='JobName'),
+  type?: string(name='Type'),
+}
+
+model UpdateJobScheduleResponse = {
+  headers: map[string]string(name='headers'),
+  body: UpdateJobScheduleResponseBody(name='body'),
+}
+
+async function updateJobSchedule(tmpReq: UpdateJobScheduleRequest): UpdateJobScheduleResponse {
+  @handler.validateRequestModel(tmpReq);
+  return @handler.do('RESTFUL', 'UpdateJobSchedule', 'PUT', '/jobschedules/{id}', 'json', false, '', tmpReq);
+}
+
+model UpdateMachineGroupRequest {
+  projectName?: string(name='projectName', position='Body'),
+  groupName?: string(name='groupName', position='Body'),
+  groupType?: string(name='groupType', position='Body'),
+  machineIdentifyType?: string(name='machineIdentifyType', position='Body'),
+  groupAttribute?: {
+    groupTopic?: string(name='groupTopic'),
+    externalName?: string(name='externalName'),
+  }(name='groupAttribute', position='Body'),
+  machineList?: [ bytes ](name='machineList', position='Body'),
+}
+
+model UpdateMachineGroupResponse = {
+  headers: map[string]string(name='headers'),
+}
+
+async function updateMachineGroup(request: UpdateMachineGroupRequest): UpdateMachineGroupResponse {
+  @handler.validateRequestModel(request);
+  return @handler.do('RESTFUL', 'UpdateMachineGroup', 'PUT', '/machinegroups/groupName', 'none', false, 'object', request);
+}
+
+model GetCheckPointRequest {
+  projectName?: string(name='projectName', description='A short description of struct', position='Host'),
+  logstoreName?: string(name='logstoreName', position='Host'),
+  consumerGroup?: string(name='consumerGroup', position='Host'),
+  shardId?: long(name='shardId', position='Host'),
+}
+
+model GetCheckPointResponseBody = {
+  shard?: long(name='shard'),
+  checkpoint?: string(name='checkpoint'),
+  updateTime?: long(name='updateTime'),
+  consumer?: string(name='consumer'),
+}
+
+model GetCheckPointResponse = {
+  headers: map[string]string(name='headers'),
+  body: GetCheckPointResponseBody(name='body'),
+}
+
+async function getCheckPoint(request: GetCheckPointRequest): GetCheckPointResponse {
+  @handler.validateRequestModel(request);
+  return @handler.do('RESTFUL', 'GetCheckPoint', 'GET', '/logstores/logstoreName/consumergroups/consumerGroup', 'json', false, '', request);
+}
+
+model ListDomainsRequest {
+  projectName?: string(name='ProjectName', description='A short description of struct', position='Query'),
+}
+
+model ListDomainsResponseBody = {
+  domainName?: string(name='DomainName'),
+}
+
+model ListDomainsResponse = {
+  headers: map[string]string(name='headers'),
+  body: ListDomainsResponseBody(name='body'),
+}
+
+async function listDomains(request: ListDomainsRequest): ListDomainsResponse {
+  @handler.validateRequestModel(request);
+  return @handler.do('RESTFUL', 'ListDomains', 'GET', '/domains', 'json', false, '', request);
+}
+
+model DeleteEtlJobRequest {
+  project?: string(name='Project', description='A short description of struct', position='Query'),
+  etlJobName?: string(name='EtlJobName', position='Query'),
+}
+
+model DeleteEtlJobResponse = {
+  headers: map[string]string(name='headers'),
+}
+
+async function deleteEtlJob(request: DeleteEtlJobRequest): DeleteEtlJobResponse {
+  @handler.validateRequestModel(request);
+  return @handler.do('RESTFUL', 'DeleteEtlJob', 'DELETE', '/etljobs/{etlJobName}', 'none', false, '', request);
+}
+
+model CreateJobRequest {
+  project?: string(name='Project', description='A short description of struct', position='Query'),
+  job?: {
+    name?: string(name='Name'),
+    displayName?: string(name='DisplayName'),
+    description?: string(name='Description'),
+    createTime?: string(name='CreateTime'),
+    lastModifiedTime?: string(name='LastModifiedTime'),
+    type?: {
+      value?: string(name='Value'),
+    }(name='Type'),
+    schedule?: {
+      id?: string(name='Id'),
+      displayName?: string(name='DisplayName'),
+      description?: string(name='Description'),
+      jobName?: string(name='JobName'),
+      scheduleType?: {
+        value?: string(name='Value'),
+      }(name='Type'),
+      interval?: string(name='Interval'),
+      cronExpression?: string(name='CronExpression'),
+      delay?: long(name='Delay'),
+      dayOfWeek?: long(name='DayOfWeek'),
+      hour?: long(name='Hour'),
+      fromTime?: long(name='FromTime'),
+      toTime?: long(name='ToTime'),
+      status?: string(name='Status'),
+      createTime?: string(name='CreateTime'),
+      lastModifiedTime?: string(name='LastModifiedTime'),
+      startTime?: string(name='StartTime'),
+      completeTime?: string(name='CompleteTime'),
+      runImmediately?: boolean(name='RunImmediately'),
+    }(name='Schedule'),
+    state?: {
+      value?: string(name='Value'),
+    }(name='State'),
+    configuration?: {
+      value?: string(name='Value'),
+    }(name='Configuration'),
+  }(name='Job', position='Query'),
+}
+
+model CreateJobShrinkRequest {
+  project?: string(name='Project', description='A short description of struct', position='Query'),
+  jobShrink?: string(name='Job', position='Query'),
+}
+
+model CreateJobResponse = {
+  headers: map[string]string(name='headers'),
+}
+
+async function createJob(tmpReq: CreateJobRequest): CreateJobResponse {
+  @handler.validateRequestModel(tmpReq);
+  return @handler.do('RESTFUL', 'CreateJob', 'POST', '/jobs', 'none', false, '', tmpReq);
+}
+
+model GetIngestionRequest {
+  project?: string(name='Project', description='A short description of struct', position='Query'),
+  jobName?: string(name='JobName', position='Query'),
+}
+
+model GetIngestionResponseBody = {
+  logstore?: string(name='Logstore'),
+  type?: string(name='Type'),
+  configuration?: string(name='Configuration'),
+}
+
+model GetIngestionResponse = {
+  headers: map[string]string(name='headers'),
+  body: GetIngestionResponseBody(name='body'),
+}
+
+async function getIngestion(request: GetIngestionRequest): GetIngestionResponse {
+  @handler.validateRequestModel(request);
+  return @handler.do('RESTFUL', 'GetIngestion', 'GET', '/jobs', 'json', false, '', request);
+}
+
+model CreateRebuildIndexRequest {
+  status?: string(name='Status', position='Body'),
+  executionDetails?: string(name='ExecutionDetails', position='Body'),
+}
+
+model CreateRebuildIndexResponse = {
+  headers: map[string]string(name='headers'),
+}
+
+async function createRebuildIndex(request: CreateRebuildIndexRequest): CreateRebuildIndexResponse {
+  @handler.validateRequestModel(request);
+  return @handler.do('RESTFUL', 'CreateRebuildIndex', 'POST', '/jobs', 'none', false, 'object', request);
+}
+
+model ListShipperRequest {
+  project?: string(name='Project', description='A short description of struct', position='Host'),
+  logStore?: string(name='LogStore', position='Host'),
+}
+
+model ListShipperResponseBody = {
+  count?: long(name='Count'),
+  total?: long(name='Total'),
+}
+
+model ListShipperResponse = {
+  headers: map[string]string(name='headers'),
+  body: ListShipperResponseBody(name='body'),
+}
+
+async function listShipper(request: ListShipperRequest): ListShipperResponse {
+  @handler.validateRequestModel(request);
+  return @handler.do('RESTFUL', 'ListShipper', 'GET', '/logstores/{logStore}/shipper', 'json', false, '', request);
+}
+
+model DeleteChartRequest {
+  projectName?: string(name='ProjectName', description='A short description of struct', position='Query'),
+}
+
+model DeleteChartResponse = {
+  headers: map[string]string(name='headers'),
+}
+
+async function deleteChart(request: DeleteChartRequest): DeleteChartResponse {
+  @handler.validateRequestModel(request);
+  return @handler.do('RESTFUL', 'DeleteChart', 'DELETE', '/dashboards/{dashboardName}/charts/{chartName}', 'none', false, '', request);
+}
+
+model DisableAlertRequest {
+  project?: string(name='Project', description='A short description of struct', position='Query'),
+  name?: string(name='Name', position='Query'),
+}
+
+model DisableAlertResponse = {
+  headers: map[string]string(name='headers'),
+}
+
+async function disableAlert(request: DisableAlertRequest): DisableAlertResponse {
+  @handler.validateRequestModel(request);
+  return @handler.do('RESTFUL', 'DisableAlert', 'PUT', '/jobs', 'none', false, '', request);
+}
+
+model DeleteReportRequest {
+  project?: string(name='Project', description='A short description of struct', position='Query'),
+  name?: string(name='Name', position='Query'),
+}
+
+model DeleteReportResponse = {
+  headers: map[string]string(name='headers'),
+}
+
+async function deleteReport(request: DeleteReportRequest): DeleteReportResponse {
+  @handler.validateRequestModel(request);
+  return @handler.do('RESTFUL', 'DeleteReport', 'DELETE', '/jobs', 'none', false, '', request);
+}
+
+model GetProjectRequest {
+  projectName?: string(name='projectName', position='Host'),
+}
+
+model GetProjectResponseBody = {
+  createTime?: string(name='createTime'),
+  description?: string(name='description'),
+  lastModifyTime?: string(name='lastModifyTime'),
+  owner?: string(name='owner'),
+  projectName?: string(name='projectName'),
+  status?: string(name='status'),
+  region?: string(name='region'),
+}
+
+model GetProjectResponse = {
+  headers: map[string]string(name='headers'),
+  body: GetProjectResponseBody(name='body'),
+}
+
+async function getProject(request: GetProjectRequest): GetProjectResponse {
+  @handler.validateRequestModel(request);
+  return @handler.do('RESTFUL', 'GetProject', 'GET', '/ ', 'json', false, '', request);
+}
+
+model StartJobScheduleRequest {
+  project?: string(name='Project', description='A short description of struct', position='Query'),
+  scheduleId?: string(name='ScheduleId', position='Query'),
+}
+
+model StartJobScheduleResponse = {
+  headers: map[string]string(name='headers'),
+}
+
+async function startJobSchedule(request: StartJobScheduleRequest): StartJobScheduleResponse {
+  @handler.validateRequestModel(request);
+  return @handler.do('RESTFUL', 'StartJobSchedule', 'PUT', '/jobschedules/{scheduleId}', 'none', false, '', request);
+}
+
+model ApproveMachineGroupRequest {
+  project?: string(name='Project', description='A short description of struct', position='Host'),
+  groupName?: string(name='GroupName', position='Host'),
+}
+
+model ApproveMachineGroupResponse = {
+  headers: map[string]string(name='headers'),
+}
+
+async function approveMachineGroup(request: ApproveMachineGroupRequest): ApproveMachineGroupResponse {
+  @handler.validateRequestModel(request);
+  return @handler.do('RESTFUL', 'ApproveMachineGroup', 'PUT', '/machinegroups/{groupName} /approve', 'none', false, '', request);
+}
+
+model DeleteJobScheduleRequest {
+  project?: string(name='Project', description='A short description of struct', position='Query'),
+  jobScheduleId?: string(name='JobScheduleId', position='Query'),
+}
+
+model DeleteJobScheduleResponse = {
+  headers: map[string]string(name='headers'),
+}
+
+async function deleteJobSchedule(request: DeleteJobScheduleRequest): DeleteJobScheduleResponse {
+  @handler.validateRequestModel(request);
+  return @handler.do('RESTFUL', 'DeleteJobSchedule', 'DELETE', '/jobschedules/{jobScheduleId}', 'none', false, '', request);
+}
+
+model StopIngestionRequest {
+  project?: string(name='Project', description='A short description of struct', position='Query'),
+  name?: string(name='Name', position='Query'),
+}
+
+model StopIngestionResponse = {
+  headers: map[string]string(name='headers'),
+}
+
+async function stopIngestion(request: StopIngestionRequest): StopIngestionResponse {
+  @handler.validateRequestModel(request);
+  return @handler.do('RESTFUL', 'StopIngestion', 'PUT', '/jobs', 'none', false, '', request);
+}
+
+model GetCursorRequest {
+  projectName?: string(name='projectName', position='Header'),
+  logstoreName?: string(name='logstoreName', position='Header'),
+  shardID?: string(name='shardID', position='Header'),
+  type?: string(name='type', position='Header'),
+  from?: string(name='from', position='Header'),
+}
+
+model GetCursorResponseBody = {
+  cursor?: string(name='cursor'),
+}
+
+model GetCursorResponse = {
+  headers: map[string]string(name='headers'),
+  body: GetCursorResponseBody(name='body'),
+}
+
+async function getCursor(request: GetCursorRequest): GetCursorResponse {
+  @handler.validateRequestModel(request);
+  return @handler.do('RESTFUL', 'GetCursor', 'GET', '/logstores/logstoreName/shards/shardID', 'json', false, '', request);
+}
+
+model DeleteProjectRequest {
+  projectName?: string(name='projectName', position='Body'),
+}
+
+model DeleteProjectResponse = {
+  headers: map[string]string(name='headers'),
+}
+
+async function deleteProject(request: DeleteProjectRequest): DeleteProjectResponse {
+  @handler.validateRequestModel(request);
+  return @handler.do('RESTFUL', 'DeleteProject', 'DELETE', '/', 'none', false, 'object', request);
+}
+
+model DeleteConsumerGroupRequest {
+  projectName?: string(name='projectName', description='A short description of struct', position='Host'),
+  logstoreName?: string(name='logstoreName', position='Host'),
+  consumerGroup?: string(name='consumerGroup', position='Host'),
+}
+
+model DeleteConsumerGroupResponse = {
+  headers: map[string]string(name='headers'),
+}
+
+async function deleteConsumerGroup(request: DeleteConsumerGroupRequest): DeleteConsumerGroupResponse {
+  @handler.validateRequestModel(request);
+  return @handler.do('RESTFUL', 'DeleteConsumerGroup', 'DELETE', '/logstores/logstoreName/consumergroups/consumerGroupName', 'none', false, '', request);
+}
+
+model GetExportRequest {
+  jobName?: string(name='JobName', position='Query'),
+}
+
+model GetExportResponseBody = {
+  configuration?: {
+    logstore?: string(name='Logstore'),
+    accessKeyId?: string(name='AccessKeyId'),
+    accessKeySecret?: string(name='AccessKeySecret'),
+    instanceType?: string(name='InstanceType'),
+    fromTime?: long(name='FromTime'),
+    sink?: {
+      type?: {
+        name?: string(name='Name'),
+      }(name='Type'),
+    }(name='Sink'),
+  }(name='Configuration'),
+}
+
+model GetExportResponse = {
+  headers: map[string]string(name='headers'),
+  body: GetExportResponseBody(name='body'),
+}
+
+async function getExport(request: GetExportRequest): GetExportResponse {
+  @handler.validateRequestModel(request);
+  return @handler.do('RESTFUL', 'GetExport', 'GET', '/jobs', 'json', false, '', request);
+}
+
+model CreateLogstoreRequest {
+  logstoreName?: string(name='logstoreName', position='Body'),
+  ttl?: long(name='ttl', position='Body'),
+  shardCount?: long(name='shardCount', position='Body'),
+  enableTracking?: boolean(name='enable_tracking', position='Body'),
+  autoSplit?: boolean(name='autoSplit', position='Body'),
+  maxSplitShard?: long(name='maxSplitShard', position='Body'),
+  appendMeta?: boolean(name='appendMeta', position='Body'),
+}
+
+model CreateLogstoreResponseBody = {
+  logstoreName?: string(name='logstoreName'),
+}
+
+model CreateLogstoreResponse = {
+  headers: map[string]string(name='headers'),
+  body: CreateLogstoreResponseBody(name='body'),
+}
+
+async function createLogstore(request: CreateLogstoreRequest): CreateLogstoreResponse {
+  @handler.validateRequestModel(request);
+  return @handler.do('RESTFUL', 'CreateLogstore', 'POST', '/logstores', 'json', false, 'object', request);
+}
+
+model GetDashboardRequest {
+  dashboardName?: string(name='DashboardName', description='A short description of struct', position='Query'),
+}
+
+model GetDashboardResponseBody = {
+  dashboardName?: string(name='DashboardName'),
+  description?: string(name='Description'),
+  displayName?: string(name='DisplayName'),
+  attribute?: string(name='Attribute'),
+  chartList?: [ bytes ](name='ChartList'),
+}
+
+model GetDashboardResponse = {
+  headers: map[string]string(name='headers'),
+  body: GetDashboardResponseBody(name='body'),
+}
+
+async function getDashboard(request: GetDashboardRequest): GetDashboardResponse {
+  @handler.validateRequestModel(request);
+  return @handler.do('RESTFUL', 'GetDashboard', 'GET', '/dashboards/{dashboardName}', 'json', false, '', request);
+}
+
+model ListJobsRequest {
+  displayName?: string(name='DisplayName', description='A short description of struct', position='Query'),
+  type?: {
+    value?: string(name='Value'),
+  }(name='Type', position='Query'),
+  resourceProvider?: string(name='ResourceProvider', position='Query'),
+  logstore?: string(name='Logstore', position='Query'),
+  offset?: long(name='Offset', position='Query'),
+  size?: long(name='Size', position='Query'),
+}
+
+model ListJobsShrinkRequest {
+  displayName?: string(name='DisplayName', description='A short description of struct', position='Query'),
+  typeShrink?: string(name='Type', position='Query'),
+  resourceProvider?: string(name='ResourceProvider', position='Query'),
+  logstore?: string(name='Logstore', position='Query'),
+  offset?: long(name='Offset', position='Query'),
+  size?: long(name='Size', position='Query'),
+}
+
+model ListJobsResponseBody = {
+  total?: long(name='Total'),
+  count?: long(name='Count'),
+  results?: [ string ](name='Results'),
+}
+
+model ListJobsResponse = {
+  headers: map[string]string(name='headers'),
+  body: ListJobsResponseBody(name='body'),
+}
+
+async function listJobs(tmpReq: ListJobsRequest): ListJobsResponse {
+  @handler.validateRequestModel(tmpReq);
+  return @handler.do('RESTFUL', 'ListJobs', 'GET', '/jobs', 'json', false, '', tmpReq);
+}
+
+model GetJobScheduleRequest {
+  project?: string(name='Project', description='A short description of struct', position='Query'),
+  jobScheduleId?: string(name='JobScheduleId', position='Query'),
+}
+
+model GetJobScheduleResponseBody = {
+  displayName?: string(name='DisplayName'),
+  description?: string(name='Description'),
+  jobName?: string(name='JobName'),
+  type?: string(name='Type'),
+}
+
+model GetJobScheduleResponse = {
+  headers: map[string]string(name='headers'),
+  body: GetJobScheduleResponseBody(name='body'),
+}
+
+async function getJobSchedule(request: GetJobScheduleRequest): GetJobScheduleResponse {
+  @handler.validateRequestModel(request);
+  return @handler.do('RESTFUL', 'GetJobSchedule', 'GET', '/jobschedules/{jobScheduleId}', 'json', false, '', request);
+}
+
+model GetProjectLogsRequest {
+  query?: string(name='query', description='A short description of struct', position='Host'),
+}
+
+model GetProjectLogsResponseBody = {
+  time?: long(name='__time__'),
+  source?: string(name='__source__'),
+  content?: [  map[string]any ](name='content'),
+}
+
+model GetProjectLogsResponse = {
+  headers: map[string]string(name='headers'),
+  body: GetProjectLogsResponseBody(name='body'),
+}
+
+async function getProjectLogs(request: GetProjectLogsRequest): GetProjectLogsResponse {
+  @handler.validateRequestModel(request);
+  return @handler.do('RESTFUL', 'GetProjectLogs', 'GET', '/logs', 'json', false, '', request);
+}
+
+model UpdateReportRequest {
+  project?: string(name='Project', description='A short description of struct', position='Query'),
+  state?: string(name='State', position='Body'),
+  status?: string(name='Status', position='Body'),
+  schedule?: string(name='Schedule', position='Body'),
+}
+
+model UpdateReportResponse = {
+  headers: map[string]string(name='headers'),
+}
+
+async function updateReport(request: UpdateReportRequest): UpdateReportResponse {
+  @handler.validateRequestModel(request);
+  return @handler.do('RESTFUL', 'UpdateReport', 'PUT', '/jobs/{name}', 'none', false, 'object', request);
+}
+
+model GetJobRequest {
+  project?: string(name='Project', description='A short description of struct', position='Query'),
+  jobName?: string(name='JobName', position='Query'),
+}
+
+model GetJobResponseBody = {
+  name?: string(name='Name'),
+  displayName?: string(name='DisplayName'),
+  type?: {
+    value?: string(name='Value'),
+  }(name='Type'),
+  description?: string(name='Description'),
+  createTime?: string(name='CreateTime'),
+  lastModifiedTime?: string(name='LastModifiedTime'),
+  schedule?: {
+    value?: string(name='Value'),
+  }(name='Schedule'),
+  state?: {
+    value?: string(name='Value'),
+  }(name='State'),
+  configuration?: {
+    value?: string(name='Value'),
+  }(name='Configuration'),
+}
+
+model GetJobResponse = {
+  headers: map[string]string(name='headers'),
+  body: GetJobResponseBody(name='body'),
+}
+
+async function getJob(request: GetJobRequest): GetJobResponse {
+  @handler.validateRequestModel(request);
+  return @handler.do('RESTFUL', 'GetJob', 'GET', '/jobs', 'json', false, '', request);
+}
+
+model CreateProjectRequest {
+  projectName?: string(name='projectName', position='Body'),
+  description?: string(name='description', position='Body'),
+}
+
+model CreateProjectResponseBody = {
+  projectName?: string(name='projectName'),
+}
+
+model CreateProjectResponse = {
+  headers: map[string]string(name='headers'),
+  body: CreateProjectResponseBody(name='body'),
+}
+
+async function createProject(request: CreateProjectRequest): CreateProjectResponse {
+  @handler.validateRequestModel(request);
+  return @handler.do('RESTFUL', 'CreateProject', 'POST', '/', 'json', false, 'object', request);
+}
+
+model UpdateEtlMetaRequest {
+  project?: string(name='Project', description='A short description of struct', position='Query'),
+  etlMeta?: {
+    metaName?: string(name='MetaName'),
+    metaKey?: string(name='MetaKey'),
+    metaTag?: string(name='MetaTag'),
+    createTime?: long(name='CreateTime'),
+    lastModifyTime?: long(name='LastModifyTime'),
+    enable?: boolean(name='Enable'),
+    metaValue?: {
+      etlMetaName?: string(name='EtlMetaName'),
+      etlMetaKey?: string(name='EtlMetaKey'),
+      etlMetaTag?: string(name='EtlMetaTag'),
+      etlMetaValue?: string(name='EtlMetaValue'),
+      createTime?: string(name='CreateTime'),
+      lastModifyTime?: string(name='LastModifyTime'),
+      enable?: string(name='Enable'),
+    }(name='MetaValue'),
+  }(name='EtlMeta', position='Query'),
+}
+
+model UpdateEtlMetaShrinkRequest {
+  project?: string(name='Project', description='A short description of struct', position='Query'),
+  etlMetaShrink?: string(name='EtlMeta', position='Query'),
+}
+
+model UpdateEtlMetaResponse = {
+  headers: map[string]string(name='headers'),
+}
+
+async function updateEtlMeta(tmpReq: UpdateEtlMetaRequest): UpdateEtlMetaResponse {
+  @handler.validateRequestModel(tmpReq);
+  return @handler.do('RESTFUL', 'UpdateEtlMeta', 'PUT', '/etlmetas', 'none', false, '', tmpReq);
+}
+
+model PullLogsRequest {
+  projectName?: string(name='projectName', description='A short description of struct', position='Host'),
+  logstoreName?: string(name='logstoreName', position='Host'),
+  shardID?: long(name='shardID', position='Host'),
+  type?: string(name='type', position='Host'),
+  cursor?: string(name='cursor', position='Host'),
+  count?: long(name='count', position='Host'),
+}
+
+model PullLogsResponse = {
+  headers: map[string]string(name='headers'),
+}
+
+async function pullLogs(request: PullLogsRequest): PullLogsResponse {
+  @handler.validateRequestModel(request);
+  return @handler.do('RESTFUL', 'PullLogs', 'GET', '/logstores/logstoreName/shards/shardID', 'none', false, '', request);
+}
+
+model CreateChartRequest {
+  projectName?: string(name='ProjectName', position='Body'),
+  projectStatus?: string(name='ProjectStatus', position='Body'),
+  projectOwner?: string(name='ProjectOwner', position='Body'),
+  projectDesc?: string(name='ProjectDesc', position='Body'),
+  region?: string(name='Region', position='Body'),
+  createTime?: string(name='CreateTime', position='Body'),
+  lastModifyTime?: string(name='LastModifyTime', position='Body'),
+}
+
+model CreateChartResponse = {
+  headers: map[string]string(name='headers'),
+}
+
+async function createChart(request: CreateChartRequest): CreateChartResponse {
+  @handler.validateRequestModel(request);
+  return @handler.do('RESTFUL', 'CreateChart', 'POST', '/dashboards/{dashboardName}/charts', 'none', false, 'object', request);
+}
+
+model GetLoggingRequest {
+  project?: string(name='Project', description='A short description of struct', position='Query'),
+}
+
+model GetLoggingResponseBody = {
+  loggingProject?: string(name='LoggingProject'),
+  loggingDetails?: {
+    type?: string(name='Type'),
+    logstore?: string(name='Logstore'),
+  }(name='LoggingDetails'),
+}
+
+model GetLoggingResponse = {
+  headers: map[string]string(name='headers'),
+  body: GetLoggingResponseBody(name='body'),
+}
+
+async function getLogging(request: GetLoggingRequest): GetLoggingResponse {
+  @handler.validateRequestModel(request);
+  return @handler.do('RESTFUL', 'GetLogging', 'GET', '/logging', 'json', false, '', request);
+}
+
+model CreateLoggingRequest {
+  loggingProject?: string(name='LoggingProject', description='A short description of struct', position='Query'),
+  loggingDetails?: {
+    type?: string(name='Type'),
+    logstore?: string(name='Logstore'),
+  }(name='LoggingDetails', position='Query'),
+}
+
+model CreateLoggingShrinkRequest {
+  loggingProject?: string(name='LoggingProject', description='A short description of struct', position='Query'),
+  loggingDetailsShrink?: string(name='LoggingDetails', position='Query'),
+}
+
+model CreateLoggingResponse = {
+  headers: map[string]string(name='headers'),
+}
+
+async function createLogging(tmpReq: CreateLoggingRequest): CreateLoggingResponse {
+  @handler.validateRequestModel(tmpReq);
+  return @handler.do('RESTFUL', 'CreateLogging', 'POST', '/logging', 'none', false, '', tmpReq);
+}
+
+model GetIndexRequest {
+  projectName?: string(name='projectName', description='A short description of struct', position='Host'),
+  logstoreName?: string(name='logstoreName', position='Host'),
+}
+
+model GetIndexResponseBody = {
+  indexMode?: string(name='index_mode'),
+  keys?: {
+    type?: string(name='type'),
+    alias?: string(name='alias'),
+    chn?: boolean(name='chn'),
+    token?: [ bytes ](name='token'),
+    caseSensitive?: boolean(name='caseSensitive'),
+    docValue?: boolean(name='doc_value'),
+  }(name='keys'),
+  line?: {
+    caseSensitive?: boolean(name='caseSensitive'),
+    chn?: boolean(name='chn'),
+    token?: [ bytes ](name='token'),
+    includeKeys?: [ bytes ](name='include_keys'),
+    excludeKeys?: [ bytes ](name='exclude_keys'),
+  }(name='line'),
+  storage?: string(name='storage'),
+  ttl?: long(name='ttl'),
+  lastModifyTime?: long(name='lastModifyTime'),
+}
+
+model GetIndexResponse = {
+  headers: map[string]string(name='headers'),
+  body: GetIndexResponseBody(name='body'),
+}
+
+async function getIndex(request: GetIndexRequest): GetIndexResponse {
+  @handler.validateRequestModel(request);
+  return @handler.do('RESTFUL', 'GetIndex', 'GET', '/logstores/logstoreName/index', 'json', false, '', request);
+}
+
+model ListShardsRequest {
+  projectName?: string(name='projectName', description='A short description of struct', position='Host'),
+  logstoreName?: string(name='logstoreName', position='Host'),
+}
+
+model ListShardsResponseBody = {
+  shardID?: long(name='shardID', description='Id of the request'),
+  status?: string(name='status'),
+  inclusiveBeginKey?: string(name='inclusiveBeginKey'),
+  exclusiveEndKey?: string(name='exclusiveEndKey'),
+  createTime?: string(name='createTime'),
+}
+
+model ListShardsResponse = {
+  headers: map[string]string(name='headers'),
+  body: ListShardsResponseBody(name='body'),
+}
+
+async function listShards(request: ListShardsRequest): ListShardsResponse {
+  @handler.validateRequestModel(request);
+  return @handler.do('RESTFUL', 'ListShards', 'GET', '/logstores/logstorename/shards', 'json', false, '', request);
+}
+
+model ListSavedSearchRequest {
+  projectName?: string(name='ProjectName', description='A short description of struct', position='Query'),
+}
+
+model ListSavedSearchResponseBody = {
+  savedSearchName?: string(name='SavedSearchName'),
+  searchQuery?: string(name='SearchQuery'),
+  logstore?: string(name='Logstore'),
+  topic?: string(name='Topic'),
+  displayName?: string(name='DisplayName'),
+  rawSavedSearchAttr?: string(name='RawSavedSearchAttr'),
+}
+
+model ListSavedSearchResponse = {
+  headers: map[string]string(name='headers'),
+  body: ListSavedSearchResponseBody(name='body'),
+}
+
+async function listSavedSearch(request: ListSavedSearchRequest): ListSavedSearchResponse {
+  @handler.validateRequestModel(request);
+  return @handler.do('RESTFUL', 'ListSavedSearch', 'GET', '/savedsearches', 'json', false, '', request);
+}
+
+model GetEtlMetaRequest {
+  project?: string(name='Project', description='A short description of struct', position='Query'),
+  etlMetaName?: string(name='EtlMetaName', position='Query'),
+  etlMetaKey?: string(name='EtlMetaKey', position='Query'),
+}
+
+model GetEtlMetaResponseBody = {
+  metaName?: string(name='MetaName'),
+  metaKey?: string(name='MetaKey'),
+  metaTag?: string(name='MetaTag'),
+  createTime?: long(name='CreateTime'),
+  lastModifyTime?: long(name='LastModifyTime'),
+  enable?: boolean(name='Enable'),
+  metaValue?: {
+    etlMetaName?: string(name='EtlMetaName'),
+    etlMetaKey?: string(name='EtlMetaKey'),
+    etlMetaTag?: string(name='EtlMetaTag'),
+    etlMetaValue?: string(name='EtlMetaValue'),
+    createTime?: string(name='CreateTime'),
+    lastModifyTime?: string(name='LastModifyTime'),
+    enable?: string(name='Enable'),
+  }(name='MetaValue'),
+}
+
+model GetEtlMetaResponse = {
+  headers: map[string]string(name='headers'),
+  body: GetEtlMetaResponseBody(name='body'),
+}
+
+async function getEtlMeta(request: GetEtlMetaRequest): GetEtlMetaResponse {
+  @handler.validateRequestModel(request);
+  return @handler.do('RESTFUL', 'GetEtlMeta', 'GET', '/etlmetas', 'json', false, '', request);
+}
+
+model ApplyConfigToMachineGroupRequest {
+  projectName?: string(name='projectName', description='A short description of struct', position='Host'),
+  groupName?: string(name='groupName', position='Host'),
+  configName?: string(name='configName', position='Host'),
+}
+
+model ApplyConfigToMachineGroupResponse = {
+  headers: map[string]string(name='headers'),
+}
+
+async function applyConfigToMachineGroup(request: ApplyConfigToMachineGroupRequest): ApplyConfigToMachineGroupResponse {
+  @handler.validateRequestModel(request);
+  return @handler.do('RESTFUL', 'ApplyConfigToMachineGroup', 'PUT', '/machinegroups/groupName', 'none', false, '', request);
+}
+
+model GetChartRequest {
+}
+
+model GetChartResponseBody = {
+  requestId?: string(name='RequestId', description='Id of the request'),
+}
+
+model GetChartResponse = {
+  headers: map[string]string(name='headers'),
+  body: GetChartResponseBody(name='body'),
+}
+
+async function getChart(request: GetChartRequest): GetChartResponse {
+  @handler.validateRequestModel(request);
+  return @handler.do('RESTFUL', 'GetChart', 'GET', '/dashboards/{dashboardName}/charts/{chartName}', 'json', false, '', request);
+}
+
+model UpdateDashboardRequest {
+  dashboardName?: string(name='DashboardName', position='Body'),
+  description?: string(name='Description', position='Body'),
+  displayName?: string(name='DisplayName', position='Body'),
+  attribute?: string(name='Attribute', position='Body'),
+  chartList?: [ bytes ](name='ChartList', position='Body'),
+}
+
+model UpdateDashboardResponse = {
+  headers: map[string]string(name='headers'),
+}
+
+async function updateDashboard(request: UpdateDashboardRequest): UpdateDashboardResponse {
+  @handler.validateRequestModel(request);
+  return @handler.do('RESTFUL', 'UpdateDashboard', 'PUT', '/dashboards/{dashboardName}', 'none', false, 'object', request);
+}
+
+model GetRebuildIndexRequest {
+  project?: string(name='Project', description='A short description of struct', position='Query'),
+  jobName?: string(name='JobName', position='Query'),
+}
+
+model GetRebuildIndexResponseBody = {
+  status?: string(name='Status'),
+  executionDetails?: string(name='ExecutionDetails'),
+}
+
+model GetRebuildIndexResponse = {
+  headers: map[string]string(name='headers'),
+  body: GetRebuildIndexResponseBody(name='body'),
+}
+
+async function getRebuildIndex(request: GetRebuildIndexRequest): GetRebuildIndexResponse {
+  @handler.validateRequestModel(request);
+  return @handler.do('RESTFUL', 'GetRebuildIndex', 'GET', '/jobs', 'json', false, '', request);
+}
+
+model UpdateJobRequest {
+  project?: string(name='Project', description='A short description of struct', position='Query'),
+  etlJob?: {
+    jobName?: string(name='JobName'),
+    sourceConfig?: {
+      logstoreName?: string(name='LogstoreName'),
+    }(name='SourceConfig'),
+    triggerConfig?: {
+      roleArn?: string(name='RoleArn'),
+      triggerInterval?: long(name='TriggerInterval'),
+      maxRetryTime?: long(name='MaxRetryTime'),
+      startingPosition?: string(name='StartingPosition'),
+    }(name='TriggerConfig'),
+    functionParameter?: string(name='FunctionParameter'),
+    logConfig?: {
+      endpoint?: string(name='Endpoint'),
+      projectName?: string(name='ProjectName'),
+      logstoreName?: string(name='LogstoreName'),
+    }(name='LogConfig'),
+    enable?: boolean(name='Enable'),
+  }(name='EtlJob', position='Query'),
+}
+
+model UpdateJobShrinkRequest {
+  project?: string(name='Project', description='A short description of struct', position='Query'),
+  etlJobShrink?: string(name='EtlJob', position='Query'),
+}
+
+model UpdateJobResponse = {
+  headers: map[string]string(name='headers'),
+}
+
+async function updateJob(tmpReq: UpdateJobRequest): UpdateJobResponse {
+  @handler.validateRequestModel(tmpReq);
+  return @handler.do('RESTFUL', 'UpdateJob', 'PUT', '/jobs', 'none', false, '', tmpReq);
+}
+
+model CreateJobScheduleRequest {
+  project?: string(name='Project', description='A short description of struct', position='Query'),
+  schedule?: {
+    id?: string(name='Id'),
+    displayName?: string(name='DisplayName'),
+    description?: string(name='Description'),
+    jobName?: string(name='JobName'),
+    interval?: string(name='Interval'),
+    cronExpression?: string(name='CronExpression'),
+    delay?: long(name='Delay'),
+    dayOfWeek?: long(name='DayOfWeek'),
+    hour?: long(name='Hour'),
+    fromTime?: long(name='FromTime'),
+    toTime?: long(name='ToTime'),
+    status?: string(name='Status'),
+    createTime?: string(name='CreateTime'),
+    lastModifiedTime?: string(name='LastModifiedTime'),
+    startTime?: string(name='StartTime'),
+    completeTime?: string(name='CompleteTime'),
+    runImmediately?: boolean(name='RunImmediately'),
+    type?: {
+      value?: string(name='Value'),
+    }(name='Type'),
+  }(name='Schedule', position='Query'),
+}
+
+model CreateJobScheduleShrinkRequest {
+  project?: string(name='Project', description='A short description of struct', position='Query'),
+  scheduleShrink?: string(name='Schedule', position='Query'),
+}
+
+model CreateJobScheduleResponseBody = {
+  displayName?: string(name='DisplayName'),
+  description?: string(name='Description'),
+  jobName?: string(name='JobName'),
+  type?: string(name='Type'),
+}
+
+model CreateJobScheduleResponse = {
+  headers: map[string]string(name='headers'),
+  body: CreateJobScheduleResponseBody(name='body'),
+}
+
+async function createJobSchedule(tmpReq: CreateJobScheduleRequest): CreateJobScheduleResponse {
+  @handler.validateRequestModel(tmpReq);
+  return @handler.do('RESTFUL', 'CreateJobSchedule', 'POST', '/jobschedules', 'json', false, '', tmpReq);
+}
+
+model CreateExportRequest {
+  project?: string(name='Project', description='A short description of struct', position='Query'),
+  logstore?: string(name='Logstore', position='Body'),
+  accessKeyId?: string(name='AccessKeyId', position='Body'),
+  accessKeySecret?: string(name='AccessKeySecret', position='Body'),
+  instanceType?: string(name='InstanceType', position='Body'),
+  fromTime?: long(name='FromTime', position='Body'),
+  sink?: {
+    type?: {
+      name?: string(name='Name'),
+    }(name='Type'),
+  }(name='Sink', position='Body'),
+}
+
+model CreateExportResponse = {
+  headers: map[string]string(name='headers'),
+}
+
+async function createExport(request: CreateExportRequest): CreateExportResponse {
+  @handler.validateRequestModel(request);
+  return @handler.do('RESTFUL', 'CreateExport', 'POST', '/jobs', 'none', false, 'object', request);
+}
+
+model GetIndexStringRequest {
+  project?: string(name='Project', description='A short description of struct', position='Host'),
+  logStore?: string(name='LogStore', position='Host'),
+}
+
+model GetIndexStringResponseBody = {
+  index?: string(name='Index'),
+  requestId?: string(name='RequestId'),
+}
+
+model GetIndexStringResponse = {
+  headers: map[string]string(name='headers'),
+  body: GetIndexStringResponseBody(name='body'),
+}
+
+async function getIndexString(request: GetIndexStringRequest): GetIndexStringResponse {
+  @handler.validateRequestModel(request);
+  return @handler.do('RESTFUL', 'GetIndexString', 'GET', '/logstores/{logStore}/index', 'json', false, '', request);
+}
+
+model ListConfigRequest {
+  projectName?: string(name='projectName', description='A short description of struct', position='Host'),
+  offset?: long(name='offset', position='Host'),
+  size?: long(name='size', position='Host'),
+  logstoreName?: string(name='logstoreName', position='Host'),
+  configName?: string(name='configName', position='Host'),
+}
+
+model ListConfigResponseBody = {
+  count?: long(name='count'),
+  total?: long(name='total'),
+  configs?: [ bytes ](name='configs'),
+}
+
+model ListConfigResponse = {
+  headers: map[string]string(name='headers'),
+  body: ListConfigResponseBody(name='body'),
+}
+
+async function listConfig(request: ListConfigRequest): ListConfigResponse {
+  @handler.validateRequestModel(request);
+  return @handler.do('RESTFUL', 'ListConfig', 'GET', '/configs', 'json', false, '', request);
+}
+
+model DeleteShipperRequest {
+  project?: string(name='Project', description='A short description of struct', position='Host'),
+  logStore?: string(name='LogStore', position='Host'),
+  shipperName?: string(name='ShipperName', position='Host'),
+}
+
+model DeleteShipperResponse = {
+  headers: map[string]string(name='headers'),
+}
+
+async function deleteShipper(request: DeleteShipperRequest): DeleteShipperResponse {
+  @handler.validateRequestModel(request);
+  return @handler.do('RESTFUL', 'DeleteShipper', 'DELETE', '/logstores/{logStore}/shipper/{shipperName}', 'none', false, '', request);
+}
+
+model RemoveConfigFromMachineGroupRequest {
+  projectName?: string(name='projectName', description='A short description of struct', position='Host'),
+  groupName?: string(name='groupName', position='Host'),
+  configName?: string(name='configName', position='Host'),
+}
+
+model RemoveConfigFromMachineGroupResponse = {
+  headers: map[string]string(name='headers'),
+}
+
+async function removeConfigFromMachineGroup(request: RemoveConfigFromMachineGroupRequest): RemoveConfigFromMachineGroupResponse {
+  @handler.validateRequestModel(request);
+  return @handler.do('RESTFUL', 'RemoveConfigFromMachineGroup', 'DELETE', '/machinegroups/groupName', 'none', false, '', request);
+}
+
+model StopJobScheduleRequest {
+  project?: string(name='Project', description='A short description of struct', position='Query'),
+  scheduleId?: string(name='ScheduleId', position='Query'),
+}
+
+model StopJobScheduleResponse = {
+  headers: map[string]string(name='headers'),
+}
+
+async function stopJobSchedule(request: StopJobScheduleRequest): StopJobScheduleResponse {
+  @handler.validateRequestModel(request);
+  return @handler.do('RESTFUL', 'StopJobSchedule', 'PUT', '/jobschedules/{scheduleId}', 'none', false, '', request);
+}
+
+model GetShipperConfigRequest {
+  project?: string(name='Project', description='A short description of struct', position='Host'),
+  logStore?: string(name='LogStore', position='Host'),
+  shipperName?: string(name='ShipperName', position='Host'),
+}
+
+model GetShipperConfigResponse = {
+  headers: map[string]string(name='headers'),
+}
+
+async function getShipperConfig(request: GetShipperConfigRequest): GetShipperConfigResponse {
+  @handler.validateRequestModel(request);
+  return @handler.do('RESTFUL', 'GetShipperConfig', 'GET', '/logstores/{logStore}/shipper/{shipperName}', 'none', false, '', request);
+}
+
+model UpdateAlertRequest {
+  project?: string(name='Project', description='A short description of struct', position='Query'),
+}
+
+model UpdateAlertResponse = {
+  headers: map[string]string(name='headers'),
+}
+
+async function updateAlert(request: UpdateAlertRequest): UpdateAlertResponse {
+  @handler.validateRequestModel(request);
+  return @handler.do('RESTFUL', 'UpdateAlert', 'PUT', '/jobs', 'none', false, '', request);
+}
+
+model UpdateLogstoreRequest {
+  logstoreName?: string(name='logstoreName', position='Body'),
+  ttl?: long(name='ttl', position='Body'),
+  enableTracking?: boolean(name='enable_tracking', position='Body'),
+  shardCount?: long(name='shardCount', position='Body'),
+  autoSplit?: boolean(name='autoSplit', position='Body'),
+  maxSplitShard?: long(name='maxSplitShard', position='Body'),
+  appendMeta?: boolean(name='appendMeta', position='Body'),
+}
+
+model UpdateLogstoreResponse = {
+  headers: map[string]string(name='headers'),
+}
+
+async function updateLogstore(request: UpdateLogstoreRequest): UpdateLogstoreResponse {
+  @handler.validateRequestModel(request);
+  return @handler.do('RESTFUL', 'UpdateLogstore', 'PUT', '/logstores/logstoreName', 'none', false, 'object', request);
+}
+
+model DeleteExternalStoreRequest {
+  projectName?: string(name='projectName', description='A short description of struct', position='Host'),
+  externalStoreName?: string(name='externalStoreName', position='Host'),
+}
+
+model DeleteExternalStoreResponse = {
+  headers: map[string]string(name='headers'),
+}
+
+async function deleteExternalStore(request: DeleteExternalStoreRequest): DeleteExternalStoreResponse {
+  @handler.validateRequestModel(request);
+  return @handler.do('RESTFUL', 'DeleteExternalStore', 'DELETE', '/externalstores/externalStoreName', 'none', false, '', request);
+}
+
+model BatchUpdateEtlMetaRequest {
+  etlMetaList?: [ string ](name='EtlMetaList', position='Query'),
+}
+
+model BatchUpdateEtlMetaShrinkRequest {
+  etlMetaListShrink?: string(name='EtlMetaList', position='Query'),
+}
+
+model BatchUpdateEtlMetaResponse = {
+  headers: map[string]string(name='headers'),
+}
+
+async function batchUpdateEtlMeta(tmpReq: BatchUpdateEtlMetaRequest): BatchUpdateEtlMetaResponse {
+  @handler.validateRequestModel(tmpReq);
+  return @handler.do('RESTFUL', 'BatchUpdateEtlMeta', 'PUT', '/etlmetas', 'none', false, '', tmpReq);
+}
+
+model AddMachineIntoMachineGroupRequest {
+  project?: string(name='Project', description='A short description of struct', position='Query'),
+  groupName?: string(name='GroupName', position='Query'),
+}
+
+model AddMachineIntoMachineGroupResponse = {
+  headers: map[string]string(name='headers'),
+}
+
+async function addMachineIntoMachineGroup(request: AddMachineIntoMachineGroupRequest): AddMachineIntoMachineGroupResponse {
+  @handler.validateRequestModel(request);
+  return @handler.do('RESTFUL', 'AddMachineIntoMachineGroup', 'PUT', '/machinegroups/{groupName}/machines', 'none', false, '', request);
+}
+
+model GetETLRequest {
+  project?: string(name='Project', description='A short description of struct', position='Query'),
+  name?: string(name='Name', position='Query'),
+}
+
+model GetETLResponseBody = {
+  configuration?: string(name='Configuration'),
+  etl?: string(name='etl'),
+}
+
+model GetETLResponse = {
+  headers: map[string]string(name='headers'),
+  body: GetETLResponseBody(name='body'),
+}
+
+async function getETL(request: GetETLRequest): GetETLResponse {
+  @handler.validateRequestModel(request);
+  return @handler.do('RESTFUL', 'GetETL', 'GET', '/jobs', 'json', false, '', request);
+}
+
+model UpdateIndexRequest {
+  logstoreName?: string(name='logstoreName', position='Body'),
+  keys?: {
+    token?: [ bytes ](name='token'),
+    caseSensitive?: boolean(name='caseSensitive'),
+    chn?: boolean(name='chn'),
+  }(name='keys', position='Body'),
+  includeKeys?: [ bytes ](name='include_keys', position='Body'),
+  excludeKeys?: [ bytes ](name='exclude_keys', position='Body'),
+  line?: {
+    type?: string(name='type'),
+    alias?: string(name='alias'),
+    chn?: boolean(name='chn'),
+    token?: [ bytes ](name='token'),
+    caseSensitive?: boolean(name='caseSensitive'),
+    docValue?: boolean(name='doc_value'),
+  }(name='line', position='Body'),
+}
+
+model UpdateIndexResponse = {
+  headers: map[string]string(name='headers'),
+}
+
+async function updateIndex(request: UpdateIndexRequest): UpdateIndexResponse {
+  @handler.validateRequestModel(request);
+  return @handler.do('RESTFUL', 'UpdateIndex', 'PUT', '/logstores/<logstoreName>/index', 'none', false, 'object', request);
+}
+
+model ListLogStoresRequest {
+  project?: string(name='Project', position='Body'),
+  offset?: long(name='Offset', position='Body'),
+  size?: long(name='Size', position='Body'),
+  logstoreName?: string(name='LogstoreName', position='Body'),
+}
+
+model ListLogStoresResponse = {
+  headers: map[string]string(name='headers'),
+}
+
+async function listLogStores(request: ListLogStoresRequest): ListLogStoresResponse {
+  @handler.validateRequestModel(request);
+  return @handler.do('RESTFUL', 'ListLogStores', 'POST', '/logstores', 'none', false, 'object', request);
+}
+
+model UpdateShipperRequest {
+  project?: string(name='Project', position='Body'),
+  logStore?: string(name='LogStore', position='Body'),
+  shipperName?: string(name='ShipperName', position='Body'),
+}
+
+model UpdateShipperResponse = {
+  headers: map[string]string(name='headers'),
+}
+
+async function updateShipper(request: UpdateShipperRequest): UpdateShipperResponse {
+  @handler.validateRequestModel(request);
+  return @handler.do('RESTFUL', 'UpdateShipper', 'PUT', '/logstores/{logStore}/shipper/{shipperName}', 'none', false, 'object', request);
+}
+
+model CreateSavedSearchRequest {
+  savedSearchName?: string(name='SavedSearchName', position='Body'),
+  searchQuery?: string(name='SearchQuery', position='Body'),
+  logstore?: string(name='Logstore', position='Body'),
+  topic?: string(name='Topic', position='Body'),
+  displayName?: string(name='DisplayName', position='Body'),
+  rawSavedSearchAttr?: string(name='RawSavedSearchAttr', position='Body'),
+}
+
+model CreateSavedSearchResponse = {
+  headers: map[string]string(name='headers'),
+}
+
+async function createSavedSearch(request: CreateSavedSearchRequest): CreateSavedSearchResponse {
+  @handler.validateRequestModel(request);
+  return @handler.do('RESTFUL', 'CreateSavedSearch', 'POST', '/savedsearches', 'none', false, 'object', request);
+}
+
+model UpdateSavedSearchRequest {
+  savedSearchName?: string(name='SavedSearchName', position='Body'),
+  searchQuery?: string(name='SearchQuery', position='Body'),
+  logstore?: string(name='Logstore', position='Body'),
+  topic?: string(name='Topic', position='Body'),
+  displayName?: string(name='DisplayName', position='Body'),
+  rawSavedSearchAttr?: string(name='RawSavedSearchAttr', position='Body'),
+}
+
+model UpdateSavedSearchResponse = {
+  headers: map[string]string(name='headers'),
+}
+
+async function updateSavedSearch(request: UpdateSavedSearchRequest): UpdateSavedSearchResponse {
+  @handler.validateRequestModel(request);
+  return @handler.do('RESTFUL', 'UpdateSavedSearch', 'PUT', '/savedsearches/{savedSearchName}', 'none', false, 'object', request);
+}
+
+model ListEtlMetaNameRequest {
+  project?: string(name='Project', description='A short description of struct', position='Query'),
+  offset?: long(name='Offset', position='Query'),
+  size?: long(name='Size', position='Query'),
+}
+
+model ListEtlMetaNameResponseBody = {
+  etlMetaNameList?: [ string ](name='EtlMetaNameList'),
+}
+
+model ListEtlMetaNameResponse = {
+  headers: map[string]string(name='headers'),
+  body: ListEtlMetaNameResponseBody(name='body'),
+}
+
+async function listEtlMetaName(request: ListEtlMetaNameRequest): ListEtlMetaNameResponse {
+  @handler.validateRequestModel(request);
+  return @handler.do('RESTFUL', 'ListEtlMetaName', 'GET', '/etlmetanames', 'json', false, '', request);
+}
+
+model CreateEtlJobRequest {
+  project?: string(name='Project', description='A short description of struct', position='Query'),
+  jobName?: string(name='JobName', position='Body'),
+  sourceConfig?: {
+    logstoreName?: string(name='LogstoreName'),
+  }(name='SourceConfig', position='Body'),
+  triggerConfig?: {
+    roleArn?: string(name='RoleArn'),
+    triggerInterval?: long(name='TriggerInterval'),
+    maxRetryTime?: long(name='MaxRetryTime'),
+    startingPosition?: string(name='StartingPosition'),
+    startingUnixtime?: long(name='StartingUnixtime'),
+  }(name='TriggerConfig', position='Body'),
+  functionConfig?: {
+    endpoint?: string(name='Endpoint'),
+    accountId?: string(name='AccountId'),
+    regionName?: string(name='RegionName'),
+    serviceName?: string(name='ServiceName'),
+    functionName?: string(name='FunctionName'),
+  }(name='FunctionConfig', position='Body'),
+  functionParameter?: string(name='FunctionParameter', position='Body'),
+  logConfig?: {
+    endpoint?: string(name='Endpoint'),
+    projectName?: string(name='ProjectName'),
+    logstoreName?: string(name='LogstoreName'),
+  }(name='LogConfig', position='Body'),
+}
+
+model CreateEtlJobResponse = {
+  headers: map[string]string(name='headers'),
+}
+
+async function createEtlJob(request: CreateEtlJobRequest): CreateEtlJobResponse {
+  @handler.validateRequestModel(request);
+  return @handler.do('RESTFUL', 'CreateEtlJob', 'POST', '/etljobs', 'none', false, 'object', request);
+}
+
+model UpdateLogStoreInternalRequest {
+  project?: string(name='Project', description='A short description of struct', position='Host'),
+  internallogStore?: string(name='InternallogStore', position='Host'),
+  type?: string(name='Type', position='Query'),
+}
+
+model UpdateLogStoreInternalResponse = {
+  headers: map[string]string(name='headers'),
+}
+
+async function updateLogStoreInternal(request: UpdateLogStoreInternalRequest): UpdateLogStoreInternalResponse {
+  @handler.validateRequestModel(request);
+  return @handler.do('RESTFUL', 'UpdateLogStoreInternal', 'PUT', '/logstores', 'none', false, '', request);
+}
+
+model CreateDomainRequest {
+  projectName?: string(name='ProjectName', description='A short description of struct', position='Query'),
+  domainName?: string(name='DomainName', position='Query'),
+}
+
+model CreateDomainResponse = {
+  headers: map[string]string(name='headers'),
+}
+
+async function createDomain(request: CreateDomainRequest): CreateDomainResponse {
+  @handler.validateRequestModel(request);
+  return @handler.do('RESTFUL', 'CreateDomain', 'POST', '/domains', 'none', false, '', request);
+}
+
+model ListLogstoreRequest {
+  projectName?: string(name='ProjectName', description='A short description of struct', position='Host'),
+  offset?: long(name='offset', position='Host'),
+  size?: long(name='size', position='Host'),
+}
+
+model ListLogstoreResponseBody = {
+  count?: long(name='count', description='Id of the request'),
+  total?: long(name='total'),
+  logstores?: [ string ](name='logstores'),
+}
+
+model ListLogstoreResponse = {
+  headers: map[string]string(name='headers'),
+  body: ListLogstoreResponseBody(name='body'),
+}
+
+async function listLogstore(request: ListLogstoreRequest): ListLogstoreResponse {
+  @handler.validateRequestModel(request);
+  return @handler.do('RESTFUL', 'ListLogstore', 'GET', '/logstores', 'json', false, '', request);
+}
+
+model ListRebuildIndexRequest {
+  project?: string(name='Project', description='A short description of struct', position='Query'),
+}
+
+model ListRebuildIndexResponseBody = {
+  status?: string(name='Status'),
+  executionDetails?: string(name='ExecutionDetails'),
+}
+
+model ListRebuildIndexResponse = {
+  headers: map[string]string(name='headers'),
+  body: ListRebuildIndexResponseBody(name='body'),
+}
+
+async function listRebuildIndex(request: ListRebuildIndexRequest): ListRebuildIndexResponse {
+  @handler.validateRequestModel(request);
+  return @handler.do('RESTFUL', 'ListRebuildIndex', 'GET', '/jobs', 'json', false, '', request);
+}
+
+model ListTopicsRequest {
+  project?: string(name='project', position='Body'),
+  logStore?: string(name='logStore', position='Body'),
+  token?: string(name='token', position='Body'),
+  line?: long(name='line', position='Body'),
+}
+
+model ListTopicsResponse = {
+  headers: map[string]string(name='headers'),
+}
+
+async function listTopics(request: ListTopicsRequest): ListTopicsResponse {
+  @handler.validateRequestModel(request);
+  return @handler.do('RESTFUL', 'ListTopics', 'POST', '/logstores/{logStore}/index', 'none', false, 'object', request);
+}
+
+model StartIngestionRequest {
+  project?: string(name='Project', description='A short description of struct', position='Query'),
+  name?: string(name='Name', position='Query'),
+}
+
+model StartIngestionResponse = {
+  headers: map[string]string(name='headers'),
+}
+
+async function startIngestion(request: StartIngestionRequest): StartIngestionResponse {
+  @handler.validateRequestModel(request);
+  return @handler.do('RESTFUL', 'StartIngestion', 'PUT', '/jobs', 'none', false, '', request);
+}
+
+model ListConsumerGroupRequest {
+  projectName?: string(name='projectName', description='A short description of struct', position='Host'),
+  logstoreName?: string(name='logstoreName', position='Host'),
+}
+
+model ListConsumerGroupResponseBody = {
+  count?: long(name='count', description='Id of the request'),
+  consumerGroups?: {
+    name?: string(name='name'),
+    timeout?: long(name='timeout'),
+    order?: boolean(name='order'),
+  }(name='consumerGroups'),
+}
+
+model ListConsumerGroupResponse = {
+  headers: map[string]string(name='headers'),
+  body: ListConsumerGroupResponseBody(name='body'),
+}
+
+async function listConsumerGroup(request: ListConsumerGroupRequest): ListConsumerGroupResponse {
+  @handler.validateRequestModel(request);
+  return @handler.do('RESTFUL', 'ListConsumerGroup', 'GET', '/logstores/logstoreName/consumergroups', 'json', false, '', request);
+}
+
+model DisableJobRequest {
+  project?: string(name='Project', description='A short description of struct', position='Query'),
+  jobName?: string(name='JobName', position='Query'),
+}
+
+model DisableJobResponse = {
+  headers: map[string]string(name='headers'),
+}
+
+async function disableJob(request: DisableJobRequest): DisableJobResponse {
+  @handler.validateRequestModel(request);
+  return @handler.do('RESTFUL', 'DisableJob', 'PUT', '/jobs', 'none', false, '', request);
+}
+
+model GetShipperStatusRequest {
+  projectName?: string(name='projectName', description='A short description of struct', position='Host'),
+  logstoreName?: string(name='logstoreName', position='Host'),
+  shipperName?: string(name='shipperName', position='Host'),
+  startTime?: long(name='startTime', position='Host'),
+  endTime?: long(name='endTime', position='Host'),
+  statusType?: string(name='statusType', position='Host'),
+  offset?: long(name='offset', position='Host'),
+  size?: long(name='size', position='Host'),
+}
+
+model GetShipperStatusResponseBody = {
+  count?: long(name='count'),
+  total?: long(name='total'),
+  statistics?: {
+    running?: long(name='running'),
+    success?: long(name='success'),
+    fail?: long(name='fail'),
+  }(name='statistics'),
+  tasks?: {
+    id?: string(name='id'),
+    taskStatus?: string(name='taskStatus'),
+    taskMessage?: string(name='taskMessage'),
+    taskCreateTime?: long(name='taskCreateTime'),
+    taskLastDataReceiveTime?: long(name='taskLastDataReceiveTime'),
+    taskFinishTime?: long(name='taskFinishTime'),
+  }(name='tasks'),
+}
+
+model GetShipperStatusResponse = {
+  headers: map[string]string(name='headers'),
+  body: GetShipperStatusResponseBody(name='body'),
+}
+
+async function getShipperStatus(request: GetShipperStatusRequest): GetShipperStatusResponse {
+  @handler.validateRequestModel(request);
+  return @handler.do('RESTFUL', 'GetShipperStatus', 'GET', '/logstores/logstoreName/shipper/shipperName/tasks', 'json', false, '', request);
+}
+
+model UpdateMachineGroupMachineRequest {
+  project?: string(name='Project', description='A short description of struct', position='Query'),
+  groupName?: string(name='GroupName', position='Query'),
+}
+
+model UpdateMachineGroupMachineResponse = {
+  headers: map[string]string(name='headers'),
+}
+
+async function updateMachineGroupMachine(request: UpdateMachineGroupMachineRequest): UpdateMachineGroupMachineResponse {
+  @handler.validateRequestModel(request);
+  return @handler.do('RESTFUL', 'UpdateMachineGroupMachine', 'PUT', '/machinegroups/{groupName}/machines', 'none', false, '', request);
+}
+
+model DeleteExportRequest {
+  project?: string(name='Project', description='A short description of struct', position='Query'),
+  jobName?: string(name='JobName', position='Query'),
+}
+
+model DeleteExportResponse = {
+  headers: map[string]string(name='headers'),
+}
+
+async function deleteExport(request: DeleteExportRequest): DeleteExportResponse {
+  @handler.validateRequestModel(request);
+  return @handler.do('RESTFUL', 'DeleteExport', 'DELETE', '/jobs', 'none', false, '', request);
+}
+
+model GetAppliedMachineGroupsRequest {
+  projectName?: string(name='projectName', description='A short description of struct', position='Host'),
+  configName?: string(name='configName', position='Host'),
+}
+
+model GetAppliedMachineGroupsResponseBody = {
+  count?: long(name='count'),
+  machinegroups?: [ bytes ](name='machinegroups'),
+}
+
+model GetAppliedMachineGroupsResponse = {
+  headers: map[string]string(name='headers'),
+  body: GetAppliedMachineGroupsResponseBody(name='body'),
+}
+
+async function getAppliedMachineGroups(request: GetAppliedMachineGroupsRequest): GetAppliedMachineGroupsResponse {
+  @handler.validateRequestModel(request);
+  return @handler.do('RESTFUL', 'GetAppliedMachineGroups', 'GET', '/configs/configName/machinegroups', 'json', false, '', request);
+}
+
+model ListEtlJobRequest {
+  project?: string(name='Project', description='A short description of struct', position='Query'),
+}
+
+model ListEtlJobResponseBody = {
+  etlJobNameList?: [ string ](name='EtlJobNameList'),
+}
+
+model ListEtlJobResponse = {
+  headers: map[string]string(name='headers'),
+  body: ListEtlJobResponseBody(name='body'),
+}
+
+async function listEtlJob(request: ListEtlJobRequest): ListEtlJobResponse {
+  @handler.validateRequestModel(request);
+  return @handler.do('RESTFUL', 'ListEtlJob', 'GET', '/etljobs', 'json', false, '', request);
+}
+
+model DeleteIndexRequest {
+  logstoreName?: string(name='logstoreName', description='A short description of struct', position='Host'),
+}
+
+model DeleteIndexResponse = {
+  headers: map[string]string(name='headers'),
+}
+
+async function deleteIndex(request: DeleteIndexRequest): DeleteIndexResponse {
+  @handler.validateRequestModel(request);
+  return @handler.do('RESTFUL', 'DeleteIndex', 'DELETE', '/logstores/<logstoreName>/index', 'none', false, '', request);
+}
+
+model DeleteMachineFromMachineGroupRequest {
+}
+
+model DeleteMachineFromMachineGroupResponseBody = {
+  requestId?: string(name='RequestId', description='Id of the request'),
+}
+
+model DeleteMachineFromMachineGroupResponse = {
+  headers: map[string]string(name='headers'),
+  body: DeleteMachineFromMachineGroupResponseBody(name='body'),
+}
+
+async function deleteMachineFromMachineGroup(request: DeleteMachineFromMachineGroupRequest): DeleteMachineFromMachineGroupResponse {
+  @handler.validateRequestModel(request);
+  return @handler.do('RESTFUL', 'DeleteMachineFromMachineGroup', 'PUT', '/machinegroups/{groupName}/machines', 'json', false, '', request);
+}
+
+model CreateConsumerGroupRequest {
+  projectName?: string(name='projectName', position='Body'),
+  logstoreName?: string(name='logstoreName', position='Body'),
+  consumerGroup?: string(name='consumerGroup', position='Body'),
+  timeout?: long(name='timeout', position='Body'),
+  order?: boolean(name='order', position='Body'),
+}
+
+model CreateConsumerGroupResponse = {
+  headers: map[string]string(name='headers'),
+}
+
+async function createConsumerGroup(request: CreateConsumerGroupRequest): CreateConsumerGroupResponse {
+  @handler.validateRequestModel(request);
+  return @handler.do('RESTFUL', 'CreateConsumerGroup', 'POST', '/logstores/logstoreName/consumergroups', 'none', false, 'object', request);
+}
+
+model ListJobSchedulesRequest {
+  jobName?: string(name='JobName', description='A short description of struct', position='Query'),
+  type?: {
+    value?: string(name='Value'),
+  }(name='Type', position='Query'),
+  offset?: long(name='Offset', position='Query'),
+  size?: long(name='Size', position='Query'),
+}
+
+model ListJobSchedulesShrinkRequest {
+  jobName?: string(name='JobName', description='A short description of struct', position='Query'),
+  typeShrink?: string(name='Type', position='Query'),
+  offset?: long(name='Offset', position='Query'),
+  size?: long(name='Size', position='Query'),
+}
+
+model ListJobSchedulesResponseBody = {
+  total?: long(name='Total'),
+  count?: long(name='Count'),
+  results?: [ 
+    {
+      displayName?: string(name='DisplayName'),
+      description?: string(name='Description'),
+      jobName?: string(name='JobName'),
+      type?: {
+        value?: string(name='Value'),
+      }(name='Type'),
+      interval?: string(name='Interval'),
+      cronExpression?: string(name='CronExpression'),
+      delay?: long(name='Delay'),
+      dayOfWeek?: long(name='DayOfWeek'),
+      hour?: long(name='Hour'),
+      fromTime?: long(name='FromTime'),
+      toTime?: long(name='ToTime'),
+      status?: string(name='Status'),
+    }
+  ](name='Results'),
+  createTime?: string(name='CreateTime'),
+  lastModifiedTime?: string(name='LastModifiedTime'),
+  startTime?: string(name='StartTime'),
+  completeTime?: string(name='CompleteTime'),
+  runImmediately?: boolean(name='RunImmediately'),
+}
+
+model ListJobSchedulesResponse = {
+  headers: map[string]string(name='headers'),
+  body: ListJobSchedulesResponseBody(name='body'),
+}
+
+async function listJobSchedules(tmpReq: ListJobSchedulesRequest): ListJobSchedulesResponse {
+  @handler.validateRequestModel(tmpReq);
+  return @handler.do('RESTFUL', 'ListJobSchedules', 'GET', '/jobsSchedules', 'json', false, '', tmpReq);
+}
+
+model ListIngestionRequest {
+  project?: string(name='Project', description='A short description of struct', position='Query'),
+}
+
+model ListIngestionResponseBody = {
+  logstore?: string(name='Logstore'),
+  type?: string(name='Type'),
+  configuration?: string(name='Configuration'),
+}
+
+model ListIngestionResponse = {
+  headers: map[string]string(name='headers'),
+  body: ListIngestionResponseBody(name='body'),
+}
+
+async function listIngestion(request: ListIngestionRequest): ListIngestionResponse {
+  @handler.validateRequestModel(request);
+  return @handler.do('RESTFUL', 'ListIngestion', 'GET', '/jobs', 'json', false, '', request);
+}
+
+model DeleteSavedSearchRequest {
+  projectName?: string(name='ProjectName', description='A short description of struct', position='Query'),
+  savedsearchName?: string(name='SavedsearchName', position='Query'),
+}
+
+model DeleteSavedSearchResponse = {
+  headers: map[string]string(name='headers'),
+}
+
+async function deleteSavedSearch(request: DeleteSavedSearchRequest): DeleteSavedSearchResponse {
+  @handler.validateRequestModel(request);
+  return @handler.do('RESTFUL', 'DeleteSavedSearch', 'DELETE', '/savedsearches/{savedSearchName}', 'none', false, '', request);
+}
+
+model ListReportRequest {
+  project?: string(name='Project', description='A short description of struct', position='Query'),
+}
+
+model ListReportResponseBody = {
+  state?: [ string ](name='State'),
+  status?: string(name='Status'),
+  schedule?: {
+    id?: string(name='Id'),
+    displayName?: string(name='DisplayName'),
+    description?: string(name='Description'),
+    jobName?: string(name='JobName'),
+    type?: string(name='Type'),
+  }(name='Schedule'),
+}
+
+model ListReportResponse = {
+  headers: map[string]string(name='headers'),
+  body: ListReportResponseBody(name='body'),
+}
+
+async function listReport(request: ListReportRequest): ListReportResponse {
+  @handler.validateRequestModel(request);
+  return @handler.do('RESTFUL', 'ListReport', 'GET', '/jobs', 'json', false, '', request);
+}
+
+model CreateExternalStoreRequest {
+  externalStoreName?: string(name='ExternalStoreName', position='Body'),
+  vpcId?: string(name='vpc-id', position='Body'),
+  instanceId?: string(name='instance-id', position='Body'),
+  host?: string(name='host', position='Body'),
+  port?: string(name='port', position='Body'),
+  username?: string(name='username', position='Body'),
+  password?: string(name='password', position='Body'),
+  db?: string(name='db', position='Body'),
+  table?: string(name='table', position='Body'),
+  region?: string(name='region', position='Body'),
+}
+
+model CreateExternalStoreResponse = {
+  headers: map[string]string(name='headers'),
+}
+
+async function createExternalStore(request: CreateExternalStoreRequest): CreateExternalStoreResponse {
+  @handler.validateRequestModel(request);
+  return @handler.do('RESTFUL', 'CreateExternalStore', 'POST', '/externalstores', 'none', false, 'object', request);
+}
+
+model BatchGetLogRequest {
+  project?: string(name='Project', description='A short description of struct', position='Query'),
+  logStore?: string(name='LogStore', position='Host'),
+  shardId?: long(name='ShardId', position='Host'),
+  count?: long(name='Count', position='Query'),
+  cursor?: string(name='Cursor', position='Query'),
+}
+
+model BatchGetLogResponse = {
+  headers: map[string]string(name='headers'),
+}
+
+async function batchGetLog(request: BatchGetLogRequest): BatchGetLogResponse {
+  @handler.validateRequestModel(request);
+  return @handler.do('RESTFUL', 'BatchGetLog', 'GET', '/logstores/{logStore}/shards/{shardId}', 'none', false, '', request);
+}
+
+model UpdateConfigRequest {
+  outputDetail?: {
+    logstoreName?: string(name='logstoreName'),
+  }(name='outputDetail', position='Body'),
+  inputType?: string(name='inputType', position='Body'),
+  inputDetail?: {
+    regex?: string(name='regex'),
+    filterKey?: [ bytes ](name='filterKey'),
+    logPath?: string(name='logPath'),
+    logBeginRegex?: string(name='logBeginRegex'),
+    logType?: string(name='logType'),
+    topicFormat?: string(name='topicFormat'),
+    localStorage?: boolean(name='localStorage'),
+    key?: [ bytes ](name='key'),
+    filePattern?: string(name='filePattern'),
+    timeFormat?: string(name='timeFormat'),
+    filterRegex?: [ bytes ](name='filterRegex'),
+  }(name='inputDetail', position='Body'),
+  outputType?: string(name='outputType', position='Body'),
+  configName?: string(name='configName', position='Body'),
+}
+
+model UpdateConfigResponse = {
+  headers: map[string]string(name='headers'),
+}
+
+async function updateConfig(request: UpdateConfigRequest): UpdateConfigResponse {
+  @handler.validateRequestModel(request);
+  return @handler.do('RESTFUL', 'UpdateConfig', 'PUT', '/configs/configName', 'none', false, 'object', request);
+}
+
+model HeartBeatRequest {
+  projectName?: string(name='projectName', position='Body'),
+  logstoreName?: string(name='logstoreName', position='Body'),
+  consumerGroup?: string(name='consumerGroup', position='Body'),
+  consumer?: string(name='consumer', position='Body'),
+  shards?: [ bytes ](name='shards', position='Body'),
+}
+
+model HeartBeatResponse = {
+  headers: map[string]string(name='headers'),
+}
+
+async function heartBeat(request: HeartBeatRequest): HeartBeatResponse {
+  @handler.validateRequestModel(request);
+  return @handler.do('RESTFUL', 'HeartBeat', 'POST', '/logstores/logstoreName/consumergroups/consumerGroup', 'none', false, 'object', request);
+}
+
+model UpdateACLRequest {
+  project?: string(name='project', description='A short description of struct', position='Host'),
+  acl?: string(name='acl', position='Host'),
+  logStore?: string(name='logStore', position='Host'),
+}
+
+model UpdateACLResponse = {
+  headers: map[string]string(name='headers'),
+}
+
+async function updateACL(request: UpdateACLRequest): UpdateACLResponse {
+  @handler.validateRequestModel(request);
+  return @handler.do('RESTFUL', 'UpdateACL', 'PUT', '/logstores', 'none', false, '', request);
+}
+
+model GetSavedSearchRequest {
+  projectName?: string(name='ProjectName', description='A short description of struct', position='Query'),
+  savedsearchName?: string(name='SavedsearchName', position='Query'),
+}
+
+model GetSavedSearchResponseBody = {
+  savedSearchName?: string(name='SavedSearchName'),
+  searchQuery?: string(name='SearchQuery'),
+  logstore?: string(name='Logstore'),
+  topic?: string(name='Topic'),
+  displayName?: string(name='DisplayName'),
+  rawSavedSearchAttr?: string(name='RawSavedSearchAttr'),
+}
+
+model GetSavedSearchResponse = {
+  headers: map[string]string(name='headers'),
+  body: GetSavedSearchResponseBody(name='body'),
+}
+
+async function getSavedSearch(request: GetSavedSearchRequest): GetSavedSearchResponse {
+  @handler.validateRequestModel(request);
+  return @handler.do('RESTFUL', 'GetSavedSearch', 'GET', '/savedsearches/{savedSearchName}', 'json', false, '', request);
+}
+
+model StopRebuildIndexRequest {
+  project?: string(name='Project', description='A short description of struct', position='Query'),
+  name?: string(name='Name', position='Query'),
+}
+
+model StopRebuildIndexResponse = {
+  headers: map[string]string(name='headers'),
+}
+
+async function stopRebuildIndex(request: StopRebuildIndexRequest): StopRebuildIndexResponse {
+  @handler.validateRequestModel(request);
+  return @handler.do('RESTFUL', 'StopRebuildIndex', 'PUT', '/jobs', 'none', false, '', request);
+}
+
+model DeleteAlertRequest {
+  project?: string(name='Project', description='A short description of struct', position='Query'),
+  name?: string(name='Name', position='Query'),
+}
+
+model DeleteAlertResponse = {
+  headers: map[string]string(name='headers'),
+}
+
+async function deleteAlert(request: DeleteAlertRequest): DeleteAlertResponse {
+  @handler.validateRequestModel(request);
+  return @handler.do('RESTFUL', 'DeleteAlert', 'DELETE', '/jobs', 'none', false, '', request);
+}
+
+model DeleteDashboardRequest {
+  dashboardName?: string(name='DashboardName', description='A short description of struct', position='Query'),
+}
+
+model DeleteDashboardResponse = {
+  headers: map[string]string(name='headers'),
+}
+
+async function deleteDashboard(request: DeleteDashboardRequest): DeleteDashboardResponse {
+  @handler.validateRequestModel(request);
+  return @handler.do('RESTFUL', 'DeleteDashboard', 'DELETE', '/dashboards/{dashboardName}', 'none', false, '', request);
+}
+
+model ListExternalStoreRequest {
+  projectName?: string(name='projectName', description='A short description of struct', position='Host'),
+  externalStoreName?: string(name='externalStoreName', position='Host'),
+  offset?: long(name='offset', position='Host'),
+  sizes?: long(name='sizes', position='Host'),
+}
+
+model ListExternalStoreResponseBody = {
+  count?: long(name='count'),
+  total?: long(name='total'),
+  externalstores?: [ bytes ](name='externalstores'),
+}
+
+model ListExternalStoreResponse = {
+  headers: map[string]string(name='headers'),
+  body: ListExternalStoreResponseBody(name='body'),
+}
+
+async function listExternalStore(request: ListExternalStoreRequest): ListExternalStoreResponse {
+  @handler.validateRequestModel(request);
+  return @handler.do('RESTFUL', 'ListExternalStore', 'GET', '/externalstores', 'json', false, '', request);
+}
+
+model ListDashboardRequest {
+  dashboardName?: string(name='DashboardName', description='A short description of struct', position='Query'),
+}
+
+model ListDashboardResponseBody = {
+  dashboardName?: string(name='DashboardName'),
+  description?: string(name='Description'),
+  displayName?: string(name='DisplayName'),
+  attribute?: string(name='Attribute'),
+  chartList?: [ bytes ](name='ChartList'),
+}
+
+model ListDashboardResponse = {
+  headers: map[string]string(name='headers'),
+  body: ListDashboardResponseBody(name='body'),
+}
+
+async function listDashboard(request: ListDashboardRequest): ListDashboardResponse {
+  @handler.validateRequestModel(request);
+  return @handler.do('RESTFUL', 'ListDashboard', 'GET', '/dashboards', 'json', false, '', request);
+}
+
+model ListMachinesRequest {
+  groupName?: string(name='groupName', description='A short description of struct', position='Host'),
+  offset?: long(name='offset', position='Host'),
+  size?: long(name='size', position='Host'),
+}
+
+model ListMachinesResponseBody = {
+  count?: long(name='count'),
+  total?: long(name='total'),
+  machines?: {
+    ip?: string(name='ip'),
+    machineUniqueid?: string(name='machine-uniqueid'),
+    userdefinedId?: string(name='userdefined-id'),
+    lastHeartbeatTime?: long(name='lastHeartbeatTime'),
+  }(name='machines'),
+}
+
+model ListMachinesResponse = {
+  headers: map[string]string(name='headers'),
+  body: ListMachinesResponseBody(name='body'),
+}
+
+async function listMachines(request: ListMachinesRequest): ListMachinesResponse {
+  @handler.validateRequestModel(request);
+  return @handler.do('RESTFUL', 'ListMachines', 'GET', '/machinegroups/groupName/machines', 'json', false, '', request);
+}
+
+model UpdateCheckPointRequest {
+  projectName?: string(name='projectName', position='Body'),
+  logstoreName?: string(name='logstoreName', position='Body'),
+  consumerGroup?: string(name='consumerGroup', position='Body'),
+  shard?: long(name='shard', position='Body'),
+  checkpoint?: string(name='checkpoint', position='Body'),
+  consumer?: string(name='consumer', position='Body'),
+  forceSuccess?: boolean(name='forceSuccess', position='Body'),
+}
+
+model UpdateCheckPointResponse = {
+  headers: map[string]string(name='headers'),
+}
+
+async function updateCheckPoint(request: UpdateCheckPointRequest): UpdateCheckPointResponse {
+  @handler.validateRequestModel(request);
+  return @handler.do('RESTFUL', 'UpdateCheckPoint', 'POST', '/logstores/logstoreName/consumergroups/consumerGroup', 'none', false, 'object', request);
+}
+
+model UpdateETLRequest {
+  project?: string(name='Project', description='A short description of struct', position='Query'),
+  name?: string(name='Name', position='Body'),
+  displayName?: string(name='DisplayName', position='Body'),
+  description?: string(name='Description', position='Body'),
+  type?: [ string ](name='Type', position='Body'),
+  recyclable?: boolean(name='Recyclable', position='Body'),
+  createTime?: string(name='CreateTime', position='Body'),
+  lastModifiedTime?: string(name='LastModifiedTime', position='Body'),
+}
+
+model UpdateETLResponse = {
+  headers: map[string]string(name='headers'),
+}
+
+async function updateETL(request: UpdateETLRequest): UpdateETLResponse {
+  @handler.validateRequestModel(request);
+  return @handler.do('RESTFUL', 'UpdateETL', 'PUT', '/jobs', 'none', false, 'object', request);
+}
+
+model MergeShardsRequest {
+  projectName?: string(name='projectName', description='A short description of struct', position='Host'),
+  logstoreName?: string(name='logstoreName', position='Host'),
+  shardID?: string(name='shardID', position='Host'),
+}
+
+model MergeShardsResponseBody = {
+  shardID?: long(name='shardID'),
+  status?: string(name='status'),
+  inclusiveBeginKey?: string(name='inclusiveBeginKey'),
+  exclusiveEndKey?: string(name='exclusiveEndKey'),
+  createTime?: string(name='createTime'),
+}
+
+model MergeShardsResponse = {
+  headers: map[string]string(name='headers'),
+  body: MergeShardsResponseBody(name='body'),
+}
+
+async function mergeShards(request: MergeShardsRequest): MergeShardsResponse {
+  @handler.validateRequestModel(request);
+  return @handler.do('RESTFUL', 'MergeShards', 'POST', '/logstores/logstoreName/shards/shardID', 'json', false, '', request);
+}
+
+model BatchModifyEtlMetaStatusRequest {
+  project?: string(name='Project', description='A short description of struct', position='Query'),
+  etlMetaName?: string(name='EtlMetaName', position='Query'),
+  etlMetaTag?: string(name='EtlMetaTag', position='Query'),
+  range?: [ bytes ](name='Range', position='Body'),
+}
+
+model BatchModifyEtlMetaStatusResponse = {
+  headers: map[string]string(name='headers'),
+}
+
+async function batchModifyEtlMetaStatus(request: BatchModifyEtlMetaStatusRequest): BatchModifyEtlMetaStatusResponse {
+  @handler.validateRequestModel(request);
+  return @handler.do('RESTFUL', 'BatchModifyEtlMetaStatus', 'PUT', '/etlmetas', 'none', false, 'object', request);
+}
+
+model CreateReportRequest {
+  project?: string(name='Project', description='A short description of struct', position='Query'),
+  state?: string(name='State', position='Body'),
+  status?: string(name='Status', position='Body'),
+  schedule?: string(name='Schedule', position='Body'),
+}
+
+model CreateReportResponse = {
+  headers: map[string]string(name='headers'),
+}
+
+async function createReport(request: CreateReportRequest): CreateReportResponse {
+  @handler.validateRequestModel(request);
+  return @handler.do('RESTFUL', 'CreateReport', 'POST', '/jobs', 'none', false, 'object', request);
+}
+
+model ClearLogStoreStorageRequest {
+  project?: string(name='Project', description='A short description of struct', position='Host'),
+  logStoreName?: string(name='LogStoreName', position='Host'),
+}
+
+model ClearLogStoreStorageResponse = {
+  headers: map[string]string(name='headers'),
+}
+
+async function clearLogStoreStorage(request: ClearLogStoreStorageRequest): ClearLogStoreStorageResponse {
+  @handler.validateRequestModel(request);
+  return @handler.do('RESTFUL', 'ClearLogStoreStorage', 'DELETE', '/logstores/{logStoreName}/storage', 'none', false, '', request);
+}
+
+model GetLogsRequest {
+  logstorename?: string(name='logstorename', description='A short description of struct', position='Host'),
+  type?: string(name='type', position='Host'),
+  from?: long(name='from', position='Host'),
+  to?: long(name='to', position='Host'),
+  topic?: string(name='topic', position='Host'),
+  query?: string(name='query', position='Host'),
+  line?: long(name='line', position='Host'),
+  offset?: long(name='offset', position='Host'),
+  reverse?: boolean(name='reverse', position='Host'),
+}
+
+model GetLogsResponseBody = {
+  xLogProgress?: string(name='x-log-progress', description='Id of the request'),
+  xLogCount?: long(name='x-log-count'),
+  logs?: {
+    time?: long(name='__time__'),
+    source?: string(name='__source__'),
+  }(name='logs'),
+}
+
+model GetLogsResponse = {
+  headers: map[string]string(name='headers'),
+  body: GetLogsResponseBody(name='body'),
+}
+
+async function getLogs(request: GetLogsRequest): GetLogsResponse {
+  @handler.validateRequestModel(request);
+  return @handler.do('RESTFUL', 'GetLogs', 'GET', '/logstores', 'json', false, '', request);
+}
+
+model DeleteEtlMetaRequest {
+  project?: string(name='Project', description='A short description of struct', position='Query'),
+  etlMetaName?: string(name='EtlMetaName', position='Query'),
+  etlMetaKey?: string(name='EtlMetaKey', position='Query'),
+}
+
+model DeleteEtlMetaResponse = {
+  headers: map[string]string(name='headers'),
+}
+
+async function deleteEtlMeta(request: DeleteEtlMetaRequest): DeleteEtlMetaResponse {
+  @handler.validateRequestModel(request);
+  return @handler.do('RESTFUL', 'DeleteEtlMeta', 'DELETE', '/etlmetas', 'none', false, '', request);
+}
+
+model UpdateExternalStoreRequest {
+  externalStoreName?: string(name='ExternalStoreName', position='Body'),
+  vpcId?: string(name='vpc-id', position='Body'),
+  intanceId?: string(name='intance-id', position='Body'),
+  host?: string(name='host', position='Body'),
+  port?: string(name='port', position='Body'),
+  username?: string(name='username', position='Body'),
+  password?: string(name='password', position='Body'),
+  db?: string(name='db', position='Body'),
+  table?: string(name='table', position='Body'),
+  region?: string(name='region', position='Body'),
+}
+
+model UpdateExternalStoreResponse = {
+  headers: map[string]string(name='headers'),
+}
+
+async function updateExternalStore(request: UpdateExternalStoreRequest): UpdateExternalStoreResponse {
+  @handler.validateRequestModel(request);
+  return @handler.do('RESTFUL', 'UpdateExternalStore', 'PUT', '/externalstores', 'none', false, 'object', request);
+}
+
+model CreateConfigRequest {
+  configName?: string(name='configName', position='Body'),
+  inputType?: string(name='inputType', position='Body'),
+  inputDetail?: {
+    logType?: string(name='logType'),
+    logPath?: string(name='logPath'),
+    filePattern?: string(name='filePattern'),
+    localStorage?: boolean(name='localStorage'),
+    timeFormat?: string(name='timeFormat'),
+    logBeginRegex?: string(name='logBeginRegex'),
+    regex?: string(name='regex'),
+    key?: [ bytes ](name='key'),
+    filterKey?: [ bytes ](name='filterKey'),
+    filterRegex?: [ bytes ](name='filterRegex'),
+    topicFormat?: string(name='topicFormat'),
+    fileEncoding?: string(name='fileEncoding'),
+  }(name='inputDetail', position='Body'),
+  outputType?: string(name='outputType', position='Body'),
+  outputDetail?: {
+    logstoreName?: string(name='logstoreName'),
+  }(name='outputDetail', position='Body'),
+}
+
+model CreateConfigResponse = {
+  headers: map[string]string(name='headers'),
+}
+
+async function createConfig(request: CreateConfigRequest): CreateConfigResponse {
+  @handler.validateRequestModel(request);
+  return @handler.do('RESTFUL', 'CreateConfig', 'POST', '/configs', 'none', false, 'object', request);
+}
+
+model GetEtlJobRequest {
+  project?: string(name='Project', description='A short description of struct', position='Query'),
+  etlJobName?: string(name='EtlJobName', position='Query'),
+}
+
+model GetEtlJobResponseBody = {
+  jobName?: string(name='JobName'),
+  sourceConfig?: {
+    logstoreName?: string(name='LogstoreName'),
+  }(name='SourceConfig'),
+  triggerConfig?: {
+    roleArn?: string(name='RoleArn'),
+    triggerInterval?: long(name='TriggerInterval'),
+    maxRetryTime?: long(name='MaxRetryTime'),
+    startingPosition?: string(name='StartingPosition'),
+    startingUnixtime?: long(name='StartingUnixtime'),
+  }(name='TriggerConfig'),
+  functionConfig?: {
+    functionProvider?: string(name='FunctionProvider'),
+    functionParameter?: string(name='FunctionParameter'),
+  }(name='FunctionConfig'),
+  logConfig?: {
+    endpoint?: string(name='Endpoint'),
+    projectName?: string(name='ProjectName'),
+    logstoreName?: string(name='LogstoreName'),
+  }(name='LogConfig'),
+  enable?: boolean(name='Enable'),
+}
+
+model GetEtlJobResponse = {
+  headers: map[string]string(name='headers'),
+  body: GetEtlJobResponseBody(name='body'),
+}
+
+async function getEtlJob(request: GetEtlJobRequest): GetEtlJobResponse {
+  @handler.validateRequestModel(request);
+  return @handler.do('RESTFUL', 'GetEtlJob', 'GET', '/etljobs/{etlJobName}', 'json', false, '', request);
+}
+
+model CreateShipperRequest {
+  project?: string(name='Project', position='Body'),
+  logStore?: string(name='LogStore', position='Body'),
+  shipperName?: string(name='ShipperName', position='Body'),
+}
+
+model CreateShipperResponse = {
+  headers: map[string]string(name='headers'),
+}
+
+async function createShipper(request: CreateShipperRequest): CreateShipperResponse {
+  @handler.validateRequestModel(request);
+  return @handler.do('RESTFUL', 'CreateShipper', 'POST', '/logstores/{logStore}/shipper', 'none', false, 'object', request);
+}
+
+model DeleteETLRequest {
+  project?: string(name='project', description='A short description of struct', position='Query'),
+  nameq?: string(name='Nameq', position='Query'),
+}
+
+model DeleteETLResponse = {
+  headers: map[string]string(name='headers'),
+}
+
+async function deleteETL(request: DeleteETLRequest): DeleteETLResponse {
+  @handler.validateRequestModel(request);
+  return @handler.do('RESTFUL', 'DeleteETL', 'DELETE', '/jobs', 'none', false, '', request);
+}
+
+model DeleteLoggingRequest {
+  project?: string(name='Project', description='A short description of struct', position='Query'),
+}
+
+model DeleteLoggingResponse = {
+  headers: map[string]string(name='headers'),
+}
+
+async function deleteLogging(request: DeleteLoggingRequest): DeleteLoggingResponse {
+  @handler.validateRequestModel(request);
+  return @handler.do('RESTFUL', 'DeleteLogging', 'DELETE', '/logging', 'none', false, '', request);
+}
+
+model BatchCreateEtlMetaRequest {
+  project?: string(name='Project', description='A short description of struct', position='Query'),
+  metaName?: string(name='MetaName', position='Body'),
+  metaKey?: string(name='MetaKey', position='Body'),
+  metaTag?: string(name='MetaTag', position='Body'),
+  createTime?: long(name='CreateTime', position='Body'),
+  lastModifyTime?: long(name='LastModifyTime', position='Body'),
+  enable?: boolean(name='Enable', position='Body'),
+  metaValue?: {
+    etlMetaName?: string(name='EtlMetaName'),
+    etlMetaKey?: string(name='EtlMetaKey'),
+    etlMetaTag?: string(name='EtlMetaTag'),
+    etlMetaValue?: string(name='EtlMetaValue'),
+    createTime?: string(name='CreateTime'),
+    lastModifyTime?: string(name='LastModifyTime'),
+    enable?: string(name='Enable'),
+  }(name='MetaValue', position='Body'),
+}
+
+model BatchCreateEtlMetaResponse = {
+  headers: map[string]string(name='headers'),
+}
+
+async function batchCreateEtlMeta(request: BatchCreateEtlMetaRequest): BatchCreateEtlMetaResponse {
+  @handler.validateRequestModel(request);
+  return @handler.do('RESTFUL', 'BatchCreateEtlMeta', 'POST', '/etlmetas', 'none', false, 'object', request);
+}
+
+model GetAlertRequest {
+  project?: string(name='Project', description='A short description of struct', position='Query'),
+  name?: string(name='Name', position='Query'),
+}
+
+model GetAlertResponseBody = {
+  name?: string(name='Name'),
+  displayName?: string(name='DisplayName'),
+  configuration?: string(name='Configuration'),
+  schedule?: string(name='Schedule'),
+  queryList?: [ string ](name='QueryList'),
+}
+
+model GetAlertResponse = {
+  headers: map[string]string(name='headers'),
+  body: GetAlertResponseBody(name='body'),
+}
+
+async function getAlert(request: GetAlertRequest): GetAlertResponse {
+  @handler.validateRequestModel(request);
+  return @handler.do('RESTFUL', 'GetAlert', 'GET', '/jobs', 'json', false, '', request);
+}
+
+model StopExportRequest {
+  project?: string(name='Project', description='A short description of struct', position='Query'),
+  name?: string(name='Name', position='Query'),
+}
+
+model StopExportResponse = {
+  headers: map[string]string(name='headers'),
+}
+
+async function stopExport(request: StopExportRequest): StopExportResponse {
+  @handler.validateRequestModel(request);
+  return @handler.do('RESTFUL', 'StopExport', 'PUT', '/jobs', 'none', false, '', request);
+}
+
+model GetConfigRequest {
+  projectName?: string(name='projectName', description='A short description of struct', position='Host'),
+  configName?: string(name='configName', position='Host'),
+}
+
+model GetConfigResponseBody = {
+  configName?: string(name='configName'),
+  outputDetail?: {
+    endpoint?: string(name='endpoint'),
+    logstoreName?: string(name='logstoreName'),
+  }(name='outputDetail'),
+  outputType?: string(name='outputType'),
+  inputType?: string(name='inputType'),
+  inputDetail?: {
+    regex?: string(name='regex'),
+    filterKey?: [ bytes ](name='filterKey'),
+    logPath?: string(name='logPath'),
+    logBeginRegex?: string(name='logBeginRegex'),
+    logType?: string(name='logType'),
+    topicFormat?: string(name='topicFormat'),
+    localStorage?: boolean(name='localStorage'),
+    key?: [ bytes ](name='key'),
+    filePattern?: string(name='filePattern'),
+    timeFormat?: string(name='timeFormat'),
+    filterRegex?: [ bytes ](name='filterRegex'),
+  }(name='inputDetail'),
+  createTime?: long(name='createTime'),
+  lastModifyTime?: long(name='lastModifyTime'),
+}
+
+model GetConfigResponse = {
+  headers: map[string]string(name='headers'),
+  body: GetConfigResponseBody(name='body'),
+}
+
+async function getConfig(request: GetConfigRequest): GetConfigResponse {
+  @handler.validateRequestModel(request);
+  return @handler.do('RESTFUL', 'GetConfig', 'GET', '/configs/configName', 'json', false, '', request);
+}
+
+model EnableJobRequest {
+  project?: string(name='Project', description='A short description of struct', position='Query'),
+  jobName?: string(name='JobName', position='Query'),
+}
+
+model EnableJobResponse = {
+  headers: map[string]string(name='headers'),
+}
+
+async function enableJob(request: EnableJobRequest): EnableJobResponse {
+  @handler.validateRequestModel(request);
+  return @handler.do('RESTFUL', 'EnableJob', 'PUT', '/jobs', 'none', false, '', request);
+}
+
+model PutWebtrackingRequest {
+  logstoreName?: string(name='logstoreName', description='A short description of struct', position='Host'),
+  endpoint?: string(name='endpoint', position='Host'),
+  project?: string(name='project', position='Host'),
+  topic?: string(name='__topic__', position='Body'),
+  source?: string(name='__source__', position='Body'),
+  logs?: [ 
+    {
+      foo?: string(name='foo'),
+    }
+  ](name='__logs__', position='Body'),
+  tags?: [ 
+    {
+      bar?: string(name='bar'),
+    }
+  ](name='__tags__', position='Body'),
+}
+
+model PutWebtrackingResponse = {
+  headers: map[string]string(name='headers'),
+}
+
+async function putWebtracking(request: PutWebtrackingRequest): PutWebtrackingResponse {
+  @handler.validateRequestModel(request);
+  return @handler.do('RESTFUL', 'PutWebtracking', 'POST', '/logstores/{logstoreName}/track', 'none', false, 'object', request);
+}
+
+model CreateIndexRequest {
+  logstoreName?: string(name='logstoreName', position='Body'),
+  keys?: {
+    caseSensitive?: boolean(name='caseSensitive'),
+    chn?: boolean(name='chn'),
+    token?: [ bytes ](name='token'),
+    includeKeys?: [ bytes ](name='include_keys'),
+    excludeKeys?: [ bytes ](name='exclude_keys'),
+  }(name='keys', position='Body'),
+  line?: {
+    type?: string(name='type'),
+    alias?: string(name='alias'),
+    chn?: boolean(name='chn'),
+    token?: [ bytes ](name='token'),
+    caseSensitive?: boolean(name='caseSensitive'),
+    docValue?: boolean(name='doc_value'),
+  }(name='line', position='Body'),
+}
+
+model CreateIndexResponse = {
+  headers: map[string]string(name='headers'),
+}
+
+async function createIndex(request: CreateIndexRequest): CreateIndexResponse {
+  @handler.validateRequestModel(request);
+  return @handler.do('RESTFUL', 'CreateIndex', 'POST', '/logstores/<logstoreName>/index', 'none', false, 'object', request);
+}
+
+model UpdateChartRequest {
+  projectName?: string(name='ProjectName', position='Body'),
+  projectStatus?: string(name='ProjectStatus', position='Body'),
+  projectOwner?: string(name='ProjectOwner', position='Body'),
+  projectDesc?: string(name='ProjectDesc', position='Body'),
+  region?: string(name='Region', position='Body'),
+  createTime?: string(name='CreateTime', position='Body'),
+  lastModifyTime?: string(name='LastModifyTime', position='Body'),
+}
+
+model UpdateChartResponse = {
+  headers: map[string]string(name='headers'),
+}
+
+async function updateChart(request: UpdateChartRequest): UpdateChartResponse {
+  @handler.validateRequestModel(request);
+  return @handler.do('RESTFUL', 'UpdateChart', 'PUT', '/dashboards/{dashboardName}/charts/{chartName}', 'none', false, 'object', request);
+}
+
+model GetReportRequest {
+  project?: string(name='Project', description='A short description of struct', position='Query'),
+  name?: string(name='Name', position='Query'),
+}
+
+model GetReportResponseBody = {
+  state?: string(name='State'),
+  status?: string(name='Status'),
+  schedule?: string(name='Schedule'),
+}
+
+model GetReportResponse = {
+  headers: map[string]string(name='headers'),
+  body: GetReportResponseBody(name='body'),
+}
+
+async function getReport(request: GetReportRequest): GetReportResponse {
+  @handler.validateRequestModel(request);
+  return @handler.do('RESTFUL', 'GetReport', 'GET', '/jobs', 'json', false, '', request);
+}
+
+model GetAppliedConfigsRequest {
+  projectName?: string(name='projectName', description='A short description of struct', position='Host'),
+  groupName?: string(name='groupName', position='Host'),
+}
+
+model GetAppliedConfigsResponseBody = {
+  count?: long(name='count'),
+  configs?: [ bytes ](name='configs'),
+}
+
+model GetAppliedConfigsResponse = {
+  headers: map[string]string(name='headers'),
+  body: GetAppliedConfigsResponseBody(name='body'),
+}
+
+async function getAppliedConfigs(request: GetAppliedConfigsRequest): GetAppliedConfigsResponse {
+  @handler.validateRequestModel(request);
+  return @handler.do('RESTFUL', 'GetAppliedConfigs', 'GET', '/machinegroups/groupName/configs', 'json', false, '', request);
+}
+
+model CreateEtlMetaRequest {
+  project?: string(name='Project', description='A short description of struct', position='Query'),
+  etlMeta?: {
+    metaName?: string(name='MetaName'),
+    metaKey?: string(name='MetaKey'),
+    metaTag?: string(name='MetaTag'),
+    createTime?: long(name='CreateTime'),
+    lastModifyTime?: long(name='LastModifyTime'),
+    enable?: boolean(name='Enable'),
+    metaValue?: {
+      etlMetaName?: string(name='EtlMetaName'),
+      etlMetaKey?: string(name='EtlMetaKey'),
+      etlMetaTag?: string(name='EtlMetaTag'),
+      etlMetaValue?: string(name='EtlMetaValue'),
+      createTime?: string(name='CreateTime'),
+      lastModifyTime?: string(name='LastModifyTime'),
+      enable?: string(name='Enable'),
+    }(name='MetaValue'),
+  }(name='EtlMeta', position='Query'),
+}
+
+model CreateEtlMetaShrinkRequest {
+  project?: string(name='Project', description='A short description of struct', position='Query'),
+  etlMetaShrink?: string(name='EtlMeta', position='Query'),
+}
+
+model CreateEtlMetaResponse = {
+  headers: map[string]string(name='headers'),
+}
+
+async function createEtlMeta(tmpReq: CreateEtlMetaRequest): CreateEtlMetaResponse {
+  @handler.validateRequestModel(tmpReq);
+  return @handler.do('RESTFUL', 'CreateEtlMeta', 'POST', '/etlmetas', 'none', false, '', tmpReq);
+}
+
+model DeleteJobRequest {
+  project?: string(name='Project', description='A short description of struct', position='Query'),
+  jobName?: string(name='JobName', position='Query'),
+}
+
+model DeleteJobResponse = {
+  headers: map[string]string(name='headers'),
+}
+
+async function deleteJob(request: DeleteJobRequest): DeleteJobResponse {
+  @handler.validateRequestModel(request);
+  return @handler.do('RESTFUL', 'DeleteJob', 'DELETE', '/jobs', 'none', false, '', request);
+}
+
+model SplitShardRequest {
+  projectName?: string(name='projectName', position='Body'),
+  logstoreName?: string(name='logstoreName', position='Body'),
+  shardID?: long(name='shardID', position='Body'),
+  splitKey?: string(name='splitKey', position='Body'),
+}
+
+model SplitShardResponseBody = {
+  shardID?: long(name='shardID'),
+  status?: string(name='status'),
+  inclusiveBeginKey?: string(name='inclusiveBeginKey'),
+  exclusiveEndKey?: string(name='exclusiveEndKey'),
+  createTime?: string(name='createTime'),
+}
+
+model SplitShardResponse = {
+  headers: map[string]string(name='headers'),
+  body: SplitShardResponseBody(name='body'),
+}
+
+async function splitShard(request: SplitShardRequest): SplitShardResponse {
+  @handler.validateRequestModel(request);
+  return @handler.do('RESTFUL', 'SplitShard', 'POST', '/logstores/logstoreName/shards/shardID', 'json', false, 'object', request);
+}
+
+model ListProjectRequest {
+  offset?: long(name='offset', position='Host'),
+  size?: long(name='size', position='Host'),
+}
+
+model ListProjectResponseBody = {
+  count?: long(name='count'),
+  total?: long(name='total'),
+  projects?: {
+    createTime?: string(name='createTime'),
+    description?: string(name='description'),
+    lastModifyTime?: string(name='lastModifyTime'),
+    owner?: string(name='owner'),
+    projectName?: string(name='projectName'),
+    status?: string(name='status'),
+    region?: string(name='region'),
+  }(name='projects'),
+}
+
+model ListProjectResponse = {
+  headers: map[string]string(name='headers'),
+  body: ListProjectResponseBody(name='body'),
+}
+
+async function listProject(request: ListProjectRequest): ListProjectResponse {
+  @handler.validateRequestModel(request);
+  return @handler.do('RESTFUL', 'ListProject', 'GET', '/', 'json', false, '', request);
+}
+
+model UpdateConsumerGroupRequest {
+  projectName?: string(name='projectName', position='Body'),
+  logstoreName?: string(name='logstoreName', position='Body'),
+  consumerGroup?: string(name='consumerGroup', position='Body'),
+  timeout?: long(name='timeout', position='Body'),
+  order?: boolean(name='order', position='Body'),
+}
+
+model UpdateConsumerGroupResponse = {
+  headers: map[string]string(name='headers'),
+}
+
+async function updateConsumerGroup(request: UpdateConsumerGroupRequest): UpdateConsumerGroupResponse {
+  @handler.validateRequestModel(request);
+  return @handler.do('RESTFUL', 'UpdateConsumerGroup', 'PUT', '/logstores/logstoreName/consumergroups/consumerGroup', 'none', false, 'object', request);
+}
+
+model GetHistogramsRequest {
+  projectName?: string(name='projectName', description='A short description of struct', position='Host'),
+  logstoreName?: string(name='logstoreName', position='Host'),
+  type?: string(name='type', position='Host'),
+  from?: long(name='from', position='Host'),
+  to?: long(name='to', position='Host'),
+  topic?: string(name='topic', position='Host'),
+  query?: string(name='query', position='Host'),
+}
+
+model GetHistogramsResponseBody = {
+  from?: long(name='from'),
+  to?: long(name='to'),
+  count?: long(name='count'),
+  progress?: string(name='progress'),
+}
+
+model GetHistogramsResponse = {
+  headers: map[string]string(name='headers'),
+  body: GetHistogramsResponseBody(name='body'),
+}
+
+async function getHistograms(request: GetHistogramsRequest): GetHistogramsResponse {
+  @handler.validateRequestModel(request);
+  return @handler.do('RESTFUL', 'GetHistograms', 'GET', '/logstores/logstoreName', 'json', false, '', request);
+}
+
+model UpdateExportRequest {
+  project?: string(name='Project', description='A short description of struct', position='Query'),
+  configuration?: {
+    logstore?: string(name='Logstore'),
+    accessKeyId?: string(name='AccessKeyId'),
+    accessKeySecret?: string(name='AccessKeySecret'),
+    instanceType?: string(name='InstanceType'),
+    fromTime?: long(name='FromTime'),
+    sink?: {
+      type?: {
+        name?: string(name='Name'),
+      }(name='Type'),
+    }(name='Sink'),
+  }(name='Configuration', position='Body'),
+}
+
+model UpdateExportResponse = {
+  headers: map[string]string(name='headers'),
+}
+
+async function updateExport(request: UpdateExportRequest): UpdateExportResponse {
+  @handler.validateRequestModel(request);
+  return @handler.do('RESTFUL', 'UpdateExport', 'PUT', '/jobs', 'none', false, 'object', request);
+}
+
+model EnableAlertRequest {
+  project?: string(name='Project', description='A short description of struct', position='Query'),
+  name?: string(name='Name', position='Query'),
+}
+
+model EnableAlertResponse = {
+  headers: map[string]string(name='headers'),
+}
+
+async function enableAlert(request: EnableAlertRequest): EnableAlertResponse {
+  @handler.validateRequestModel(request);
+  return @handler.do('RESTFUL', 'EnableAlert', 'PUT', '/jobs', 'none', false, '', request);
+}
+
+model UpdateLoggingRequest {
+  project?: string(name='Project', description='A short description of struct', position='Query'),
+  logging?: {
+    loggingProject?: string(name='LoggingProject'),
+    loggingDetails?: {
+      type?: string(name='Type'),
+      logstore?: string(name='Logstore'),
+    }(name='LoggingDetails'),
+  }(name='Logging', position='Query'),
+}
+
+model UpdateLoggingShrinkRequest {
+  project?: string(name='Project', description='A short description of struct', position='Query'),
+  loggingShrink?: string(name='Logging', position='Query'),
+}
+
+model UpdateLoggingResponse = {
+  headers: map[string]string(name='headers'),
+}
+
+async function updateLogging(tmpReq: UpdateLoggingRequest): UpdateLoggingResponse {
+  @handler.validateRequestModel(tmpReq);
+  return @handler.do('RESTFUL', 'UpdateLogging', 'PUT', '/logging', 'none', false, '', tmpReq);
+}
+
+model DisableReportRequest {
+  project?: string(name='Project', description='A short description of struct', position='Query'),
+  name?: string(name='Name', position='Query'),
+}
+
+model DisableReportResponse = {
+  headers: map[string]string(name='headers'),
+}
+
+async function disableReport(request: DisableReportRequest): DisableReportResponse {
+  @handler.validateRequestModel(request);
+  return @handler.do('RESTFUL', 'DisableReport', 'PUT', '/jobs', 'none', false, '', request);
+}
+
+model ListAlertRequest {
+  project?: string(name='Project', description='A short description of struct', position='Query'),
+}
+
+model ListAlertResponseBody = {
+  name?: string(name='Name'),
+  displayName?: string(name='DisplayName'),
+  configuration?: string(name='Configuration'),
+  schedule?: string(name='Schedule'),
+  queryList?: [ string ](name='QueryList'),
+}
+
+model ListAlertResponse = {
+  headers: map[string]string(name='headers'),
+  body: ListAlertResponseBody(name='body'),
+}
+
+async function listAlert(request: ListAlertRequest): ListAlertResponse {
+  @handler.validateRequestModel(request);
+  return @handler.do('RESTFUL', 'ListAlert', 'GET', '/jobs', 'json', false, '', request);
+}
+
+model ListETLRequest {
+  project?: string(name='Project', description='A short description of struct', position='Query'),
+  name?: string(name='Name', position='Query'),
+}
+
+model ListETLResponseBody = {
+  configuration?: string(name='Configuration'),
+  etl?: string(name='etl'),
+}
+
+model ListETLResponse = {
+  headers: map[string]string(name='headers'),
+  body: ListETLResponseBody(name='body'),
+}
+
+async function listETL(request: ListETLRequest): ListETLResponse {
+  @handler.validateRequestModel(request);
+  return @handler.do('RESTFUL', 'ListETL', 'GET', '/jobs', 'json', false, '', request);
+}
+
+model UpdateEtlJobRequest {
+  project?: string(name='Project', description='A short description of struct', position='Query'),
+  etlJobName?: string(name='EtlJobName', position='Query'),
+  jobName?: string(name='JobName', position='Body'),
+  sourceConfig?: {
+    logstoreName?: string(name='LogstoreName'),
+  }(name='SourceConfig', position='Body'),
+  triggerConfig?: {
+    roleArn?: string(name='RoleArn'),
+    triggerInterval?: long(name='TriggerInterval'),
+    maxRetryTime?: long(name='MaxRetryTime'),
+    startingPosition?: string(name='StartingPosition'),
+    startingUnixtime?: long(name='StartingUnixtime'),
+  }(name='TriggerConfig', position='Body'),
+  functionConfig?: {
+    functionProvider?: string(name='FunctionProvider'),
+  }(name='FunctionConfig', position='Body'),
+  functionParameter?: string(name='FunctionParameter', position='Body'),
+  logConfig?: {
+    endpoint?: string(name='Endpoint'),
+    projectName?: string(name='ProjectName'),
+    logstoreName?: string(name='LogstoreName'),
+  }(name='LogConfig', position='Body'),
+  enable?: boolean(name='Enable', position='Body'),
+}
+
+model UpdateEtlJobResponse = {
+  headers: map[string]string(name='headers'),
+}
+
+async function updateEtlJob(request: UpdateEtlJobRequest): UpdateEtlJobResponse {
+  @handler.validateRequestModel(request);
+  return @handler.do('RESTFUL', 'UpdateEtlJob', 'PUT', '/etljobs/{etlJobName}', 'none', false, 'object', request);
+}
+
+model DeleteDomainRequest {
+  projectName?: string(name='ProjectName', description='A short description of struct', position='Query'),
+  domainName?: string(name='DomainName', position='Query'),
+}
+
+model DeleteDomainResponse = {
+  headers: map[string]string(name='headers'),
+}
+
+async function deleteDomain(request: DeleteDomainRequest): DeleteDomainResponse {
+  @handler.validateRequestModel(request);
+  return @handler.do('RESTFUL', 'DeleteDomain', 'DELETE', '/domains/domainName', 'none', false, '', request);
+}
+
+model CreateAlertRequest {
+  alert?: {
+    configuration?: {
+      condition?: string(name='Condition'),
+      queryList?: [ string ](name='QueryList'),
+      muteUntil?: string(name='MuteUntil'),
+      throttling?: string(name='Throttling'),
+    }(name='Configuration'),
+  }(name='Alert', position='Query'),
+}
+
+model CreateAlertShrinkRequest {
+  alertShrink?: string(name='Alert', position='Query'),
+}
+
+model CreateAlertResponse = {
+  headers: map[string]string(name='headers'),
+}
+
+async function createAlert(tmpReq: CreateAlertRequest): CreateAlertResponse {
+  @handler.validateRequestModel(tmpReq);
+  return @handler.do('RESTFUL', 'CreateAlert', 'POST', '/jobs', 'none', false, '', tmpReq);
+}
+
+model UpdateProjectRequest {
+  projectName?: string(name='projectName', position='Body'),
+  description?: string(name='description', position='Body'),
+}
+
+model UpdateProjectResponse = {
+  headers: map[string]string(name='headers'),
+}
+
+async function updateProject(request: UpdateProjectRequest): UpdateProjectResponse {
+  @handler.validateRequestModel(request);
+  return @handler.do('RESTFUL', 'UpdateProject', 'PUT', '/', 'none', false, 'object', request);
+}
+
+model RetryShipperTaskRequest {
+  projectName?: string(name='projectName', description='A short description of struct', position='Host'),
+  logstoreName?: string(name='logstoreName', position='Host'),
+  shipperName?: string(name='shipperName', position='Host'),
+}
+
+model RetryShipperTaskResponse = {
+  headers: map[string]string(name='headers'),
+}
+
+async function retryShipperTask(request: RetryShipperTaskRequest): RetryShipperTaskResponse {
+  @handler.validateRequestModel(request);
+  return @handler.do('RESTFUL', 'RetryShipperTask', 'PUT', '/logstores/logstoreName/shipper/shipperName/tasks', 'none', false, '', request);
+}
+
+model ListExportRequest {
+  project?: string(name='Project', description='A short description of struct', position='Query'),
+}
+
+model ListExportResponseBody = {
+  total?: long(name='Total'),
+  count?: long(name='Count'),
+  results?: {
+    configuration?: {
+      logstore?: string(name='Logstore'),
+      accessKeyId?: string(name='AccessKeyId'),
+      accessKeySecret?: string(name='AccessKeySecret'),
+      instanceType?: string(name='InstanceType'),
+      fromTime?: long(name='FromTime'),
+      sink?: {
+        type?: {
+          name?: string(name='Name'),
+        }(name='Type'),
+      }(name='Sink'),
+    }(name='Configuration'),
+  }(name='Results'),
+}
+
+model ListExportResponse = {
+  headers: map[string]string(name='headers'),
+  body: ListExportResponseBody(name='body'),
+}
+
+async function listExport(request: ListExportRequest): ListExportResponse {
+  @handler.validateRequestModel(request);
+  return @handler.do('RESTFUL', 'ListExport', 'GET', '/jobs', 'json', false, '', request);
+}
+
+model DeleteMachineGroupRequest {
+  projectName?: string(name='projectName', description='A short description of struct', position='Host'),
+  groupName?: string(name='groupName', position='Host'),
+}
+
+model DeleteMachineGroupResponse = {
+  headers: map[string]string(name='headers'),
+}
+
+async function deleteMachineGroup(request: DeleteMachineGroupRequest): DeleteMachineGroupResponse {
+  @handler.validateRequestModel(request);
+  return @handler.do('RESTFUL', 'DeleteMachineGroup', 'DELETE', '/machinegroups/groupName', 'none', false, '', request);
+}
+
+model GetShipperTasksRequest {
+}
+
+model GetShipperTasksResponseBody = {
+  requestId?: string(name='RequestId', description='Id of the request'),
+}
+
+model GetShipperTasksResponse = {
+  headers: map[string]string(name='headers'),
+  body: GetShipperTasksResponseBody(name='body'),
+}
+
+async function getShipperTasks(request: GetShipperTasksRequest): GetShipperTasksResponse {
+  @handler.validateRequestModel(request);
+  return @handler.do('RESTFUL', 'GetShipperTasks', 'GET', '/logstores/{logStore}/shipper/{shipperName}/tasks', 'json', false, '', request);
+}
+
+model ListACLRequest {
+  project?: string(name='Project', description='A short description of struct', position='Host'),
+  logStore?: string(name='LogStore', position='Host'),
+}
+
+model ListACLResponse = {
+  headers: map[string]string(name='headers'),
+}
+
+async function listACL(request: ListACLRequest): ListACLResponse {
+  @handler.validateRequestModel(request);
+  return @handler.do('RESTFUL', 'ListACL', 'GET', '/logstores', 'none', false, '', request);
+}
+
+model UpdateIngestionRequest {
+  logstore?: string(name='Logstore', position='Body'),
+  type?: string(name='Type', position='Body'),
+  configuration?: string(name='Configuration', position='Body'),
+}
+
+model UpdateIngestionResponse = {
+  headers: map[string]string(name='headers'),
+}
+
+async function updateIngestion(request: UpdateIngestionRequest): UpdateIngestionResponse {
+  @handler.validateRequestModel(request);
+  return @handler.do('RESTFUL', 'UpdateIngestion', 'PUT', '/jobs', 'none', false, 'object', request);
+}
+
+model CreateETLRequest {
+  ETL?: {
+    configuration?: {
+      script?: string(name='Script'),
+      logstore?: string(name='Logstore'),
+      instanceType?: string(name='InstanceType'),
+      containerImage?: string(name='ContainerImage'),
+      version?: long(name='Version'),
+      sinks?: [ string ](name='Sinks'),
+      parameters?: [ string ](name='Parameters'),
+      accessKeyId?: string(name='AccessKeyId'),
+      accessKeySecret?: string(name='AccessKeySecret'),
+    }(name='Configuration'),
+  }(name='ETL', position='Query'),
+}
+
+model CreateETLShrinkRequest {
+  ETLShrink?: string(name='ETL', position='Query'),
+}
+
+model CreateETLResponse = {
+  headers: map[string]string(name='headers'),
+}
+
+async function createETL(tmpReq: CreateETLRequest): CreateETLResponse {
+  @handler.validateRequestModel(tmpReq);
+  return @handler.do('RESTFUL', 'CreateETL', 'POST', '/jobs', 'none', false, '', tmpReq);
+}
+
+model CreateIngestionRequest {
+  logstore?: string(name='Logstore', position='Body'),
+  type?: string(name='Type', position='Body'),
+  configuration?: string(name='Configuration', position='Body'),
+}
+
+model CreateIngestionResponse = {
+  headers: map[string]string(name='headers'),
+}
+
+async function createIngestion(request: CreateIngestionRequest): CreateIngestionResponse {
+  @handler.validateRequestModel(request);
+  return @handler.do('RESTFUL', 'CreateIngestion', 'POST', '/jobs', 'none', false, 'object', request);
+}
+

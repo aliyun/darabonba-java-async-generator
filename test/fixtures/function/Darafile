@@ -1,0 +1,35 @@
+{
+  "scope": "alibabacloud",
+  "name": "Oss20190517-async",
+  "version": "0.0.1",
+  "main": "./main.dara",
+  "maintainers": [
+    {
+      "name": "Alibaba Cloud SDK",
+      "email": "sdk-team@alibabacloud.com"
+    }
+  ],
+  "java": {
+    "package": "com.aliyun.oss20190517",
+    "className": "DefaultAsyncClient",
+    "implements": "AsyncClient",
+    "packageInfo": {
+      "description": "Alibaba Cloud Oss (20190517) Async SDK for Java",
+      "url": "https://github.com/aliyun/alibabacloud-java-async-sdk",
+      "licenseName": "The Apache License, Version 2.0",
+      "licenseUrl": "http://www.apache.org/licenses/LICENSE-2.0.txt",
+      "developerId": "aliyunproducts",
+      "developerName": "Aliyun SDK",
+      "developerEmail": "aliyunsdk@aliyun.com"
+    }
+  },
+  "releases": {
+    "java": "com.aliyun:alibabacloud-oss20190517-async:0.0.1"
+  },
+  "libraries": {
+    "TeaRequest": "alibabacloud:DarabonbaCore.TeaRequest:*",
+    "ClientConfiguration": "alibabacloud:DarabonbaCore.ClientConfiguration:*",
+    "ClientExecutionParams": "alibabacloud:DarabonbaCore.ClientExecutionParams:*",
+    "TeaAsyncHandler": "alibabacloud:DarabonbaCore.TeaAsyncHandler:*"
+  }
+}

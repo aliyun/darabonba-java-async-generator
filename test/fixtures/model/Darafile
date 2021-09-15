@@ -1,0 +1,33 @@
+{
+  "scope": "alibabacloud",
+  "name": "Fix",
+  "version": "0.0.1",
+  "main": "./main.tea",
+  "maintainers": [
+    {
+      "name": "Alibaba Cloud SDK",
+      "email": "sdk-team@alibabacloud.com"
+    }
+  ],
+  "java": {
+    "package": "com.aliyun.test",
+    "className": "TestAsyncClient",
+    "implements": "Client",
+    "packageInfo": {
+      "description": "Alibaba Cloud Test SDK for Java",
+      "url": "https://github.com/aliyun/alibabacloud-java-sdk",
+      "licenseName": "The Apache License, Version 2.0",
+      "licenseUrl": "http://www.apache.org/licenses/LICENSE-2.0.txt",
+      "developerId": "aliyunproducts",
+      "developerName": "Aliyun SDK",
+      "developerEmail": "aliyunsdk@aliyun.com"
+    }
+  },
+  "releases": {
+    "java": "com.aliyun:test:0.0.1"
+  },
+  "libraries": {
+		"TeaRequest": "alibabacloud:DarabonbaCore.TeaRequest:*",
+		"AsyncClient": "alibabacloud:DarabonbaCore.AsyncClient:*"
+	}
+}

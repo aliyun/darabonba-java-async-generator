@@ -1,0 +1,6 @@
+{
+  "alibabacloud:DarabonbaCore.TeaRequest:*": "libraries/alibabacloud_DarabonbaCore.TeaRequest_0.0.2",
+  "alibabacloud:DarabonbaCore.ClientConfiguration:*": "libraries/alibabacloud_DarabonbaCore.ClientConfiguration_0.0.2",
+  "alibabacloud:DarabonbaCore.ClientExecutionParams:*": "libraries/alibabacloud_DarabonbaCore.ClientExecutionParams_0.0.1",
+  "alibabacloud:DarabonbaCore.TeaAsyncHandler:*": "libraries/alibabacloud_DarabonbaCore.TeaAsyncHandler_0.0.3"
+}

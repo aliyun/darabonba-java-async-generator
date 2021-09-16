@@ -583,6 +583,7 @@ model PutObjectRequest {
   acl?: ObjectACL(name='x-oss-object-acl', position='Header'),
   storageClass?: StorageClass(name='x-oss-storage-class', position='Header'),
   tagging?: string(name='x-oss-tagging', position='Header'),
+  userMetadata?: map[string]string(name='x-oss-meta-*', position='Header'),
   body?: readable(name='body', position='Body'),
 }
 
@@ -935,6 +936,7 @@ model ListObjectVersionsResponseBody = {
   versionIdMarker?: string(name='VersionIdMarker', description='This parameter is returned with KeyMarker together to indicate the version from which the operation starts', parentIgnore='ListVersionsResult'),
   maxKeys?: long(name='MaxKeys', description='The maximum number of returned objects in the response', parentIgnore='ListVersionsResult'),
   isTruncated?: boolean(name='IsTruncated', description='Indicates whether the returned results are truncated', parentIgnore='ListVersionsResult'),
+  encodingType?: string(name='EncodingType', parentIgnore='ListVersionsResult'),
   versions?: [
     ObjectVersion
   ](name='Version', description='The container that stores the versions of objects except for delete markers', parentIgnore='ListVersionsResult'),
@@ -1337,7 +1339,7 @@ async function putBucketVersioning(request: PutBucketVersioningRequest): PutBuck
 
 model DeleteObjectRequest {
   bucket?: string(name='bucket', position='Host'),
-  key?: string(name='key', position='Query'),
+  key?: string(name='key', position='Path'),
   versionId?: string(name='versionId', position='Query'),
 }
 
@@ -1432,7 +1434,7 @@ async function putSymlink(request: PutSymlinkRequest): PutSymlinkResponse {
 
 model GetObjectMetaRequest {
   bucket?: string(name='bucket', position='Host'),
-  key?: string(name='key', position='Query'),
+  key?: string(name='key', position='Path'),
 }
 
 model GetObjectMetaResponse = {
@@ -1761,7 +1763,7 @@ async function postObject(request: PostObjectRequest): PostObjectResponse {
 
 model SelectObjectRequest {
   bucket?: string(name='bucket', position='Host'),
-  key?: string(name='key', position='Query'),
+  key?: string(name='key', position='Path'),
   selectRequest?: SelectRequest(name='selectRequest', position='Body'),
 }
 
@@ -1790,6 +1792,7 @@ model ListObjectsResponseBody = {
   maxKeys?: int32(name='MaxKeys', description='The maximum number of returned objects in the response', parentIgnore='ListBucketResult'),
   delimiter?: string(name='Delimiter', description='The character used to group objects by name', parentIgnore='ListBucketResult'),
   isTruncated?: boolean(name='IsTruncated', description='Indicates whether the returned results are truncated', parentIgnore='ListBucketResult'),
+  encodingType?: string(name='EncodingType', parentIgnore='ListBucketResult'),
   contents?: [
     ObjectSummary
   ](name='Contents', description='The container that stores the returned object metadata', parentIgnore='ListBucketResult'),
@@ -1997,7 +2000,7 @@ async function getBucketEncryption(request: GetBucketEncryptionRequest): GetBuck
 
 model RestoreObjectRequest {
   bucket?: string(name='bucket', position='Host'),
-  key?: string(name='key', position='Query'),
+  key?: string(name='key', position='Path'),
   restoreRequest?: RestoreRequest(name='restoreRequest', position='Body'),
 }
 

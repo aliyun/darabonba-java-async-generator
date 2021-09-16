@@ -72,8 +72,7 @@ public class SelectObjectRequest extends Request {
         return this.selectRequest;
     }
 
-    public static final class Builder extends RequestModel.Builder<SelectObjectRequest.Builder> {
-      
+    public static final class Builder extends Request.Builder<SelectObjectRequest.Builder> {
         private String bucketName; 
         private String objectName; 
         private String porcess; 
@@ -200,8 +199,7 @@ public class SelectObjectRequest extends Request {
             return this.fileHeaderInfo;
         }
 
-        public static final class Builder extends RequestModel.Builder<InputSerializationCSV.Builder> {
-      
+        public static final class Builder extends Request.Builder<InputSerializationCSV.Builder> {
             private String recordDelimiter; 
             private String range; 
             private String fieldDelimiter; 
@@ -299,8 +297,7 @@ public class SelectObjectRequest extends Request {
             return this.inputSerializationCSV;
         }
 
-        public static final class Builder extends RequestModel.Builder<InputSerialization.Builder> {
-      
+        public static final class Builder extends Request.Builder<InputSerialization.Builder> {
             private String compressionType; 
             private InputSerializationCSV inputSerializationCSV; 
 
@@ -362,8 +359,7 @@ public class SelectObjectRequest extends Request {
             return this.fieldDelimiter;
         }
 
-        public static final class Builder extends RequestModel.Builder<OutputSerializationCSV.Builder> {
-      
+        public static final class Builder extends Request.Builder<OutputSerializationCSV.Builder> {
             private String recordDelimiter; 
             private String fieldDelimiter; 
 
@@ -458,8 +454,7 @@ public class SelectObjectRequest extends Request {
             return this.keepAllColumns;
         }
 
-        public static final class Builder extends RequestModel.Builder<OutputSerialization.Builder> {
-      
+        public static final class Builder extends Request.Builder<OutputSerialization.Builder> {
             private OutputSerializationCSV outputSerializationCSV; 
             private String outputRawData; 
             private String outputHeader; 
@@ -548,8 +543,7 @@ public class SelectObjectRequest extends Request {
             return this.skipPartialDataRecord;
         }
 
-        public static final class Builder extends RequestModel.Builder<Options.Builder> {
-      
+        public static final class Builder extends Request.Builder<Options.Builder> {
             private String maxSkippedRecordsAllowed; 
             private String skipPartialDataRecord; 
 
@@ -633,8 +627,7 @@ public class SelectObjectRequest extends Request {
             return this.options;
         }
 
-        public static final class Builder extends RequestModel.Builder<SelectRequest.Builder> {
-      
+        public static final class Builder extends Request.Builder<SelectRequest.Builder> {
             private InputSerialization inputSerialization; 
             private String expression; 
             private OutputSerialization outputSerialization; 

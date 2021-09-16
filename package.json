@@ -3,8 +3,8 @@
   "version": "0.0.1",
   "description": "The darabonba generator for Java Async",
   "main": "lib/generator",
-  "bin": {
-    "codegen": "codegen.js"
+  "directories": {
+    "lib": "lib"
   },
   "scripts": {
     "lint": "eslint --fix lib/ test/",

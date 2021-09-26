@@ -3,6 +3,7 @@
  */
 import TeaAsyncHandler;
 import TeaRequest;
+import AsyncRequestBody;
 import ClientConfiguration;
 import ClientExecutionParams;
 type @product = string
@@ -489,7 +490,7 @@ model GetBucketLocationResponse = {
 
 async function getBucketLocation(request: GetBucketLocationRequest): GetBucketLocationResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'GetBucketLocation', 'GET', '/?location', 'xml', false, '', request);
+  return @handler.do('RESTFUL', 'GetBucketLocation', 'GET', '/?location', 'xml', false, 'xml', request);
 }
 
 model GetBucketCORSRequest {
@@ -510,7 +511,7 @@ model GetBucketCORSResponse = {
 
 async function getBucketCORS(request: GetBucketCORSRequest): GetBucketCORSResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'GetBucketCORS', 'GET', '/?cors', 'xml', false, '', request);
+  return @handler.do('RESTFUL', 'GetBucketCORS', 'GET', '/?cors', 'xml', false, 'xml', request);
 }
 
 model PostVodPlaylistRequest {
@@ -527,7 +528,7 @@ model PostVodPlaylistResponse = {
 
 async function postVodPlaylist(request: PostVodPlaylistRequest): PostVodPlaylistResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'PostVodPlaylist', 'POST', '/{channel}/{playlist}?vod', 'none', false, '', request);
+  return @handler.do('RESTFUL', 'PostVodPlaylist', 'POST', '/{channel}/{playlist}?vod', 'xml', false, 'xml', request);
 }
 
 model CompleteBucketWormRequest {
@@ -541,7 +542,7 @@ model CompleteBucketWormResponse = {
 
 async function completeBucketWorm(request: CompleteBucketWormRequest): CompleteBucketWormResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'CompleteBucketWorm', 'POST', '/', 'none', false, '', request);
+  return @handler.do('RESTFUL', 'CompleteBucketWorm', 'POST', '/', 'xml', false, 'xml', request);
 }
 
 model PutBucketReplicationRequest {
@@ -555,7 +556,7 @@ model PutBucketReplicationResponse = {
 
 async function putBucketReplication(request: PutBucketReplicationRequest): PutBucketReplicationResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'PutBucketReplication', 'POST', '/?replication&comp=add', 'none', true, '', request);
+  return @handler.do('RESTFUL', 'PutBucketReplication', 'POST', '/?replication&comp=add', 'xml', true, 'xml', request);
 }
 
 model ExtendBucketWormRequest {
@@ -570,7 +571,7 @@ model ExtendBucketWormResponse = {
 
 async function extendBucketWorm(request: ExtendBucketWormRequest): ExtendBucketWormResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'ExtendBucketWorm', 'POST', '/?wormExtend', 'none', true, '', request);
+  return @handler.do('RESTFUL', 'ExtendBucketWorm', 'POST', '/?wormExtend', 'xml', true, 'xml', request);
 }
 
 model PutObjectRequest {
@@ -593,7 +594,12 @@ model PutObjectResponse = {
 
 async function putObject(request: PutObjectRequest): PutObjectResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'PutObject', 'PUT', '/{key}', 'none', true, '', request);
+  return @handler.do('RESTFUL', 'PutObject', 'PUT', '/{key}', 'binary', false, 'binary', request);
+}
+
+async function putObjectWithRequestBody(request: PutObjectRequest, requestBody: AsyncRequestBody): PutObjectResponse {
+  @handler.validateRequestModel(request);
+  return @handler.do('RESTFUL', 'PutObject', 'PUT', '/{key}', 'binary', false, 'binary', request);
 }
 
 model DeleteBucketInventoryRequest {
@@ -607,7 +613,7 @@ model DeleteBucketInventoryResponse = {
 
 async function deleteBucketInventory(request: DeleteBucketInventoryRequest): DeleteBucketInventoryResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'DeleteBucketInventory', 'DELETE', '/?inventory', 'none', false, '', request);
+  return @handler.do('RESTFUL', 'DeleteBucketInventory', 'DELETE', '/?inventory', 'xml', false, 'xml', request);
 }
 
 model GetBucketWormRequest {
@@ -628,7 +634,7 @@ model GetBucketWormResponse = {
 
 async function getBucketWorm(request: GetBucketWormRequest): GetBucketWormResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'GetBucketWorm', 'GET', '/?worm', 'xml', false, '', request);
+  return @handler.do('RESTFUL', 'GetBucketWorm', 'GET', '/?worm', 'xml', false, 'xml', request);
 }
 
 model PutBucketInventoryRequest {
@@ -643,7 +649,7 @@ model PutBucketInventoryResponse = {
 
 async function putBucketInventory(request: PutBucketInventoryRequest): PutBucketInventoryResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'PutBucketInventory', 'PUT', '/?inventory', 'none', true, '', request);
+  return @handler.do('RESTFUL', 'PutBucketInventory', 'PUT', '/?inventory', 'xml', true, 'xml', request);
 }
 
 model GetBucketInventoryRequest {
@@ -672,7 +678,7 @@ model GetBucketInventoryResponse = {
 
 async function getBucketInventory(request: GetBucketInventoryRequest): GetBucketInventoryResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'GetBucketInventory', 'GET', '/?inventory', 'xml', false, '', request);
+  return @handler.do('RESTFUL', 'GetBucketInventory', 'GET', '/?inventory', 'xml', false, 'xml', request);
 }
 
 model UploadPartCopyRequest {
@@ -701,7 +707,7 @@ model UploadPartCopyResponse = {
 
 async function uploadPartCopy(request: UploadPartCopyRequest): UploadPartCopyResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'UploadPartCopy', 'PUT', '/{key}', 'xml', false, '', request);
+  return @handler.do('RESTFUL', 'UploadPartCopy', 'PUT', '/{key}', 'xml', false, 'binary', request);
 }
 
 model DeleteBucketWebsiteRequest {
@@ -714,7 +720,7 @@ model DeleteBucketWebsiteResponse = {
 
 async function deleteBucketWebsite(request: DeleteBucketWebsiteRequest): DeleteBucketWebsiteResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'DeleteBucketWebsite', 'DELETE', '/?website', 'none', false, '', request);
+  return @handler.do('RESTFUL', 'DeleteBucketWebsite', 'DELETE', '/?website', 'xml', false, 'xml', request);
 }
 
 model GetBucketTagsRequest {
@@ -734,7 +740,7 @@ model GetBucketTagsResponse = {
 
 async function getBucketTags(request: GetBucketTagsRequest): GetBucketTagsResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'GetBucketTags', 'GET', '/?tagging', 'xml', false, '', request);
+  return @handler.do('RESTFUL', 'GetBucketTags', 'GET', '/?tagging', 'xml', false, 'xml', request);
 }
 
 model InitiateMultipartUploadRequest {
@@ -763,7 +769,7 @@ model InitiateMultipartUploadResponse = {
 
 async function initiateMultipartUpload(request: InitiateMultipartUploadRequest): InitiateMultipartUploadResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'InitiateMultipartUpload', 'POST', '/{key}?uploads', 'xml', false, '', request);
+  return @handler.do('RESTFUL', 'InitiateMultipartUpload', 'POST', '/{key}?uploads', 'xml', false, 'xml', request);
 }
 
 model DeleteObjectTaggingRequest {
@@ -777,7 +783,7 @@ model DeleteObjectTaggingResponse = {
 
 async function deleteObjectTagging(request: DeleteObjectTaggingRequest): DeleteObjectTaggingResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'DeleteObjectTagging', 'DELETE', '/{key}?tagging', 'none', false, '', request);
+  return @handler.do('RESTFUL', 'DeleteObjectTagging', 'DELETE', '/{key}?tagging', 'xml', false, 'xml', request);
 }
 
 model PutBucketWebsiteRequest {
@@ -791,7 +797,7 @@ model PutBucketWebsiteResponse = {
 
 async function putBucketWebsite(request: PutBucketWebsiteRequest): PutBucketWebsiteResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'PutBucketWebsite', 'PUT', '/?website', 'none', true, '', request);
+  return @handler.do('RESTFUL', 'PutBucketWebsite', 'PUT', '/?website', 'xml', true, 'xml', request);
 }
 
 model HeadObjectRequest {
@@ -809,7 +815,7 @@ model HeadObjectResponse = {
 
 async function headObject(request: HeadObjectRequest): HeadObjectResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'HeadObject', 'HEAD', '/{key}', 'none', false, '', request);
+  return @handler.do('RESTFUL', 'HeadObject', 'HEAD', '/{key}', 'xml', false, 'xml', request);
 }
 
 model GetBucketReplicationRequest {
@@ -829,7 +835,7 @@ model GetBucketReplicationResponse = {
 
 async function getBucketReplication(request: GetBucketReplicationRequest): GetBucketReplicationResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'GetBucketReplication', 'GET', '/?replication', 'xml', false, '', request);
+  return @handler.do('RESTFUL', 'GetBucketReplication', 'GET', '/?replication', 'xml', false, 'xml', request);
 }
 
 model GetBucketAclRequest {
@@ -850,7 +856,7 @@ model GetBucketAclResponse = {
 
 async function getBucketAcl(request: GetBucketAclRequest): GetBucketAclResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'GetBucketAcl', 'GET', '/?acl', 'xml', false, '', request);
+  return @handler.do('RESTFUL', 'GetBucketAcl', 'GET', '/?acl', 'xml', false, 'xml', request);
 }
 
 model GetSymlinkRequest {
@@ -864,7 +870,7 @@ model GetSymlinkResponse = {
 
 async function getSymlink(request: GetSymlinkRequest): GetSymlinkResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'GetSymlink', 'GET', '/{key}?symlink', 'none', false, '', request);
+  return @handler.do('RESTFUL', 'GetSymlink', 'GET', '/{key}?symlink', 'xml', false, 'xml', request);
 }
 
 model DeleteBucketRequest {
@@ -877,7 +883,7 @@ model DeleteBucketResponse = {
 
 async function deleteBucket(request: DeleteBucketRequest): DeleteBucketResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'DeleteBucket', 'DELETE', '/', 'none', false, '', request);
+  return @handler.do('RESTFUL', 'DeleteBucket', 'DELETE', '/', 'xml', false, 'xml', request);
 }
 
 model DeleteMultipleObjectsRequest {
@@ -899,7 +905,7 @@ model DeleteMultipleObjectsResponse = {
 
 async function deleteMultipleObjects(request: DeleteMultipleObjectsRequest): DeleteMultipleObjectsResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'DeleteMultipleObjects', 'POST', '/?delete', 'xml', true, '', request);
+  return @handler.do('RESTFUL', 'DeleteMultipleObjects', 'POST', '/?delete', 'xml', true, 'xml', request);
 }
 
 model OptionObjectRequest {
@@ -916,7 +922,7 @@ model OptionObjectResponse = {
 
 async function optionObject(request: OptionObjectRequest): OptionObjectResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'OptionObject', 'OPTIONS', '/{key}', 'none', false, '', request);
+  return @handler.do('RESTFUL', 'OptionObject', 'OPTIONS', '/{key}', 'xml', false, 'xml', request);
 }
 
 model ListObjectVersionsRequest {
@@ -955,7 +961,7 @@ model ListObjectVersionsResponse = {
 
 async function listObjectVersions(request: ListObjectVersionsRequest): ListObjectVersionsResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'ListObjectVersions', 'GET', '/?versions', 'xml', false, '', request);
+  return @handler.do('RESTFUL', 'ListObjectVersions', 'GET', '/?versions', 'xml', false, 'xml', request);
 }
 
 model GetBucketPolicyRequest {
@@ -969,7 +975,7 @@ model GetBucketPolicyResponse = {
 
 async function getBucketPolicy(request: GetBucketPolicyRequest): GetBucketPolicyResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'GetBucketPolicy', 'GET', '/?policy', 'string', false, '', request);
+  return @handler.do('RESTFUL', 'GetBucketPolicy', 'GET', '/?policy', 'string', false, 'json', request);
 }
 
 model GetObjectRequest {
@@ -995,7 +1001,7 @@ model GetObjectResponse = {
 
 async function getObject(request: GetObjectRequest): GetObjectResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'GetObject', 'GET', '/{key}', 'none', false, '', request);
+  return @handler.do('RESTFUL', 'GetObject', 'GET', '/{key}', 'binary', false, 'binary', request);
 }
 
 model InitiateBucketWormRequest {
@@ -1009,7 +1015,7 @@ model InitiateBucketWormResponse = {
 
 async function initiateBucketWorm(request: InitiateBucketWormRequest): InitiateBucketWormResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'InitiateBucketWorm', 'POST', '/?worm', 'none', true, '', request);
+  return @handler.do('RESTFUL', 'InitiateBucketWorm', 'POST', '/?worm', 'xml', true, 'xml', request);
 }
 
 model GetBucketRequest {
@@ -1043,7 +1049,7 @@ model GetBucketResponse = {
 
 async function getBucket(request: GetBucketRequest): GetBucketResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'GetBucket', 'GET', '/', 'xml', false, '', request);
+  return @handler.do('RESTFUL', 'GetBucket', 'GET', '/', 'xml', false, 'xml', request);
 }
 
 model PutObjectTaggingRequest {
@@ -1058,7 +1064,7 @@ model PutObjectTaggingResponse = {
 
 async function putObjectTagging(request: PutObjectTaggingRequest): PutObjectTaggingResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'PutObjectTagging', 'PUT', '/{key}?tagging', 'none', true, '', request);
+  return @handler.do('RESTFUL', 'PutObjectTagging', 'PUT', '/{key}?tagging', 'xml', true, 'xml', request);
 }
 
 model CopyObjectRequest {
@@ -1091,12 +1097,12 @@ model CopyObjectResponse = {
 
 async function copyObject(request: CopyObjectRequest): CopyObjectResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'CopyObject', 'PUT', '/{key}', 'xml', false, '', request);
+  return @handler.do('RESTFUL', 'CopyObject', 'PUT', '/{key}', 'xml', false, 'binary', request);
 }
 
 model PutBucketLifecycleRequest {
   bucket?: string(name='bucket', position='Host'),
-  lifecycleConfiguration?: LifecycleConfiguration(name='lifecycleConfiguration', position='Body'),
+  lifecycleConfiguration?: LifecycleConfiguration(name='LifecycleConfiguration', position='Body'),
 }
 
 model PutBucketLifecycleResponse = {
@@ -1105,7 +1111,7 @@ model PutBucketLifecycleResponse = {
 
 async function putBucketLifecycle(request: PutBucketLifecycleRequest): PutBucketLifecycleResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'PutBucketLifecycle', 'PUT', '/?lifecycle ', 'none', true, '', request);
+  return @handler.do('RESTFUL', 'PutBucketLifecycle', 'PUT', '/?lifecycle ', 'xml', true, 'xml', request);
 }
 
 model DeleteBucketReplicationRequest {
@@ -1123,7 +1129,7 @@ model DeleteBucketReplicationResponse = {
 
 async function deleteBucketReplication(request: DeleteBucketReplicationRequest): DeleteBucketReplicationResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'DeleteBucketReplication', 'POST', '/?replication&comp=delete', 'xml', false, '', request);
+  return @handler.do('RESTFUL', 'DeleteBucketReplication', 'POST', '/?replication&comp=delete', 'xml', false, 'xml', request);
 }
 
 model GetBucketVersioningRequest {
@@ -1141,7 +1147,7 @@ model GetBucketVersioningResponse = {
 
 async function getBucketVersioning(request: GetBucketVersioningRequest): GetBucketVersioningResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'GetBucketVersioning', 'GET', '/?versioning', 'xml', false, '', request);
+  return @handler.do('RESTFUL', 'GetBucketVersioning', 'GET', '/?versioning', 'xml', false, 'xml', request);
 }
 
 model GetBucketTransferAccelerationRequest {
@@ -1159,7 +1165,7 @@ model GetBucketTransferAccelerationResponse = {
 
 async function getBucketTransferAcceleration(request: GetBucketTransferAccelerationRequest): GetBucketTransferAccelerationResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'GetBucketTransferAcceleration', 'GET', '/?transferAcceleration ', 'xml', false, '', request);
+  return @handler.do('RESTFUL', 'GetBucketTransferAcceleration', 'GET', '/?transferAcceleration ', 'xml', false, 'xml', request);
 }
 
 model DeleteBucketEncryptionRequest {
@@ -1172,7 +1178,7 @@ model DeleteBucketEncryptionResponse = {
 
 async function deleteBucketEncryption(request: DeleteBucketEncryptionRequest): DeleteBucketEncryptionResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'DeleteBucketEncryption', 'DELETE', '/?encryption', 'none', false, '', request);
+  return @handler.do('RESTFUL', 'DeleteBucketEncryption', 'DELETE', '/?encryption', 'xml', false, 'xml', request);
 }
 
 model PutBucketEncryptionRequest {
@@ -1186,7 +1192,7 @@ model PutBucketEncryptionResponse = {
 
 async function putBucketEncryption(request: PutBucketEncryptionRequest): PutBucketEncryptionResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'PutBucketEncryption', 'PUT', '/?encryption', 'none', true, '', request);
+  return @handler.do('RESTFUL', 'PutBucketEncryption', 'PUT', '/?encryption', 'xml', true, 'xml', request);
 }
 
 model GetBucketReplicationLocationRequest {
@@ -1209,7 +1215,7 @@ model GetBucketReplicationLocationResponse = {
 
 async function getBucketReplicationLocation(request: GetBucketReplicationLocationRequest): GetBucketReplicationLocationResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'GetBucketReplicationLocation', 'GET', '/?replicationLocation', 'xml', false, '', request);
+  return @handler.do('RESTFUL', 'GetBucketReplicationLocation', 'GET', '/?replicationLocation', 'xml', false, 'xml', request);
 }
 
 model PutLiveChannelStatusRequest {
@@ -1224,7 +1230,7 @@ model PutLiveChannelStatusResponse = {
 
 async function putLiveChannelStatus(request: PutLiveChannelStatusRequest): PutLiveChannelStatusResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'PutLiveChannelStatus', 'PUT', '/{channel}?live', 'none', false, '', request);
+  return @handler.do('RESTFUL', 'PutLiveChannelStatus', 'PUT', '/{channel}?live', 'xml', false, 'xml', request);
 }
 
 model GetBucketLoggingRequest {
@@ -1242,7 +1248,7 @@ model GetBucketLoggingResponse = {
 
 async function getBucketLogging(request: GetBucketLoggingRequest): GetBucketLoggingResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'GetBucketLogging', 'GET', '/?logging', 'xml', false, '', request);
+  return @handler.do('RESTFUL', 'GetBucketLogging', 'GET', '/?logging', 'xml', false, 'xml', request);
 }
 
 model PutBucketRequestPaymentRequest {
@@ -1256,7 +1262,7 @@ model PutBucketRequestPaymentResponse = {
 
 async function putBucketRequestPayment(request: PutBucketRequestPaymentRequest): PutBucketRequestPaymentResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'PutBucketRequestPayment', 'PUT', '/?requestPayment', 'none', true, '', request);
+  return @handler.do('RESTFUL', 'PutBucketRequestPayment', 'PUT', '/?requestPayment', 'xml', true, 'xml', request);
 }
 
 model DeleteBucketLoggingRequest {
@@ -1269,7 +1275,7 @@ model DeleteBucketLoggingResponse = {
 
 async function deleteBucketLogging(request: DeleteBucketLoggingRequest): DeleteBucketLoggingResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'DeleteBucketLogging', 'DELETE', '/?logging', 'none', false, '', request);
+  return @handler.do('RESTFUL', 'DeleteBucketLogging', 'DELETE', '/?logging', 'xml', false, 'xml', request);
 }
 
 model GetLiveChannelStatRequest {
@@ -1292,12 +1298,12 @@ model GetLiveChannelStatResponse = {
 
 async function getLiveChannelStat(request: GetLiveChannelStatRequest): GetLiveChannelStatResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'GetLiveChannelStat', 'GET', '/{channel}?live&comp=stat', 'xml', false, '', request);
+  return @handler.do('RESTFUL', 'GetLiveChannelStat', 'GET', '/{channel}?live&comp=stat', 'xml', false, 'xml', request);
 }
 
 model PutBucketTransferAccelerationRequest {
   bucket?: string(name='bucket', position='Host'),
-  transferAccelerationConfiguration?: TransferAccelerationConfiguration(name='transferAccelerationConfiguration', position='Body'),
+  transferAccelerationConfiguration?: TransferAccelerationConfiguration(name='TransferAccelerationConfiguration', position='Body'),
 }
 
 model PutBucketTransferAccelerationResponse = {
@@ -1306,12 +1312,12 @@ model PutBucketTransferAccelerationResponse = {
 
 async function putBucketTransferAcceleration(request: PutBucketTransferAccelerationRequest): PutBucketTransferAccelerationResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'PutBucketTransferAcceleration', 'PUT', '/?transferAcceleration ', 'none', true, '', request);
+  return @handler.do('RESTFUL', 'PutBucketTransferAcceleration', 'PUT', '/?transferAcceleration ', 'xml', true, 'xml', request);
 }
 
 model PutBucketCORSRequest {
   bucket?: string(name='bucket', position='Host'),
-  cORSConfiguration?: CORSConfiguration(name='cORSConfiguration', position='Body'),
+  cORSConfiguration?: CORSConfiguration(name='CORSConfiguration', position='Body'),
 }
 
 model PutBucketCORSResponse = {
@@ -1320,7 +1326,7 @@ model PutBucketCORSResponse = {
 
 async function putBucketCORS(request: PutBucketCORSRequest): PutBucketCORSResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'PutBucketCORS', 'PUT', '/?cors', 'none', true, '', request);
+  return @handler.do('RESTFUL', 'PutBucketCORS', 'PUT', '/?cors', 'xml', false, 'xml', request);
 }
 
 model PutBucketVersioningRequest {
@@ -1334,7 +1340,7 @@ model PutBucketVersioningResponse = {
 
 async function putBucketVersioning(request: PutBucketVersioningRequest): PutBucketVersioningResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'PutBucketVersioning', 'PUT', '/?versioning', 'none', true, '', request);
+  return @handler.do('RESTFUL', 'PutBucketVersioning', 'PUT', '/?versioning', 'xml', true, 'xml', request);
 }
 
 model DeleteObjectRequest {
@@ -1349,7 +1355,7 @@ model DeleteObjectResponse = {
 
 async function deleteObject(request: DeleteObjectRequest): DeleteObjectResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'DeleteObject', 'DELETE', '/{key}', 'none', false, '', request);
+  return @handler.do('RESTFUL', 'DeleteObject', 'DELETE', '/{key}', 'binary', false, 'binary', request);
 }
 
 model GetBucketRefererRequest {
@@ -1370,7 +1376,7 @@ model GetBucketRefererResponse = {
 
 async function getBucketReferer(request: GetBucketRefererRequest): GetBucketRefererResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'GetBucketReferer', 'GET', '/?referer', 'xml', false, '', request);
+  return @handler.do('RESTFUL', 'GetBucketReferer', 'GET', '/?referer', 'xml', false, 'xml', request);
 }
 
 model GetBucketReplicationProgressRequest {
@@ -1389,7 +1395,7 @@ model GetBucketReplicationProgressResponse = {
 
 async function getBucketReplicationProgress(request: GetBucketReplicationProgressRequest): GetBucketReplicationProgressResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'GetBucketReplicationProgress', 'GET', '/?replicationProgress', 'xml', false, '', request);
+  return @handler.do('RESTFUL', 'GetBucketReplicationProgress', 'GET', '/?replicationProgress', 'xml', false, 'xml', request);
 }
 
 model ListBucketInventoryRequest {
@@ -1412,7 +1418,7 @@ model ListBucketInventoryResponse = {
 
 async function listBucketInventory(request: ListBucketInventoryRequest): ListBucketInventoryResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'ListBucketInventory', 'GET', '/?inventory', 'xml', false, '', request);
+  return @handler.do('RESTFUL', 'ListBucketInventory', 'GET', '/?inventory', 'xml', false, 'xml', request);
 }
 
 model PutSymlinkRequest {
@@ -1429,7 +1435,7 @@ model PutSymlinkResponse = {
 
 async function putSymlink(request: PutSymlinkRequest): PutSymlinkResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'PutSymlink', 'PUT', '/{key}?symlink', 'none', false, '', request);
+  return @handler.do('RESTFUL', 'PutSymlink', 'PUT', '/{key}?symlink', 'xml', false, 'xml', request);
 }
 
 model GetObjectMetaRequest {
@@ -1443,7 +1449,7 @@ model GetObjectMetaResponse = {
 
 async function getObjectMeta(request: GetObjectMetaRequest): GetObjectMetaResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'GetObjectMeta', 'HEAD', '/{key}?objectMeta', 'none', false, '', request);
+  return @handler.do('RESTFUL', 'GetObjectMeta', 'HEAD', '/{key}?objectMeta', 'xml', false, 'binary', request);
 }
 
 model GetLiveChannelInfoRequest {
@@ -1464,7 +1470,7 @@ model GetLiveChannelInfoResponse = {
 
 async function getLiveChannelInfo(request: GetLiveChannelInfoRequest): GetLiveChannelInfoResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'GetLiveChannelInfo', 'GET', '/{channel}?live', 'xml', false, '', request);
+  return @handler.do('RESTFUL', 'GetLiveChannelInfo', 'GET', '/{channel}?live', 'xml', false, 'xml', request);
 }
 
 model GetLiveChannelHistoryRequest {
@@ -1485,7 +1491,7 @@ model GetLiveChannelHistoryResponse = {
 
 async function getLiveChannelHistory(request: GetLiveChannelHistoryRequest): GetLiveChannelHistoryResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'GetLiveChannelHistory', 'GET', '/{channel}?live&comp=history', 'xml', false, '', request);
+  return @handler.do('RESTFUL', 'GetLiveChannelHistory', 'GET', '/{channel}?live&comp=history', 'xml', false, 'xml', request);
 }
 
 model GetBucketLifecycleRequest {
@@ -1503,7 +1509,7 @@ model GetBucketLifecycleResponse = {
 
 async function getBucketLifecycle(request: GetBucketLifecycleRequest): GetBucketLifecycleResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'GetBucketLifecycle', 'GET', '/?lifecycle ', 'xml', false, '', request);
+  return @handler.do('RESTFUL', 'GetBucketLifecycle', 'GET', '/?lifecycle ', 'xml', false, 'xml', request);
 }
 
 model PutBucketRefererRequest {
@@ -1517,7 +1523,7 @@ model PutBucketRefererResponse = {
 
 async function putBucketReferer(request: PutBucketRefererRequest): PutBucketRefererResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'PutBucketReferer', 'PUT', '/?referer', 'none', true, '', request);
+  return @handler.do('RESTFUL', 'PutBucketReferer', 'PUT', '/?referer', 'xml', true, 'xml', request);
 }
 
 model AbortMultipartUploadRequest {
@@ -1532,7 +1538,7 @@ model AbortMultipartUploadResponse = {
 
 async function abortMultipartUpload(request: AbortMultipartUploadRequest): AbortMultipartUploadResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'AbortMultipartUpload', 'DELETE', '/{key}', 'none', false, '', request);
+  return @handler.do('RESTFUL', 'AbortMultipartUpload', 'DELETE', '/{key}', 'xml', false, 'xml', request);
 }
 
 model PutBucketAclRequest {
@@ -1546,7 +1552,7 @@ model PutBucketAclResponse = {
 
 async function putBucketAcl(request: PutBucketAclRequest): PutBucketAclResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'PutBucketAcl', 'PUT', '/?acl', 'none', false, '', request);
+  return @handler.do('RESTFUL', 'PutBucketAcl', 'PUT', '/?acl', 'xml', false, 'xml', request);
 }
 
 model PutLiveChannelRequest {
@@ -1567,7 +1573,7 @@ model PutLiveChannelResponse = {
 
 async function putLiveChannel(request: PutLiveChannelRequest): PutLiveChannelResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'PutLiveChannel', 'PUT', '/{channel}?live', 'xml', true, '', request);
+  return @handler.do('RESTFUL', 'PutLiveChannel', 'PUT', '/{channel}?live', 'xml', true, 'xml', request);
 }
 
 model PutBucketPolicyRequest {
@@ -1581,7 +1587,7 @@ model PutBucketPolicyResponse = {
 
 async function putBucketPolicy(request: PutBucketPolicyRequest): PutBucketPolicyResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'PutBucketPolicy', 'PUT', '/?policy', 'none', false, 'string', request);
+  return @handler.do('RESTFUL', 'PutBucketPolicy', 'PUT', '/?policy', 'json', false, 'string', request);
 }
 
 model GetBucketRequestPaymentRequest {
@@ -1599,7 +1605,7 @@ model GetBucketRequestPaymentResponse = {
 
 async function getBucketRequestPayment(request: GetBucketRequestPaymentRequest): GetBucketRequestPaymentResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'GetBucketRequestPayment', 'GET', '/?requestPayment', 'xml', false, '', request);
+  return @handler.do('RESTFUL', 'GetBucketRequestPayment', 'GET', '/?requestPayment', 'xml', false, 'xml', request);
 }
 
 model ListMultipartUploadsRequest {
@@ -1633,7 +1639,7 @@ model ListMultipartUploadsResponse = {
 
 async function listMultipartUploads(request: ListMultipartUploadsRequest): ListMultipartUploadsResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'ListMultipartUploads', 'GET', '/?uploads', 'xml', false, '', request);
+  return @handler.do('RESTFUL', 'ListMultipartUploads', 'GET', '/?uploads', 'xml', false, 'xml', request);
 }
 
 model ListBucketsRequest {
@@ -1656,7 +1662,7 @@ model ListBucketsResponse = {
 
 async function listBuckets(request: ListBucketsRequest): ListBucketsResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'ListBuckets', 'GET', '/ ', 'xml', false, '', request);
+  return @handler.do('RESTFUL', 'ListBuckets', 'GET', '/ ', 'xml', false, 'xml', request);
 }
 
 model GetObjectAclRequest {
@@ -1677,7 +1683,7 @@ model GetObjectAclResponse = {
 
 async function getObjectAcl(request: GetObjectAclRequest): GetObjectAclResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'GetObjectAcl', 'GET', '/{key}?acl', 'xml', false, '', request);
+  return @handler.do('RESTFUL', 'GetObjectAcl', 'GET', '/{key}?acl', 'xml', false, 'xml', request);
 }
 
 model GetVodPlaylistRequest {
@@ -1694,7 +1700,7 @@ model GetVodPlaylistResponse = {
 
 async function getVodPlaylist(request: GetVodPlaylistRequest): GetVodPlaylistResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'GetVodPlaylist', 'GET', '/{channel}?vod', 'binary', false, '', request);
+  return @handler.do('RESTFUL', 'GetVodPlaylist', 'GET', '/{channel}?vod', 'binary', false, 'xml', request);
 }
 
 model PutBucketTagsRequest {
@@ -1708,7 +1714,7 @@ model PutBucketTagsResponse = {
 
 async function putBucketTags(request: PutBucketTagsRequest): PutBucketTagsResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'PutBucketTags', 'PUT', '/?tagging', 'none', true, '', request);
+  return @handler.do('RESTFUL', 'PutBucketTags', 'PUT', '/?tagging', 'xml', true, 'xml', request);
 }
 
 model AbortBucketWormRequest {
@@ -1721,7 +1727,7 @@ model AbortBucketWormResponse = {
 
 async function abortBucketWorm(request: AbortBucketWormRequest): AbortBucketWormResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'AbortBucketWorm', 'DELETE', '/?worm', 'none', false, '', request);
+  return @handler.do('RESTFUL', 'AbortBucketWorm', 'DELETE', '/?worm', 'xml', false, 'xml', request);
 }
 
 model GetBucketWebsiteRequest {
@@ -1745,7 +1751,7 @@ model GetBucketWebsiteResponse = {
 
 async function getBucketWebsite(request: GetBucketWebsiteRequest): GetBucketWebsiteResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'GetBucketWebsite', 'POST', '/?website', 'xml', false, '', request);
+  return @handler.do('RESTFUL', 'GetBucketWebsite', 'POST', '/?website', 'xml', false, 'xml', request);
 }
 
 model PostObjectRequest {
@@ -1758,7 +1764,7 @@ model PostObjectResponse = {
 
 async function postObject(request: PostObjectRequest): PostObjectResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'PostObject', 'POST', '/', 'none', false, '', request);
+  return @handler.do('RESTFUL', 'PostObject', 'POST', '/', 'xml', false, 'none', request);
 }
 
 model SelectObjectRequest {
@@ -1773,7 +1779,7 @@ model SelectObjectResponse = {
 
 async function selectObject(request: SelectObjectRequest): SelectObjectResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'SelectObject', 'POST', '/{key}', 'none', true, '', request);
+  return @handler.do('RESTFUL', 'SelectObject', 'POST', '/{key}', 'binary', true, 'xml', request);
 }
 
 model ListObjectsRequest {
@@ -1808,7 +1814,7 @@ model ListObjectsResponse = {
 
 async function listObjects(request: ListObjectsRequest): ListObjectsResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'ListObjects', 'GET', '/', 'xml', false, '', request);
+  return @handler.do('RESTFUL', 'ListObjects', 'GET', '/', 'xml', false, 'xml', request);
 }
 
 model ListPartsRequest {
@@ -1839,7 +1845,7 @@ model ListPartsResponse = {
 
 async function listParts(request: ListPartsRequest): ListPartsResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'ListParts', 'GET', '/{key}', 'xml', false, '', request);
+  return @handler.do('RESTFUL', 'ListParts', 'GET', '/{key}', 'xml', false, 'xml', request);
 }
 
 model PutObjectAclRequest {
@@ -1855,7 +1861,7 @@ model PutObjectAclResponse = {
 
 async function putObjectAcl(request: PutObjectAclRequest): PutObjectAclResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'PutObjectAcl', 'PUT', '/{key}?acl', 'none', false, '', request);
+  return @handler.do('RESTFUL', 'PutObjectAcl', 'PUT', '/{key}?acl', 'xml', false, 'none', request);
 }
 
 model UploadPartRequest {
@@ -1871,7 +1877,7 @@ model UploadPartResponse = {
 
 async function uploadPart(request: UploadPartRequest): UploadPartResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'UploadPart', 'PUT', '/{key}', 'none', false, '', request);
+  return @handler.do('RESTFUL', 'UploadPart', 'PUT', '/{key}', 'xml', false, 'binary', request);
 }
 
 model PutBucketRequest {
@@ -1886,7 +1892,7 @@ model PutBucketResponse = {
 
 async function putBucket(request: PutBucketRequest): PutBucketResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'PutBucket', 'PUT', '/', 'none', true, '', request);
+  return @handler.do('RESTFUL', 'PutBucket', 'PUT', '/', 'xml', true, 'xml', request);
 }
 
 model DeleteBucketLifecycleRequest {
@@ -1899,7 +1905,7 @@ model DeleteBucketLifecycleResponse = {
 
 async function deleteBucketLifecycle(request: DeleteBucketLifecycleRequest): DeleteBucketLifecycleResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'DeleteBucketLifecycle', 'DELETE', '/?lifecycle', 'none', false, '', request);
+  return @handler.do('RESTFUL', 'DeleteBucketLifecycle', 'DELETE', '/?lifecycle', 'xml', false, 'xml', request);
 }
 
 model GetObjectTaggingRequest {
@@ -1922,7 +1928,7 @@ model GetObjectTaggingResponse = {
 
 async function getObjectTagging(request: GetObjectTaggingRequest): GetObjectTaggingResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'GetObjectTagging', 'GET', '/{key}?tagging', 'xml', false, '', request);
+  return @handler.do('RESTFUL', 'GetObjectTagging', 'GET', '/{key}?tagging', 'xml', false, 'xml', request);
 }
 
 model CompleteMultipartUploadRequest {
@@ -1950,7 +1956,7 @@ model CompleteMultipartUploadResponse = {
 
 async function completeMultipartUpload(request: CompleteMultipartUploadRequest): CompleteMultipartUploadResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'CompleteMultipartUpload', 'POST', '/{key}', 'xml', true, '', request);
+  return @handler.do('RESTFUL', 'CompleteMultipartUpload', 'POST', '/{key}', 'xml', true, 'xml', request);
 }
 
 model DeleteBucketCORSRequest {
@@ -1963,7 +1969,7 @@ model DeleteBucketCORSResponse = {
 
 async function deleteBucketCORS(request: DeleteBucketCORSRequest): DeleteBucketCORSResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'DeleteBucketCORS', 'DELETE', '/?cors', 'none', false, '', request);
+  return @handler.do('RESTFUL', 'DeleteBucketCORS', 'DELETE', '/?cors', 'xml', false, 'xml', request);
 }
 
 model DeleteLiveChannelRequest {
@@ -1977,7 +1983,7 @@ model DeleteLiveChannelResponse = {
 
 async function deleteLiveChannel(request: DeleteLiveChannelRequest): DeleteLiveChannelResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'DeleteLiveChannel', 'DELETE', '/{channel}?live', 'none', false, '', request);
+  return @handler.do('RESTFUL', 'DeleteLiveChannel', 'DELETE', '/{channel}?live', 'xml', false, 'xml', request);
 }
 
 model GetBucketEncryptionRequest {
@@ -1995,7 +2001,7 @@ model GetBucketEncryptionResponse = {
 
 async function getBucketEncryption(request: GetBucketEncryptionRequest): GetBucketEncryptionResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'GetBucketEncryption', 'GET', '/?encryption', 'xml', false, '', request);
+  return @handler.do('RESTFUL', 'GetBucketEncryption', 'GET', '/?encryption', 'xml', false, 'xml', request);
 }
 
 model RestoreObjectRequest {
@@ -2010,7 +2016,7 @@ model RestoreObjectResponse = {
 
 async function restoreObject(request: RestoreObjectRequest): RestoreObjectResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'RestoreObject', 'POST', '/{key}?restore', 'none', true, '', request);
+  return @handler.do('RESTFUL', 'RestoreObject', 'POST', '/{key}?restore', 'xml', true, 'xml', request);
 }
 
 model DeleteBucketPolicyRequest {
@@ -2023,7 +2029,7 @@ model DeleteBucketPolicyResponse = {
 
 async function deleteBucketPolicy(request: DeleteBucketPolicyRequest): DeleteBucketPolicyResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'DeleteBucketPolicy', 'DELETE', '/?policy', 'none', false, '', request);
+  return @handler.do('RESTFUL', 'DeleteBucketPolicy', 'DELETE', '/?policy', 'xml', false, 'xml', request);
 }
 
 model AppendObjectRequest {
@@ -2041,7 +2047,12 @@ model AppendObjectResponse = {
 
 async function appendObject(request: AppendObjectRequest): AppendObjectResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'AppendObject', 'POST', '/{key}?append', 'none', true, '', request);
+  return @handler.do('RESTFUL', 'AppendObject', 'POST', '/{key}?append', 'xml', true, 'binary', request);
+}
+
+async function appendObjectWithRequestBody(request: AppendObjectRequest, requestBody: AsyncRequestBody): AppendObjectResponse {
+  @handler.validateRequestModel(request);
+  return @handler.do('RESTFUL', 'AppendObject', 'POST', '/{key}?append', 'xml', true, 'binary', request);
 }
 
 model ListLiveChannelRequest {
@@ -2069,7 +2080,7 @@ model ListLiveChannelResponse = {
 
 async function listLiveChannel(request: ListLiveChannelRequest): ListLiveChannelResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'ListLiveChannel', 'GET', '/?live', 'xml', false, '', request);
+  return @handler.do('RESTFUL', 'ListLiveChannel', 'GET', '/?live', 'xml', false, 'xml', request);
 }
 
 model PutBucketLoggingRequest {
@@ -2083,7 +2094,7 @@ model PutBucketLoggingResponse = {
 
 async function putBucketLogging(request: PutBucketLoggingRequest): PutBucketLoggingResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'PutBucketLogging', 'PUT', '/?logging', 'none', true, '', request);
+  return @handler.do('RESTFUL', 'PutBucketLogging', 'PUT', '/?logging', 'xml', true, 'xml', request);
 }
 
 model DeleteBucketTagsRequest {
@@ -2096,7 +2107,7 @@ model DeleteBucketTagsResponse = {
 
 async function deleteBucketTags(request: DeleteBucketTagsRequest): DeleteBucketTagsResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'DeleteBucketTags', 'DELETE', '/?tagging', 'none', false, '', request);
+  return @handler.do('RESTFUL', 'DeleteBucketTags', 'DELETE', '/?tagging', 'xml', false, 'xml', request);
 }
 
 model GetBucketInfoRequest {
@@ -2128,7 +2139,7 @@ model GetBucketInfoResponse = {
 
 async function getBucketInfo(request: GetBucketInfoRequest): GetBucketInfoResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'GetBucketInfo', 'GET', '/?bucketInfo', 'xml', false, '', request);
+  return @handler.do('RESTFUL', 'GetBucketInfo', 'GET', '/?bucketInfo', 'xml', false, 'xml', request);
 }
 
 model GetServiceRequest {
@@ -2151,7 +2162,7 @@ model GetServiceResponse = {
 
 async function getService(request: GetServiceRequest): GetServiceResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'GetService', 'GET', '/ ', 'xml', false, '', request);
+  return @handler.do('RESTFUL', 'GetService', 'GET', '/ ', 'xml', false, 'xml', request);
 }
 
 model ListObjectsV2Request {
@@ -2190,6 +2201,6 @@ model ListObjectsV2Response = {
 
 async function listObjectsV2(request: ListObjectsV2Request): ListObjectsV2Response {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'ListObjectsV2', 'GET', '/?list-type=2', 'xml', false, '', request);
+  return @handler.do('RESTFUL', 'ListObjectsV2', 'GET', '/?list-type=2', 'xml', false, 'xml', request);
 }
 

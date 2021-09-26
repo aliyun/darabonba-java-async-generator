@@ -1,6 +1,7 @@
 package com.aliyun.oss20190517;
 
 import com.aliyun.oss20190517.models.*;
+import darabonba.core.internal.async.*;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -27,6 +28,8 @@ public interface AsyncClient {
     CompletableFuture<ExtendBucketWormResponse> extendBucketWorm(ExtendBucketWormRequest request);
 
     CompletableFuture<PutObjectResponse> putObject(PutObjectRequest request);
+
+    CompletableFuture<PutObjectResponse> putObjectWithRequestBody(PutObjectRequest request, AsyncRequestBody requestBody);
 
     CompletableFuture<DeleteBucketInventoryResponse> deleteBucketInventory(DeleteBucketInventoryRequest request);
 
@@ -181,6 +184,8 @@ public interface AsyncClient {
     CompletableFuture<DeleteBucketPolicyResponse> deleteBucketPolicy(DeleteBucketPolicyRequest request);
 
     CompletableFuture<AppendObjectResponse> appendObject(AppendObjectRequest request);
+
+    CompletableFuture<AppendObjectResponse> appendObjectWithRequestBody(AppendObjectRequest request, AsyncRequestBody requestBody);
 
     CompletableFuture<ListLiveChannelResponse> listLiveChannel(ListLiveChannelRequest request);
 

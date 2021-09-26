@@ -3,12 +3,12 @@ package com.aliyun.oss20190517;
 
 import com.aliyun.core.http.*;
 import com.aliyun.oss20190517.models.*;
+import darabonba.core.utils.*;
 import darabonba.core.*;
 import darabonba.core.client.*;
 
 import java.util.concurrent.CompletableFuture;
 
-import darabonba.core.utils.*;
 
 /**
  * <p>Main client.</p>
@@ -35,8 +35,8 @@ public final class DefaultAsyncClient implements AsyncClient {
     public CompletableFuture<ListBucketsResponse> listBuckets(ListBucketsRequest request) {
         try {
             this.handler.validateRequestModel(request);
-            TeaRequest teaRequest = REQUEST.copy().formModel(request).setStyle(RequestStyle.RESTFUL).setAction("ListBuckets").setMethod(HttpMethod.GET).setPathRegex("/ ").setBodyType(BodyType.XML).setBodyIsForm(false);
-            ClientExecutionParams params = new ClientExecutionParams().withInput(null).withRequest(teaRequest).withOutput(ListBucketsResponse.create());
+            TeaRequest teaRequest = REQUEST.copy().setStyle(RequestStyle.RESTFUL).setAction("ListBuckets").setMethod(HttpMethod.GET).setPathRegex("/ ").setBodyType(BodyType.XML).setBodyIsForm(false).formModel(request);
+            ClientExecutionParams params = new ClientExecutionParams().withInput(request).withRequest(teaRequest).withOutput(ListBucketsResponse.create());
             return this.handler.execute(params);
         } catch (Exception e) {
             CompletableFuture<ListBucketsResponse> future = new CompletableFuture<>();

@@ -3,6 +3,8 @@
  */
 import TeaAsyncHandler;
 import TeaRequest;
+import AsyncRequestBody;
+import RequestBody;
 import ClientConfiguration;
 import ClientExecutionParams;
 type @product = string
@@ -51,7 +53,7 @@ model GetExternalStoreResponse = {
 
 async function getExternalStore(request: GetExternalStoreRequest): GetExternalStoreResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'GetExternalStore', 'GET', '/externalstores', 'json', false, '', request);
+  return @handler.do('RESTFUL', 'GetExternalStore', 'GET', '/externalstores', 'json', false, 'json', request);
 }
 
 model DeleteLogstoreRequest {
@@ -64,7 +66,7 @@ model DeleteLogstoreResponse = {
 
 async function deleteLogstore(request: DeleteLogstoreRequest): DeleteLogstoreResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'DeleteLogstore', 'DELETE', '/logstores/logstoreName', 'none', false, '', request);
+  return @handler.do('RESTFUL', 'DeleteLogstore', 'DELETE', '/logstores/logstoreName', 'json', false, 'json', request);
 }
 
 model ListMachineGroupRequest {
@@ -89,7 +91,7 @@ model ListMachineGroupResponse = {
 
 async function listMachineGroup(request: ListMachineGroupRequest): ListMachineGroupResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'ListMachineGroup', 'GET', '/machinegroups', 'json', false, '', request);
+  return @handler.do('RESTFUL', 'ListMachineGroup', 'GET', '/machinegroups', 'json', false, 'json', request);
 }
 
 model GetCursorTimeRequest {
@@ -111,7 +113,7 @@ model GetCursorTimeResponse = {
 
 async function getCursorTime(request: GetCursorTimeRequest): GetCursorTimeResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'GetCursorTime', 'GET', '/logstores/logstoreName/shards/shardID', 'json', false, '', request);
+  return @handler.do('RESTFUL', 'GetCursorTime', 'GET', '/logstores/logstoreName/shards/shardID', 'json', false, 'json', request);
 }
 
 model DeleteConfigRequest {
@@ -125,7 +127,7 @@ model DeleteConfigResponse = {
 
 async function deleteConfig(request: DeleteConfigRequest): DeleteConfigResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'DeleteConfig', 'DELETE', '/configs/configName', 'none', false, '', request);
+  return @handler.do('RESTFUL', 'DeleteConfig', 'DELETE', '/configs/configName', 'json', false, 'json', request);
 }
 
 model EnableReportRequest {
@@ -139,7 +141,7 @@ model EnableReportResponse = {
 
 async function enableReport(request: EnableReportRequest): EnableReportResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'EnableReport', 'PUT', '/jobs', 'none', false, '', request);
+  return @handler.do('RESTFUL', 'EnableReport', 'PUT', '/jobs', 'json', false, 'json', request);
 }
 
 model RetryShipperTasksRequest {
@@ -154,7 +156,7 @@ model RetryShipperTasksResponse = {
 
 async function retryShipperTasks(request: RetryShipperTasksRequest): RetryShipperTasksResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'RetryShipperTasks', 'PUT', '/logstores/{logStore}/shipper/{shipperName}/tasks', 'none', false, '', request);
+  return @handler.do('RESTFUL', 'RetryShipperTasks', 'PUT', '/logstores/{logStore}/shipper/{shipperName}/tasks', 'json', false, 'json', request);
 }
 
 model CreateMachineGroupRequest {
@@ -175,7 +177,7 @@ model CreateMachineGroupResponse = {
 
 async function createMachineGroup(request: CreateMachineGroupRequest): CreateMachineGroupResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'CreateMachineGroup', 'POST', '/machinegroups', 'none', false, 'object', request);
+  return @handler.do('RESTFUL', 'CreateMachineGroup', 'POST', '/machinegroups', 'json', false, 'object', request);
 }
 
 model GetMachineGroupRequest {
@@ -203,7 +205,7 @@ model GetMachineGroupResponse = {
 
 async function getMachineGroup(request: GetMachineGroupRequest): GetMachineGroupResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'GetMachineGroup', 'GET', '/machinegroups/groupName', 'json', false, '', request);
+  return @handler.do('RESTFUL', 'GetMachineGroup', 'GET', '/machinegroups/groupName', 'json', false, 'json', request);
 }
 
 model DeleteRebuildIndexRequest {
@@ -217,7 +219,7 @@ model DeleteRebuildIndexResponse = {
 
 async function deleteRebuildIndex(request: DeleteRebuildIndexRequest): DeleteRebuildIndexResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'DeleteRebuildIndex', 'DELETE', '/jobs', 'none', false, '', request);
+  return @handler.do('RESTFUL', 'DeleteRebuildIndex', 'DELETE', '/jobs', 'json', false, 'json', request);
 }
 
 model DeleteShardRequest {
@@ -234,7 +236,7 @@ model DeleteShardResponse = {
 
 async function deleteShard(request: DeleteShardRequest): DeleteShardResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'DeleteShard', 'DELETE', '/logstores/{logStore}/shards/{shardId}', 'json', false, '', request);
+  return @handler.do('RESTFUL', 'DeleteShard', 'DELETE', '/logstores/{logStore}/shards/{shardId}', 'json', false, 'json', request);
 }
 
 model GetContextLogsRequest {
@@ -268,7 +270,7 @@ model GetContextLogsResponse = {
 
 async function getContextLogs(request: GetContextLogsRequest): GetContextLogsResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'GetContextLogs', 'GET', '/logstores/logstoreName', 'json', false, '', request);
+  return @handler.do('RESTFUL', 'GetContextLogs', 'GET', '/logstores/logstoreName', 'json', false, 'json', request);
 }
 
 model CreateDashboardRequest {
@@ -285,7 +287,7 @@ model CreateDashboardResponse = {
 
 async function createDashboard(request: CreateDashboardRequest): CreateDashboardResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'CreateDashboard', 'POST', '/dashboards', 'none', false, 'object', request);
+  return @handler.do('RESTFUL', 'CreateDashboard', 'POST', '/dashboards', 'json', false, 'object', request);
 }
 
 model DeleteIngestionRequest {
@@ -299,7 +301,7 @@ model DeleteIngestionResponse = {
 
 async function deleteIngestion(request: DeleteIngestionRequest): DeleteIngestionResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'DeleteIngestion', 'DELETE', '/jobs', 'none', false, '', request);
+  return @handler.do('RESTFUL', 'DeleteIngestion', 'DELETE', '/jobs', 'json', false, 'json', request);
 }
 
 model StartExportRequest {
@@ -313,7 +315,7 @@ model StartExportResponse = {
 
 async function startExport(request: StartExportRequest): StartExportResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'StartExport', 'PUT', '/jobs', 'none', false, '', request);
+  return @handler.do('RESTFUL', 'StartExport', 'PUT', '/jobs', 'json', false, 'json', request);
 }
 
 model CreateLogStoreInternalRequest {
@@ -328,7 +330,7 @@ model CreateLogStoreInternalResponse = {
 
 async function createLogStoreInternal(request: CreateLogStoreInternalRequest): CreateLogStoreInternalResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'CreateLogStoreInternal', 'POST', '/logstores', 'none', false, '', request);
+  return @handler.do('RESTFUL', 'CreateLogStoreInternal', 'POST', '/logstores', 'json', false, 'json', request);
 }
 
 model GetLogstoreRequest {
@@ -354,7 +356,7 @@ model GetLogstoreResponse = {
 
 async function getLogstore(request: GetLogstoreRequest): GetLogstoreResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'GetLogstore', 'GET', '/logstores/logstoreName', 'json', false, '', request);
+  return @handler.do('RESTFUL', 'GetLogstore', 'GET', '/logstores/logstoreName', 'json', false, 'json', request);
 }
 
 model UpdateJobScheduleRequest {
@@ -383,11 +385,6 @@ model UpdateJobScheduleRequest {
   }(name='Schedule', position='Query'),
 }
 
-model UpdateJobScheduleShrinkRequest {
-  project?: string(name='Project', description='A short description of struct', position='Query'),
-  scheduleShrink?: string(name='Schedule', position='Query'),
-}
-
 model UpdateJobScheduleResponseBody = {
   displayName?: string(name='DisplayName'),
   description?: string(name='Description'),
@@ -400,13 +397,12 @@ model UpdateJobScheduleResponse = {
   body: UpdateJobScheduleResponseBody(name='body'),
 }
 
-async function updateJobSchedule(tmpReq: UpdateJobScheduleRequest): UpdateJobScheduleResponse {
-  @handler.validateRequestModel(tmpReq);
-  return @handler.do('RESTFUL', 'UpdateJobSchedule', 'PUT', '/jobschedules/{id}', 'json', false, '', tmpReq);
+async function updateJobSchedule(request: UpdateJobScheduleRequest): UpdateJobScheduleResponse {
+  @handler.validateRequestModel(request);
+  return @handler.do('RESTFUL', 'UpdateJobSchedule', 'PUT', '/jobschedules/{id}', 'json', false, 'json', request);
 }
 
 model UpdateMachineGroupRequest {
-  projectName?: string(name='projectName', position='Body'),
   groupName?: string(name='groupName', position='Body'),
   groupType?: string(name='groupType', position='Body'),
   machineIdentifyType?: string(name='machineIdentifyType', position='Body'),
@@ -415,6 +411,7 @@ model UpdateMachineGroupRequest {
     externalName?: string(name='externalName'),
   }(name='groupAttribute', position='Body'),
   machineList?: [ bytes ](name='machineList', position='Body'),
+  projectName?: string(name='projectName', position='Host'),
 }
 
 model UpdateMachineGroupResponse = {
@@ -423,7 +420,7 @@ model UpdateMachineGroupResponse = {
 
 async function updateMachineGroup(request: UpdateMachineGroupRequest): UpdateMachineGroupResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'UpdateMachineGroup', 'PUT', '/machinegroups/groupName', 'none', false, 'object', request);
+  return @handler.do('RESTFUL', 'UpdateMachineGroup', 'PUT', '/machinegroups/{groupName}', 'json', false, 'object', request);
 }
 
 model GetCheckPointRequest {
@@ -447,7 +444,7 @@ model GetCheckPointResponse = {
 
 async function getCheckPoint(request: GetCheckPointRequest): GetCheckPointResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'GetCheckPoint', 'GET', '/logstores/logstoreName/consumergroups/consumerGroup', 'json', false, '', request);
+  return @handler.do('RESTFUL', 'GetCheckPoint', 'GET', '/logstores/logstoreName/consumergroups/consumerGroup', 'json', false, 'json', request);
 }
 
 model ListDomainsRequest {
@@ -465,7 +462,7 @@ model ListDomainsResponse = {
 
 async function listDomains(request: ListDomainsRequest): ListDomainsResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'ListDomains', 'GET', '/domains', 'json', false, '', request);
+  return @handler.do('RESTFUL', 'ListDomains', 'GET', '/domains', 'json', false, 'json', request);
 }
 
 model DeleteEtlJobRequest {
@@ -479,63 +476,7 @@ model DeleteEtlJobResponse = {
 
 async function deleteEtlJob(request: DeleteEtlJobRequest): DeleteEtlJobResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'DeleteEtlJob', 'DELETE', '/etljobs/{etlJobName}', 'none', false, '', request);
-}
-
-model CreateJobRequest {
-  project?: string(name='Project', description='A short description of struct', position='Query'),
-  job?: {
-    name?: string(name='Name'),
-    displayName?: string(name='DisplayName'),
-    description?: string(name='Description'),
-    createTime?: string(name='CreateTime'),
-    lastModifiedTime?: string(name='LastModifiedTime'),
-    type?: {
-      value?: string(name='Value'),
-    }(name='Type'),
-    schedule?: {
-      id?: string(name='Id'),
-      displayName?: string(name='DisplayName'),
-      description?: string(name='Description'),
-      jobName?: string(name='JobName'),
-      scheduleType?: {
-        value?: string(name='Value'),
-      }(name='Type'),
-      interval?: string(name='Interval'),
-      cronExpression?: string(name='CronExpression'),
-      delay?: long(name='Delay'),
-      dayOfWeek?: long(name='DayOfWeek'),
-      hour?: long(name='Hour'),
-      fromTime?: long(name='FromTime'),
-      toTime?: long(name='ToTime'),
-      status?: string(name='Status'),
-      createTime?: string(name='CreateTime'),
-      lastModifiedTime?: string(name='LastModifiedTime'),
-      startTime?: string(name='StartTime'),
-      completeTime?: string(name='CompleteTime'),
-      runImmediately?: boolean(name='RunImmediately'),
-    }(name='Schedule'),
-    state?: {
-      value?: string(name='Value'),
-    }(name='State'),
-    configuration?: {
-      value?: string(name='Value'),
-    }(name='Configuration'),
-  }(name='Job', position='Query'),
-}
-
-model CreateJobShrinkRequest {
-  project?: string(name='Project', description='A short description of struct', position='Query'),
-  jobShrink?: string(name='Job', position='Query'),
-}
-
-model CreateJobResponse = {
-  headers: map[string]string(name='headers'),
-}
-
-async function createJob(tmpReq: CreateJobRequest): CreateJobResponse {
-  @handler.validateRequestModel(tmpReq);
-  return @handler.do('RESTFUL', 'CreateJob', 'POST', '/jobs', 'none', false, '', tmpReq);
+  return @handler.do('RESTFUL', 'DeleteEtlJob', 'DELETE', '/etljobs/{etlJobName}', 'json', false, 'json', request);
 }
 
 model GetIngestionRequest {
@@ -556,7 +497,7 @@ model GetIngestionResponse = {
 
 async function getIngestion(request: GetIngestionRequest): GetIngestionResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'GetIngestion', 'GET', '/jobs', 'json', false, '', request);
+  return @handler.do('RESTFUL', 'GetIngestion', 'GET', '/jobs', 'json', false, 'json', request);
 }
 
 model CreateRebuildIndexRequest {
@@ -570,7 +511,7 @@ model CreateRebuildIndexResponse = {
 
 async function createRebuildIndex(request: CreateRebuildIndexRequest): CreateRebuildIndexResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'CreateRebuildIndex', 'POST', '/jobs', 'none', false, 'object', request);
+  return @handler.do('RESTFUL', 'CreateRebuildIndex', 'POST', '/jobs', 'json', false, 'object', request);
 }
 
 model ListShipperRequest {
@@ -590,7 +531,7 @@ model ListShipperResponse = {
 
 async function listShipper(request: ListShipperRequest): ListShipperResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'ListShipper', 'GET', '/logstores/{logStore}/shipper', 'json', false, '', request);
+  return @handler.do('RESTFUL', 'ListShipper', 'GET', '/logstores/{logStore}/shipper', 'json', false, 'json', request);
 }
 
 model DeleteChartRequest {
@@ -603,7 +544,7 @@ model DeleteChartResponse = {
 
 async function deleteChart(request: DeleteChartRequest): DeleteChartResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'DeleteChart', 'DELETE', '/dashboards/{dashboardName}/charts/{chartName}', 'none', false, '', request);
+  return @handler.do('RESTFUL', 'DeleteChart', 'DELETE', '/dashboards/{dashboardName}/charts/{chartName}', 'json', false, 'json', request);
 }
 
 model DisableAlertRequest {
@@ -617,7 +558,7 @@ model DisableAlertResponse = {
 
 async function disableAlert(request: DisableAlertRequest): DisableAlertResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'DisableAlert', 'PUT', '/jobs', 'none', false, '', request);
+  return @handler.do('RESTFUL', 'DisableAlert', 'PUT', '/jobs', 'json', false, 'json', request);
 }
 
 model DeleteReportRequest {
@@ -631,7 +572,7 @@ model DeleteReportResponse = {
 
 async function deleteReport(request: DeleteReportRequest): DeleteReportResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'DeleteReport', 'DELETE', '/jobs', 'none', false, '', request);
+  return @handler.do('RESTFUL', 'DeleteReport', 'DELETE', '/jobs', 'json', false, 'json', request);
 }
 
 model GetProjectRequest {
@@ -655,7 +596,7 @@ model GetProjectResponse = {
 
 async function getProject(request: GetProjectRequest): GetProjectResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'GetProject', 'GET', '/ ', 'json', false, '', request);
+  return @handler.do('RESTFUL', 'GetProject', 'GET', '/ ', 'json', false, 'json', request);
 }
 
 model StartJobScheduleRequest {
@@ -669,7 +610,7 @@ model StartJobScheduleResponse = {
 
 async function startJobSchedule(request: StartJobScheduleRequest): StartJobScheduleResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'StartJobSchedule', 'PUT', '/jobschedules/{scheduleId}', 'none', false, '', request);
+  return @handler.do('RESTFUL', 'StartJobSchedule', 'PUT', '/jobschedules/{scheduleId}', 'json', false, 'json', request);
 }
 
 model ApproveMachineGroupRequest {
@@ -683,7 +624,7 @@ model ApproveMachineGroupResponse = {
 
 async function approveMachineGroup(request: ApproveMachineGroupRequest): ApproveMachineGroupResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'ApproveMachineGroup', 'PUT', '/machinegroups/{groupName} /approve', 'none', false, '', request);
+  return @handler.do('RESTFUL', 'ApproveMachineGroup', 'PUT', '/machinegroups/{groupName} /approve', 'json', false, 'json', request);
 }
 
 model DeleteJobScheduleRequest {
@@ -697,7 +638,7 @@ model DeleteJobScheduleResponse = {
 
 async function deleteJobSchedule(request: DeleteJobScheduleRequest): DeleteJobScheduleResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'DeleteJobSchedule', 'DELETE', '/jobschedules/{jobScheduleId}', 'none', false, '', request);
+  return @handler.do('RESTFUL', 'DeleteJobSchedule', 'DELETE', '/jobschedules/{jobScheduleId}', 'json', false, 'json', request);
 }
 
 model StopIngestionRequest {
@@ -711,7 +652,7 @@ model StopIngestionResponse = {
 
 async function stopIngestion(request: StopIngestionRequest): StopIngestionResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'StopIngestion', 'PUT', '/jobs', 'none', false, '', request);
+  return @handler.do('RESTFUL', 'StopIngestion', 'PUT', '/jobs', 'json', false, 'json', request);
 }
 
 model GetCursorRequest {
@@ -733,7 +674,7 @@ model GetCursorResponse = {
 
 async function getCursor(request: GetCursorRequest): GetCursorResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'GetCursor', 'GET', '/logstores/logstoreName/shards/shardID', 'json', false, '', request);
+  return @handler.do('RESTFUL', 'GetCursor', 'GET', '/logstores/logstoreName/shards/shardID', 'json', false, 'json', request);
 }
 
 model DeleteProjectRequest {
@@ -746,7 +687,7 @@ model DeleteProjectResponse = {
 
 async function deleteProject(request: DeleteProjectRequest): DeleteProjectResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'DeleteProject', 'DELETE', '/', 'none', false, 'object', request);
+  return @handler.do('RESTFUL', 'DeleteProject', 'DELETE', '/', 'json', false, 'object', request);
 }
 
 model DeleteConsumerGroupRequest {
@@ -761,7 +702,7 @@ model DeleteConsumerGroupResponse = {
 
 async function deleteConsumerGroup(request: DeleteConsumerGroupRequest): DeleteConsumerGroupResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'DeleteConsumerGroup', 'DELETE', '/logstores/logstoreName/consumergroups/consumerGroupName', 'none', false, '', request);
+  return @handler.do('RESTFUL', 'DeleteConsumerGroup', 'DELETE', '/logstores/logstoreName/consumergroups/consumerGroupName', 'json', false, 'json', request);
 }
 
 model GetExportRequest {
@@ -790,7 +731,7 @@ model GetExportResponse = {
 
 async function getExport(request: GetExportRequest): GetExportResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'GetExport', 'GET', '/jobs', 'json', false, '', request);
+  return @handler.do('RESTFUL', 'GetExport', 'GET', '/jobs', 'json', false, 'json', request);
 }
 
 model CreateLogstoreRequest {
@@ -836,7 +777,7 @@ model GetDashboardResponse = {
 
 async function getDashboard(request: GetDashboardRequest): GetDashboardResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'GetDashboard', 'GET', '/dashboards/{dashboardName}', 'json', false, '', request);
+  return @handler.do('RESTFUL', 'GetDashboard', 'GET', '/dashboards/{dashboardName}', 'json', false, 'json', request);
 }
 
 model ListJobsRequest {
@@ -844,15 +785,6 @@ model ListJobsRequest {
   type?: {
     value?: string(name='Value'),
   }(name='Type', position='Query'),
-  resourceProvider?: string(name='ResourceProvider', position='Query'),
-  logstore?: string(name='Logstore', position='Query'),
-  offset?: long(name='Offset', position='Query'),
-  size?: long(name='Size', position='Query'),
-}
-
-model ListJobsShrinkRequest {
-  displayName?: string(name='DisplayName', description='A short description of struct', position='Query'),
-  typeShrink?: string(name='Type', position='Query'),
   resourceProvider?: string(name='ResourceProvider', position='Query'),
   logstore?: string(name='Logstore', position='Query'),
   offset?: long(name='Offset', position='Query'),
@@ -870,9 +802,9 @@ model ListJobsResponse = {
   body: ListJobsResponseBody(name='body'),
 }
 
-async function listJobs(tmpReq: ListJobsRequest): ListJobsResponse {
-  @handler.validateRequestModel(tmpReq);
-  return @handler.do('RESTFUL', 'ListJobs', 'GET', '/jobs', 'json', false, '', tmpReq);
+async function listJobs(request: ListJobsRequest): ListJobsResponse {
+  @handler.validateRequestModel(request);
+  return @handler.do('RESTFUL', 'ListJobs', 'GET', '/jobs', 'json', false, 'json', request);
 }
 
 model GetJobScheduleRequest {
@@ -894,7 +826,7 @@ model GetJobScheduleResponse = {
 
 async function getJobSchedule(request: GetJobScheduleRequest): GetJobScheduleResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'GetJobSchedule', 'GET', '/jobschedules/{jobScheduleId}', 'json', false, '', request);
+  return @handler.do('RESTFUL', 'GetJobSchedule', 'GET', '/jobschedules/{jobScheduleId}', 'json', false, 'json', request);
 }
 
 model GetProjectLogsRequest {
@@ -914,7 +846,7 @@ model GetProjectLogsResponse = {
 
 async function getProjectLogs(request: GetProjectLogsRequest): GetProjectLogsResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'GetProjectLogs', 'GET', '/logs', 'json', false, '', request);
+  return @handler.do('RESTFUL', 'GetProjectLogs', 'GET', '/logs', 'json', false, 'json', request);
 }
 
 model UpdateReportRequest {
@@ -930,7 +862,7 @@ model UpdateReportResponse = {
 
 async function updateReport(request: UpdateReportRequest): UpdateReportResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'UpdateReport', 'PUT', '/jobs/{name}', 'none', false, 'object', request);
+  return @handler.do('RESTFUL', 'UpdateReport', 'PUT', '/jobs/{name}', 'json', false, 'object', request);
 }
 
 model GetJobRequest {
@@ -965,7 +897,7 @@ model GetJobResponse = {
 
 async function getJob(request: GetJobRequest): GetJobResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'GetJob', 'GET', '/jobs', 'json', false, '', request);
+  return @handler.do('RESTFUL', 'GetJob', 'GET', '/jobs', 'json', false, 'json', request);
 }
 
 model CreateProjectRequest {
@@ -1008,18 +940,13 @@ model UpdateEtlMetaRequest {
   }(name='EtlMeta', position='Query'),
 }
 
-model UpdateEtlMetaShrinkRequest {
-  project?: string(name='Project', description='A short description of struct', position='Query'),
-  etlMetaShrink?: string(name='EtlMeta', position='Query'),
-}
-
 model UpdateEtlMetaResponse = {
   headers: map[string]string(name='headers'),
 }
 
-async function updateEtlMeta(tmpReq: UpdateEtlMetaRequest): UpdateEtlMetaResponse {
-  @handler.validateRequestModel(tmpReq);
-  return @handler.do('RESTFUL', 'UpdateEtlMeta', 'PUT', '/etlmetas', 'none', false, '', tmpReq);
+async function updateEtlMeta(request: UpdateEtlMetaRequest): UpdateEtlMetaResponse {
+  @handler.validateRequestModel(request);
+  return @handler.do('RESTFUL', 'UpdateEtlMeta', 'PUT', '/etlmetas', 'json', false, 'json', request);
 }
 
 model PullLogsRequest {
@@ -1037,7 +964,7 @@ model PullLogsResponse = {
 
 async function pullLogs(request: PullLogsRequest): PullLogsResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'PullLogs', 'GET', '/logstores/logstoreName/shards/shardID', 'none', false, '', request);
+  return @handler.do('RESTFUL', 'PullLogs', 'GET', '/logstores/logstoreName/shards/shardID', 'json', false, 'json', request);
 }
 
 model CreateChartRequest {
@@ -1056,7 +983,7 @@ model CreateChartResponse = {
 
 async function createChart(request: CreateChartRequest): CreateChartResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'CreateChart', 'POST', '/dashboards/{dashboardName}/charts', 'none', false, 'object', request);
+  return @handler.do('RESTFUL', 'CreateChart', 'POST', '/dashboards/{dashboardName}/charts', 'json', false, 'object', request);
 }
 
 model GetLoggingRequest {
@@ -1078,7 +1005,7 @@ model GetLoggingResponse = {
 
 async function getLogging(request: GetLoggingRequest): GetLoggingResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'GetLogging', 'GET', '/logging', 'json', false, '', request);
+  return @handler.do('RESTFUL', 'GetLogging', 'GET', '/logging', 'json', false, 'json', request);
 }
 
 model CreateLoggingRequest {
@@ -1089,18 +1016,13 @@ model CreateLoggingRequest {
   }(name='LoggingDetails', position='Query'),
 }
 
-model CreateLoggingShrinkRequest {
-  loggingProject?: string(name='LoggingProject', description='A short description of struct', position='Query'),
-  loggingDetailsShrink?: string(name='LoggingDetails', position='Query'),
-}
-
 model CreateLoggingResponse = {
   headers: map[string]string(name='headers'),
 }
 
-async function createLogging(tmpReq: CreateLoggingRequest): CreateLoggingResponse {
-  @handler.validateRequestModel(tmpReq);
-  return @handler.do('RESTFUL', 'CreateLogging', 'POST', '/logging', 'none', false, '', tmpReq);
+async function createLogging(request: CreateLoggingRequest): CreateLoggingResponse {
+  @handler.validateRequestModel(request);
+  return @handler.do('RESTFUL', 'CreateLogging', 'POST', '/logging', 'json', false, 'json', request);
 }
 
 model GetIndexRequest {
@@ -1137,7 +1059,7 @@ model GetIndexResponse = {
 
 async function getIndex(request: GetIndexRequest): GetIndexResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'GetIndex', 'GET', '/logstores/logstoreName/index', 'json', false, '', request);
+  return @handler.do('RESTFUL', 'GetIndex', 'GET', '/logstores/logstoreName/index', 'json', false, 'json', request);
 }
 
 model ListShardsRequest {
@@ -1160,7 +1082,7 @@ model ListShardsResponse = {
 
 async function listShards(request: ListShardsRequest): ListShardsResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'ListShards', 'GET', '/logstores/logstorename/shards', 'json', false, '', request);
+  return @handler.do('RESTFUL', 'ListShards', 'GET', '/logstores/logstorename/shards', 'json', false, 'json', request);
 }
 
 model ListSavedSearchRequest {
@@ -1183,7 +1105,7 @@ model ListSavedSearchResponse = {
 
 async function listSavedSearch(request: ListSavedSearchRequest): ListSavedSearchResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'ListSavedSearch', 'GET', '/savedsearches', 'json', false, '', request);
+  return @handler.do('RESTFUL', 'ListSavedSearch', 'GET', '/savedsearches', 'json', false, 'json', request);
 }
 
 model GetEtlMetaRequest {
@@ -1217,7 +1139,7 @@ model GetEtlMetaResponse = {
 
 async function getEtlMeta(request: GetEtlMetaRequest): GetEtlMetaResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'GetEtlMeta', 'GET', '/etlmetas', 'json', false, '', request);
+  return @handler.do('RESTFUL', 'GetEtlMeta', 'GET', '/etlmetas', 'json', false, 'json', request);
 }
 
 model ApplyConfigToMachineGroupRequest {
@@ -1232,7 +1154,7 @@ model ApplyConfigToMachineGroupResponse = {
 
 async function applyConfigToMachineGroup(request: ApplyConfigToMachineGroupRequest): ApplyConfigToMachineGroupResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'ApplyConfigToMachineGroup', 'PUT', '/machinegroups/groupName', 'none', false, '', request);
+  return @handler.do('RESTFUL', 'ApplyConfigToMachineGroup', 'PUT', '/machinegroups/groupName', 'json', false, 'json', request);
 }
 
 model GetChartRequest {
@@ -1249,7 +1171,7 @@ model GetChartResponse = {
 
 async function getChart(request: GetChartRequest): GetChartResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'GetChart', 'GET', '/dashboards/{dashboardName}/charts/{chartName}', 'json', false, '', request);
+  return @handler.do('RESTFUL', 'GetChart', 'GET', '/dashboards/{dashboardName}/charts/{chartName}', 'json', false, 'json', request);
 }
 
 model UpdateDashboardRequest {
@@ -1266,7 +1188,7 @@ model UpdateDashboardResponse = {
 
 async function updateDashboard(request: UpdateDashboardRequest): UpdateDashboardResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'UpdateDashboard', 'PUT', '/dashboards/{dashboardName}', 'none', false, 'object', request);
+  return @handler.do('RESTFUL', 'UpdateDashboard', 'PUT', '/dashboards/{dashboardName}', 'json', false, 'object', request);
 }
 
 model GetRebuildIndexRequest {
@@ -1286,7 +1208,7 @@ model GetRebuildIndexResponse = {
 
 async function getRebuildIndex(request: GetRebuildIndexRequest): GetRebuildIndexResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'GetRebuildIndex', 'GET', '/jobs', 'json', false, '', request);
+  return @handler.do('RESTFUL', 'GetRebuildIndex', 'GET', '/jobs', 'json', false, 'json', request);
 }
 
 model UpdateJobRequest {
@@ -1312,18 +1234,13 @@ model UpdateJobRequest {
   }(name='EtlJob', position='Query'),
 }
 
-model UpdateJobShrinkRequest {
-  project?: string(name='Project', description='A short description of struct', position='Query'),
-  etlJobShrink?: string(name='EtlJob', position='Query'),
-}
-
 model UpdateJobResponse = {
   headers: map[string]string(name='headers'),
 }
 
-async function updateJob(tmpReq: UpdateJobRequest): UpdateJobResponse {
-  @handler.validateRequestModel(tmpReq);
-  return @handler.do('RESTFUL', 'UpdateJob', 'PUT', '/jobs', 'none', false, '', tmpReq);
+async function updateJob(request: UpdateJobRequest): UpdateJobResponse {
+  @handler.validateRequestModel(request);
+  return @handler.do('RESTFUL', 'UpdateJob', 'PUT', '/jobs', 'json', false, 'json', request);
 }
 
 model CreateJobScheduleRequest {
@@ -1352,11 +1269,6 @@ model CreateJobScheduleRequest {
   }(name='Schedule', position='Query'),
 }
 
-model CreateJobScheduleShrinkRequest {
-  project?: string(name='Project', description='A short description of struct', position='Query'),
-  scheduleShrink?: string(name='Schedule', position='Query'),
-}
-
 model CreateJobScheduleResponseBody = {
   displayName?: string(name='DisplayName'),
   description?: string(name='Description'),
@@ -1369,9 +1281,9 @@ model CreateJobScheduleResponse = {
   body: CreateJobScheduleResponseBody(name='body'),
 }
 
-async function createJobSchedule(tmpReq: CreateJobScheduleRequest): CreateJobScheduleResponse {
-  @handler.validateRequestModel(tmpReq);
-  return @handler.do('RESTFUL', 'CreateJobSchedule', 'POST', '/jobschedules', 'json', false, '', tmpReq);
+async function createJobSchedule(request: CreateJobScheduleRequest): CreateJobScheduleResponse {
+  @handler.validateRequestModel(request);
+  return @handler.do('RESTFUL', 'CreateJobSchedule', 'POST', '/jobschedules', 'json', false, 'json', request);
 }
 
 model CreateExportRequest {
@@ -1394,7 +1306,7 @@ model CreateExportResponse = {
 
 async function createExport(request: CreateExportRequest): CreateExportResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'CreateExport', 'POST', '/jobs', 'none', false, 'object', request);
+  return @handler.do('RESTFUL', 'CreateExport', 'POST', '/jobs', 'json', false, 'object', request);
 }
 
 model GetIndexStringRequest {
@@ -1414,7 +1326,7 @@ model GetIndexStringResponse = {
 
 async function getIndexString(request: GetIndexStringRequest): GetIndexStringResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'GetIndexString', 'GET', '/logstores/{logStore}/index', 'json', false, '', request);
+  return @handler.do('RESTFUL', 'GetIndexString', 'GET', '/logstores/{logStore}/index', 'json', false, 'json', request);
 }
 
 model ListConfigRequest {
@@ -1438,7 +1350,7 @@ model ListConfigResponse = {
 
 async function listConfig(request: ListConfigRequest): ListConfigResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'ListConfig', 'GET', '/configs', 'json', false, '', request);
+  return @handler.do('RESTFUL', 'ListConfig', 'GET', '/configs', 'json', false, 'json', request);
 }
 
 model DeleteShipperRequest {
@@ -1453,7 +1365,7 @@ model DeleteShipperResponse = {
 
 async function deleteShipper(request: DeleteShipperRequest): DeleteShipperResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'DeleteShipper', 'DELETE', '/logstores/{logStore}/shipper/{shipperName}', 'none', false, '', request);
+  return @handler.do('RESTFUL', 'DeleteShipper', 'DELETE', '/logstores/{logStore}/shipper/{shipperName}', 'json', false, 'json', request);
 }
 
 model RemoveConfigFromMachineGroupRequest {
@@ -1468,7 +1380,7 @@ model RemoveConfigFromMachineGroupResponse = {
 
 async function removeConfigFromMachineGroup(request: RemoveConfigFromMachineGroupRequest): RemoveConfigFromMachineGroupResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'RemoveConfigFromMachineGroup', 'DELETE', '/machinegroups/groupName', 'none', false, '', request);
+  return @handler.do('RESTFUL', 'RemoveConfigFromMachineGroup', 'DELETE', '/machinegroups/groupName', 'json', false, 'json', request);
 }
 
 model StopJobScheduleRequest {
@@ -1482,7 +1394,7 @@ model StopJobScheduleResponse = {
 
 async function stopJobSchedule(request: StopJobScheduleRequest): StopJobScheduleResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'StopJobSchedule', 'PUT', '/jobschedules/{scheduleId}', 'none', false, '', request);
+  return @handler.do('RESTFUL', 'StopJobSchedule', 'PUT', '/jobschedules/{scheduleId}', 'json', false, 'json', request);
 }
 
 model GetShipperConfigRequest {
@@ -1497,7 +1409,7 @@ model GetShipperConfigResponse = {
 
 async function getShipperConfig(request: GetShipperConfigRequest): GetShipperConfigResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'GetShipperConfig', 'GET', '/logstores/{logStore}/shipper/{shipperName}', 'none', false, '', request);
+  return @handler.do('RESTFUL', 'GetShipperConfig', 'GET', '/logstores/{logStore}/shipper/{shipperName}', 'json', false, 'json', request);
 }
 
 model UpdateAlertRequest {
@@ -1510,17 +1422,17 @@ model UpdateAlertResponse = {
 
 async function updateAlert(request: UpdateAlertRequest): UpdateAlertResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'UpdateAlert', 'PUT', '/jobs', 'none', false, '', request);
+  return @handler.do('RESTFUL', 'UpdateAlert', 'PUT', '/jobs', 'json', false, 'json', request);
 }
 
 model UpdateLogstoreRequest {
-  logstoreName?: string(name='logstoreName', position='Body'),
   ttl?: long(name='ttl', position='Body'),
   enableTracking?: boolean(name='enable_tracking', position='Body'),
   shardCount?: long(name='shardCount', position='Body'),
   autoSplit?: boolean(name='autoSplit', position='Body'),
   maxSplitShard?: long(name='maxSplitShard', position='Body'),
   appendMeta?: boolean(name='appendMeta', position='Body'),
+  logstoreName?: string(name='logstoreName', position='Path'),
 }
 
 model UpdateLogstoreResponse = {
@@ -1529,7 +1441,7 @@ model UpdateLogstoreResponse = {
 
 async function updateLogstore(request: UpdateLogstoreRequest): UpdateLogstoreResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'UpdateLogstore', 'PUT', '/logstores/logstoreName', 'none', false, 'object', request);
+  return @handler.do('RESTFUL', 'UpdateLogstore', 'PUT', '/logstores/{logstoreName}', 'json', false, 'object', request);
 }
 
 model DeleteExternalStoreRequest {
@@ -1543,24 +1455,20 @@ model DeleteExternalStoreResponse = {
 
 async function deleteExternalStore(request: DeleteExternalStoreRequest): DeleteExternalStoreResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'DeleteExternalStore', 'DELETE', '/externalstores/externalStoreName', 'none', false, '', request);
+  return @handler.do('RESTFUL', 'DeleteExternalStore', 'DELETE', '/externalstores/externalStoreName', 'json', false, 'json', request);
 }
 
 model BatchUpdateEtlMetaRequest {
   etlMetaList?: [ string ](name='EtlMetaList', position='Query'),
 }
 
-model BatchUpdateEtlMetaShrinkRequest {
-  etlMetaListShrink?: string(name='EtlMetaList', position='Query'),
-}
-
 model BatchUpdateEtlMetaResponse = {
   headers: map[string]string(name='headers'),
 }
 
-async function batchUpdateEtlMeta(tmpReq: BatchUpdateEtlMetaRequest): BatchUpdateEtlMetaResponse {
-  @handler.validateRequestModel(tmpReq);
-  return @handler.do('RESTFUL', 'BatchUpdateEtlMeta', 'PUT', '/etlmetas', 'none', false, '', tmpReq);
+async function batchUpdateEtlMeta(request: BatchUpdateEtlMetaRequest): BatchUpdateEtlMetaResponse {
+  @handler.validateRequestModel(request);
+  return @handler.do('RESTFUL', 'BatchUpdateEtlMeta', 'PUT', '/etlmetas', 'json', false, 'json', request);
 }
 
 model AddMachineIntoMachineGroupRequest {
@@ -1574,7 +1482,7 @@ model AddMachineIntoMachineGroupResponse = {
 
 async function addMachineIntoMachineGroup(request: AddMachineIntoMachineGroupRequest): AddMachineIntoMachineGroupResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'AddMachineIntoMachineGroup', 'PUT', '/machinegroups/{groupName}/machines', 'none', false, '', request);
+  return @handler.do('RESTFUL', 'AddMachineIntoMachineGroup', 'PUT', '/machinegroups/{groupName}/machines', 'json', false, 'json', request);
 }
 
 model GetETLRequest {
@@ -1594,7 +1502,7 @@ model GetETLResponse = {
 
 async function getETL(request: GetETLRequest): GetETLResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'GetETL', 'GET', '/jobs', 'json', false, '', request);
+  return @handler.do('RESTFUL', 'GetETL', 'GET', '/jobs', 'json', false, 'json', request);
 }
 
 model UpdateIndexRequest {
@@ -1622,7 +1530,7 @@ model UpdateIndexResponse = {
 
 async function updateIndex(request: UpdateIndexRequest): UpdateIndexResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'UpdateIndex', 'PUT', '/logstores/<logstoreName>/index', 'none', false, 'object', request);
+  return @handler.do('RESTFUL', 'UpdateIndex', 'PUT', '/logstores/<logstoreName>/index', 'json', false, 'object', request);
 }
 
 model ListLogStoresRequest {
@@ -1638,13 +1546,15 @@ model ListLogStoresResponse = {
 
 async function listLogStores(request: ListLogStoresRequest): ListLogStoresResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'ListLogStores', 'POST', '/logstores', 'none', false, 'object', request);
+  return @handler.do('RESTFUL', 'ListLogStores', 'POST', '/logstores', 'json', false, 'object', request);
 }
 
 model UpdateShipperRequest {
-  project?: string(name='Project', position='Body'),
-  logStore?: string(name='LogStore', position='Body'),
-  shipperName?: string(name='ShipperName', position='Body'),
+  shipperName?: string(name='shipperName', position='Path'),
+  logstoreName?: string(name='logstoreName', position='Path'),
+  project?: string(name='project', position='Host'),
+  targetType?: string(name='targetType', position='Body'),
+  targetConfiguration?: map[string]any(name='targetConfiguration', position='Body'),
 }
 
 model UpdateShipperResponse = {
@@ -1653,7 +1563,7 @@ model UpdateShipperResponse = {
 
 async function updateShipper(request: UpdateShipperRequest): UpdateShipperResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'UpdateShipper', 'PUT', '/logstores/{logStore}/shipper/{shipperName}', 'none', false, 'object', request);
+  return @handler.do('RESTFUL', 'UpdateShipper', 'PUT', '/logstores/{logstoreName}/shipper/{shipperName}', 'json', false, 'object', request);
 }
 
 model CreateSavedSearchRequest {
@@ -1671,7 +1581,7 @@ model CreateSavedSearchResponse = {
 
 async function createSavedSearch(request: CreateSavedSearchRequest): CreateSavedSearchResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'CreateSavedSearch', 'POST', '/savedsearches', 'none', false, 'object', request);
+  return @handler.do('RESTFUL', 'CreateSavedSearch', 'POST', '/savedsearches', 'json', false, 'object', request);
 }
 
 model UpdateSavedSearchRequest {
@@ -1689,7 +1599,7 @@ model UpdateSavedSearchResponse = {
 
 async function updateSavedSearch(request: UpdateSavedSearchRequest): UpdateSavedSearchResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'UpdateSavedSearch', 'PUT', '/savedsearches/{savedSearchName}', 'none', false, 'object', request);
+  return @handler.do('RESTFUL', 'UpdateSavedSearch', 'PUT', '/savedsearches/{savedSearchName}', 'json', false, 'object', request);
 }
 
 model ListEtlMetaNameRequest {
@@ -1709,7 +1619,7 @@ model ListEtlMetaNameResponse = {
 
 async function listEtlMetaName(request: ListEtlMetaNameRequest): ListEtlMetaNameResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'ListEtlMetaName', 'GET', '/etlmetanames', 'json', false, '', request);
+  return @handler.do('RESTFUL', 'ListEtlMetaName', 'GET', '/etlmetanames', 'json', false, 'json', request);
 }
 
 model CreateEtlJobRequest {
@@ -1746,7 +1656,7 @@ model CreateEtlJobResponse = {
 
 async function createEtlJob(request: CreateEtlJobRequest): CreateEtlJobResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'CreateEtlJob', 'POST', '/etljobs', 'none', false, 'object', request);
+  return @handler.do('RESTFUL', 'CreateEtlJob', 'POST', '/etljobs', 'json', false, 'object', request);
 }
 
 model UpdateLogStoreInternalRequest {
@@ -1761,7 +1671,7 @@ model UpdateLogStoreInternalResponse = {
 
 async function updateLogStoreInternal(request: UpdateLogStoreInternalRequest): UpdateLogStoreInternalResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'UpdateLogStoreInternal', 'PUT', '/logstores', 'none', false, '', request);
+  return @handler.do('RESTFUL', 'UpdateLogStoreInternal', 'PUT', '/logstores', 'json', false, 'json', request);
 }
 
 model CreateDomainRequest {
@@ -1775,7 +1685,7 @@ model CreateDomainResponse = {
 
 async function createDomain(request: CreateDomainRequest): CreateDomainResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'CreateDomain', 'POST', '/domains', 'none', false, '', request);
+  return @handler.do('RESTFUL', 'CreateDomain', 'POST', '/domains', 'json', false, 'json', request);
 }
 
 model ListLogstoreRequest {
@@ -1797,7 +1707,7 @@ model ListLogstoreResponse = {
 
 async function listLogstore(request: ListLogstoreRequest): ListLogstoreResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'ListLogstore', 'GET', '/logstores', 'json', false, '', request);
+  return @handler.do('RESTFUL', 'ListLogstore', 'GET', '/logstores', 'json', false, 'json', request);
 }
 
 model ListRebuildIndexRequest {
@@ -1816,7 +1726,7 @@ model ListRebuildIndexResponse = {
 
 async function listRebuildIndex(request: ListRebuildIndexRequest): ListRebuildIndexResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'ListRebuildIndex', 'GET', '/jobs', 'json', false, '', request);
+  return @handler.do('RESTFUL', 'ListRebuildIndex', 'GET', '/jobs', 'json', false, 'json', request);
 }
 
 model ListTopicsRequest {
@@ -1832,7 +1742,7 @@ model ListTopicsResponse = {
 
 async function listTopics(request: ListTopicsRequest): ListTopicsResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'ListTopics', 'POST', '/logstores/{logStore}/index', 'none', false, 'object', request);
+  return @handler.do('RESTFUL', 'ListTopics', 'POST', '/logstores/{logStore}/index', 'json', false, 'object', request);
 }
 
 model StartIngestionRequest {
@@ -1846,7 +1756,7 @@ model StartIngestionResponse = {
 
 async function startIngestion(request: StartIngestionRequest): StartIngestionResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'StartIngestion', 'PUT', '/jobs', 'none', false, '', request);
+  return @handler.do('RESTFUL', 'StartIngestion', 'PUT', '/jobs', 'json', false, 'json', request);
 }
 
 model ListConsumerGroupRequest {
@@ -1870,7 +1780,7 @@ model ListConsumerGroupResponse = {
 
 async function listConsumerGroup(request: ListConsumerGroupRequest): ListConsumerGroupResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'ListConsumerGroup', 'GET', '/logstores/logstoreName/consumergroups', 'json', false, '', request);
+  return @handler.do('RESTFUL', 'ListConsumerGroup', 'GET', '/logstores/logstoreName/consumergroups', 'json', false, 'json', request);
 }
 
 model DisableJobRequest {
@@ -1884,7 +1794,7 @@ model DisableJobResponse = {
 
 async function disableJob(request: DisableJobRequest): DisableJobResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'DisableJob', 'PUT', '/jobs', 'none', false, '', request);
+  return @handler.do('RESTFUL', 'DisableJob', 'PUT', '/jobs', 'json', false, 'json', request);
 }
 
 model GetShipperStatusRequest {
@@ -1923,12 +1833,13 @@ model GetShipperStatusResponse = {
 
 async function getShipperStatus(request: GetShipperStatusRequest): GetShipperStatusResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'GetShipperStatus', 'GET', '/logstores/logstoreName/shipper/shipperName/tasks', 'json', false, '', request);
+  return @handler.do('RESTFUL', 'GetShipperStatus', 'GET', '/logstores/logstoreName/shipper/shipperName/tasks', 'json', false, 'json', request);
 }
 
 model UpdateMachineGroupMachineRequest {
-  project?: string(name='Project', description='A short description of struct', position='Query'),
-  groupName?: string(name='GroupName', position='Query'),
+  project?: string(name='project', position='Host'),
+  groupName?: string(name='groupName', position='Path'),
+  body?: [ string ](name='body', position='Body'),
 }
 
 model UpdateMachineGroupMachineResponse = {
@@ -1937,7 +1848,7 @@ model UpdateMachineGroupMachineResponse = {
 
 async function updateMachineGroupMachine(request: UpdateMachineGroupMachineRequest): UpdateMachineGroupMachineResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'UpdateMachineGroupMachine', 'PUT', '/machinegroups/{groupName}/machines', 'none', false, '', request);
+  return @handler.do('RESTFUL', 'UpdateMachineGroupMachine', 'PUT', '/machinegroups/{groupName}/machines', 'json', false, 'json', request);
 }
 
 model DeleteExportRequest {
@@ -1951,7 +1862,7 @@ model DeleteExportResponse = {
 
 async function deleteExport(request: DeleteExportRequest): DeleteExportResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'DeleteExport', 'DELETE', '/jobs', 'none', false, '', request);
+  return @handler.do('RESTFUL', 'DeleteExport', 'DELETE', '/jobs', 'json', false, 'json', request);
 }
 
 model GetAppliedMachineGroupsRequest {
@@ -1971,7 +1882,7 @@ model GetAppliedMachineGroupsResponse = {
 
 async function getAppliedMachineGroups(request: GetAppliedMachineGroupsRequest): GetAppliedMachineGroupsResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'GetAppliedMachineGroups', 'GET', '/configs/configName/machinegroups', 'json', false, '', request);
+  return @handler.do('RESTFUL', 'GetAppliedMachineGroups', 'GET', '/configs/configName/machinegroups', 'json', false, 'json', request);
 }
 
 model ListEtlJobRequest {
@@ -1989,7 +1900,7 @@ model ListEtlJobResponse = {
 
 async function listEtlJob(request: ListEtlJobRequest): ListEtlJobResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'ListEtlJob', 'GET', '/etljobs', 'json', false, '', request);
+  return @handler.do('RESTFUL', 'ListEtlJob', 'GET', '/etljobs', 'json', false, 'json', request);
 }
 
 model DeleteIndexRequest {
@@ -2002,7 +1913,7 @@ model DeleteIndexResponse = {
 
 async function deleteIndex(request: DeleteIndexRequest): DeleteIndexResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'DeleteIndex', 'DELETE', '/logstores/<logstoreName>/index', 'none', false, '', request);
+  return @handler.do('RESTFUL', 'DeleteIndex', 'DELETE', '/logstores/<logstoreName>/index', 'json', false, 'json', request);
 }
 
 model DeleteMachineFromMachineGroupRequest {
@@ -2019,7 +1930,7 @@ model DeleteMachineFromMachineGroupResponse = {
 
 async function deleteMachineFromMachineGroup(request: DeleteMachineFromMachineGroupRequest): DeleteMachineFromMachineGroupResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'DeleteMachineFromMachineGroup', 'PUT', '/machinegroups/{groupName}/machines', 'json', false, '', request);
+  return @handler.do('RESTFUL', 'DeleteMachineFromMachineGroup', 'PUT', '/machinegroups/{groupName}/machines', 'json', false, 'json', request);
 }
 
 model CreateConsumerGroupRequest {
@@ -2036,7 +1947,7 @@ model CreateConsumerGroupResponse = {
 
 async function createConsumerGroup(request: CreateConsumerGroupRequest): CreateConsumerGroupResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'CreateConsumerGroup', 'POST', '/logstores/logstoreName/consumergroups', 'none', false, 'object', request);
+  return @handler.do('RESTFUL', 'CreateConsumerGroup', 'POST', '/logstores/logstoreName/consumergroups', 'json', false, 'object', request);
 }
 
 model ListJobSchedulesRequest {
@@ -2044,13 +1955,6 @@ model ListJobSchedulesRequest {
   type?: {
     value?: string(name='Value'),
   }(name='Type', position='Query'),
-  offset?: long(name='Offset', position='Query'),
-  size?: long(name='Size', position='Query'),
-}
-
-model ListJobSchedulesShrinkRequest {
-  jobName?: string(name='JobName', description='A short description of struct', position='Query'),
-  typeShrink?: string(name='Type', position='Query'),
   offset?: long(name='Offset', position='Query'),
   size?: long(name='Size', position='Query'),
 }
@@ -2088,9 +1992,9 @@ model ListJobSchedulesResponse = {
   body: ListJobSchedulesResponseBody(name='body'),
 }
 
-async function listJobSchedules(tmpReq: ListJobSchedulesRequest): ListJobSchedulesResponse {
-  @handler.validateRequestModel(tmpReq);
-  return @handler.do('RESTFUL', 'ListJobSchedules', 'GET', '/jobsSchedules', 'json', false, '', tmpReq);
+async function listJobSchedules(request: ListJobSchedulesRequest): ListJobSchedulesResponse {
+  @handler.validateRequestModel(request);
+  return @handler.do('RESTFUL', 'ListJobSchedules', 'GET', '/jobsSchedules', 'json', false, 'json', request);
 }
 
 model ListIngestionRequest {
@@ -2110,7 +2014,7 @@ model ListIngestionResponse = {
 
 async function listIngestion(request: ListIngestionRequest): ListIngestionResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'ListIngestion', 'GET', '/jobs', 'json', false, '', request);
+  return @handler.do('RESTFUL', 'ListIngestion', 'GET', '/jobs', 'json', false, 'json', request);
 }
 
 model DeleteSavedSearchRequest {
@@ -2124,7 +2028,7 @@ model DeleteSavedSearchResponse = {
 
 async function deleteSavedSearch(request: DeleteSavedSearchRequest): DeleteSavedSearchResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'DeleteSavedSearch', 'DELETE', '/savedsearches/{savedSearchName}', 'none', false, '', request);
+  return @handler.do('RESTFUL', 'DeleteSavedSearch', 'DELETE', '/savedsearches/{savedSearchName}', 'json', false, 'json', request);
 }
 
 model ListReportRequest {
@@ -2150,7 +2054,7 @@ model ListReportResponse = {
 
 async function listReport(request: ListReportRequest): ListReportResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'ListReport', 'GET', '/jobs', 'json', false, '', request);
+  return @handler.do('RESTFUL', 'ListReport', 'GET', '/jobs', 'json', false, 'json', request);
 }
 
 model CreateExternalStoreRequest {
@@ -2172,7 +2076,7 @@ model CreateExternalStoreResponse = {
 
 async function createExternalStore(request: CreateExternalStoreRequest): CreateExternalStoreResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'CreateExternalStore', 'POST', '/externalstores', 'none', false, 'object', request);
+  return @handler.do('RESTFUL', 'CreateExternalStore', 'POST', '/externalstores', 'json', false, 'object', request);
 }
 
 model BatchGetLogRequest {
@@ -2189,7 +2093,7 @@ model BatchGetLogResponse = {
 
 async function batchGetLog(request: BatchGetLogRequest): BatchGetLogResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'BatchGetLog', 'GET', '/logstores/{logStore}/shards/{shardId}', 'none', false, '', request);
+  return @handler.do('RESTFUL', 'BatchGetLog', 'GET', '/logstores/{logStore}/shards/{shardId}', 'json', false, 'json', request);
 }
 
 model UpdateConfigRequest {
@@ -2220,7 +2124,7 @@ model UpdateConfigResponse = {
 
 async function updateConfig(request: UpdateConfigRequest): UpdateConfigResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'UpdateConfig', 'PUT', '/configs/configName', 'none', false, 'object', request);
+  return @handler.do('RESTFUL', 'UpdateConfig', 'PUT', '/configs/configName', 'json', false, 'object', request);
 }
 
 model HeartBeatRequest {
@@ -2237,7 +2141,7 @@ model HeartBeatResponse = {
 
 async function heartBeat(request: HeartBeatRequest): HeartBeatResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'HeartBeat', 'POST', '/logstores/logstoreName/consumergroups/consumerGroup', 'none', false, 'object', request);
+  return @handler.do('RESTFUL', 'HeartBeat', 'POST', '/logstores/logstoreName/consumergroups/consumerGroup', 'json', false, 'object', request);
 }
 
 model UpdateACLRequest {
@@ -2252,7 +2156,7 @@ model UpdateACLResponse = {
 
 async function updateACL(request: UpdateACLRequest): UpdateACLResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'UpdateACL', 'PUT', '/logstores', 'none', false, '', request);
+  return @handler.do('RESTFUL', 'UpdateACL', 'PUT', '/logstores', 'json', false, 'json', request);
 }
 
 model GetSavedSearchRequest {
@@ -2276,7 +2180,7 @@ model GetSavedSearchResponse = {
 
 async function getSavedSearch(request: GetSavedSearchRequest): GetSavedSearchResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'GetSavedSearch', 'GET', '/savedsearches/{savedSearchName}', 'json', false, '', request);
+  return @handler.do('RESTFUL', 'GetSavedSearch', 'GET', '/savedsearches/{savedSearchName}', 'json', false, 'json', request);
 }
 
 model StopRebuildIndexRequest {
@@ -2290,7 +2194,7 @@ model StopRebuildIndexResponse = {
 
 async function stopRebuildIndex(request: StopRebuildIndexRequest): StopRebuildIndexResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'StopRebuildIndex', 'PUT', '/jobs', 'none', false, '', request);
+  return @handler.do('RESTFUL', 'StopRebuildIndex', 'PUT', '/jobs', 'json', false, 'json', request);
 }
 
 model DeleteAlertRequest {
@@ -2304,7 +2208,7 @@ model DeleteAlertResponse = {
 
 async function deleteAlert(request: DeleteAlertRequest): DeleteAlertResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'DeleteAlert', 'DELETE', '/jobs', 'none', false, '', request);
+  return @handler.do('RESTFUL', 'DeleteAlert', 'DELETE', '/jobs', 'json', false, 'json', request);
 }
 
 model DeleteDashboardRequest {
@@ -2317,7 +2221,7 @@ model DeleteDashboardResponse = {
 
 async function deleteDashboard(request: DeleteDashboardRequest): DeleteDashboardResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'DeleteDashboard', 'DELETE', '/dashboards/{dashboardName}', 'none', false, '', request);
+  return @handler.do('RESTFUL', 'DeleteDashboard', 'DELETE', '/dashboards/{dashboardName}', 'json', false, 'json', request);
 }
 
 model ListExternalStoreRequest {
@@ -2340,7 +2244,7 @@ model ListExternalStoreResponse = {
 
 async function listExternalStore(request: ListExternalStoreRequest): ListExternalStoreResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'ListExternalStore', 'GET', '/externalstores', 'json', false, '', request);
+  return @handler.do('RESTFUL', 'ListExternalStore', 'GET', '/externalstores', 'json', false, 'json', request);
 }
 
 model ListDashboardRequest {
@@ -2362,7 +2266,7 @@ model ListDashboardResponse = {
 
 async function listDashboard(request: ListDashboardRequest): ListDashboardResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'ListDashboard', 'GET', '/dashboards', 'json', false, '', request);
+  return @handler.do('RESTFUL', 'ListDashboard', 'GET', '/dashboards', 'json', false, 'json', request);
 }
 
 model ListMachinesRequest {
@@ -2389,7 +2293,7 @@ model ListMachinesResponse = {
 
 async function listMachines(request: ListMachinesRequest): ListMachinesResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'ListMachines', 'GET', '/machinegroups/groupName/machines', 'json', false, '', request);
+  return @handler.do('RESTFUL', 'ListMachines', 'GET', '/machinegroups/groupName/machines', 'json', false, 'json', request);
 }
 
 model UpdateCheckPointRequest {
@@ -2408,7 +2312,7 @@ model UpdateCheckPointResponse = {
 
 async function updateCheckPoint(request: UpdateCheckPointRequest): UpdateCheckPointResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'UpdateCheckPoint', 'POST', '/logstores/logstoreName/consumergroups/consumerGroup', 'none', false, 'object', request);
+  return @handler.do('RESTFUL', 'UpdateCheckPoint', 'POST', '/logstores/logstoreName/consumergroups/consumerGroup', 'json', false, 'object', request);
 }
 
 model UpdateETLRequest {
@@ -2428,7 +2332,7 @@ model UpdateETLResponse = {
 
 async function updateETL(request: UpdateETLRequest): UpdateETLResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'UpdateETL', 'PUT', '/jobs', 'none', false, 'object', request);
+  return @handler.do('RESTFUL', 'UpdateETL', 'PUT', '/jobs', 'json', false, 'object', request);
 }
 
 model MergeShardsRequest {
@@ -2452,7 +2356,7 @@ model MergeShardsResponse = {
 
 async function mergeShards(request: MergeShardsRequest): MergeShardsResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'MergeShards', 'POST', '/logstores/logstoreName/shards/shardID', 'json', false, '', request);
+  return @handler.do('RESTFUL', 'MergeShards', 'POST', '/logstores/logstoreName/shards/shardID', 'json', false, 'json', request);
 }
 
 model BatchModifyEtlMetaStatusRequest {
@@ -2468,7 +2372,7 @@ model BatchModifyEtlMetaStatusResponse = {
 
 async function batchModifyEtlMetaStatus(request: BatchModifyEtlMetaStatusRequest): BatchModifyEtlMetaStatusResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'BatchModifyEtlMetaStatus', 'PUT', '/etlmetas', 'none', false, 'object', request);
+  return @handler.do('RESTFUL', 'BatchModifyEtlMetaStatus', 'PUT', '/etlmetas', 'json', false, 'object', request);
 }
 
 model CreateReportRequest {
@@ -2484,7 +2388,7 @@ model CreateReportResponse = {
 
 async function createReport(request: CreateReportRequest): CreateReportResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'CreateReport', 'POST', '/jobs', 'none', false, 'object', request);
+  return @handler.do('RESTFUL', 'CreateReport', 'POST', '/jobs', 'json', false, 'object', request);
 }
 
 model ClearLogStoreStorageRequest {
@@ -2498,19 +2402,20 @@ model ClearLogStoreStorageResponse = {
 
 async function clearLogStoreStorage(request: ClearLogStoreStorageRequest): ClearLogStoreStorageResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'ClearLogStoreStorage', 'DELETE', '/logstores/{logStoreName}/storage', 'none', false, '', request);
+  return @handler.do('RESTFUL', 'ClearLogStoreStorage', 'DELETE', '/logstores/{logStoreName}/storage', 'json', false, 'json', request);
 }
 
 model GetLogsRequest {
-  logstorename?: string(name='logstorename', description='A short description of struct', position='Host'),
-  type?: string(name='type', position='Host'),
-  from?: long(name='from', position='Host'),
-  to?: long(name='to', position='Host'),
-  topic?: string(name='topic', position='Host'),
-  query?: string(name='query', position='Host'),
-  line?: long(name='line', position='Host'),
-  offset?: long(name='offset', position='Host'),
-  reverse?: boolean(name='reverse', position='Host'),
+  logstorename?: string(name='logstorename', position='Path'),
+  type?: string(name='type', position='Query'),
+  from?: long(name='from', position='Query'),
+  to?: long(name='to', position='Query'),
+  topic?: string(name='topic', position='Query'),
+  query?: string(name='query', position='Query'),
+  line?: long(name='line', position='Query'),
+  offset?: long(name='offset', position='Query'),
+  reverse?: boolean(name='reverse', position='Query'),
+  powerSql?: boolean(name='powerSql', description='是否使用SQL独享版', position='Query'),
 }
 
 model GetLogsResponseBody = {
@@ -2529,7 +2434,7 @@ model GetLogsResponse = {
 
 async function getLogs(request: GetLogsRequest): GetLogsResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'GetLogs', 'GET', '/logstores', 'json', false, '', request);
+  return @handler.do('RESTFUL', 'GetLogs', 'GET', '/logstores/{logstoreName}/index', 'json', false, 'json', request);
 }
 
 model DeleteEtlMetaRequest {
@@ -2544,7 +2449,7 @@ model DeleteEtlMetaResponse = {
 
 async function deleteEtlMeta(request: DeleteEtlMetaRequest): DeleteEtlMetaResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'DeleteEtlMeta', 'DELETE', '/etlmetas', 'none', false, '', request);
+  return @handler.do('RESTFUL', 'DeleteEtlMeta', 'DELETE', '/etlmetas', 'json', false, 'json', request);
 }
 
 model UpdateExternalStoreRequest {
@@ -2566,7 +2471,7 @@ model UpdateExternalStoreResponse = {
 
 async function updateExternalStore(request: UpdateExternalStoreRequest): UpdateExternalStoreResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'UpdateExternalStore', 'PUT', '/externalstores', 'none', false, 'object', request);
+  return @handler.do('RESTFUL', 'UpdateExternalStore', 'PUT', '/externalstores', 'json', false, 'object', request);
 }
 
 model CreateConfigRequest {
@@ -2598,7 +2503,7 @@ model CreateConfigResponse = {
 
 async function createConfig(request: CreateConfigRequest): CreateConfigResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'CreateConfig', 'POST', '/configs', 'none', false, 'object', request);
+  return @handler.do('RESTFUL', 'CreateConfig', 'POST', '/configs', 'json', false, 'object', request);
 }
 
 model GetEtlJobRequest {
@@ -2637,7 +2542,7 @@ model GetEtlJobResponse = {
 
 async function getEtlJob(request: GetEtlJobRequest): GetEtlJobResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'GetEtlJob', 'GET', '/etljobs/{etlJobName}', 'json', false, '', request);
+  return @handler.do('RESTFUL', 'GetEtlJob', 'GET', '/etljobs/{etlJobName}', 'json', false, 'json', request);
 }
 
 model CreateShipperRequest {
@@ -2652,7 +2557,7 @@ model CreateShipperResponse = {
 
 async function createShipper(request: CreateShipperRequest): CreateShipperResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'CreateShipper', 'POST', '/logstores/{logStore}/shipper', 'none', false, 'object', request);
+  return @handler.do('RESTFUL', 'CreateShipper', 'POST', '/logstores/{logStore}/shipper', 'json', false, 'object', request);
 }
 
 model DeleteETLRequest {
@@ -2666,7 +2571,7 @@ model DeleteETLResponse = {
 
 async function deleteETL(request: DeleteETLRequest): DeleteETLResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'DeleteETL', 'DELETE', '/jobs', 'none', false, '', request);
+  return @handler.do('RESTFUL', 'DeleteETL', 'DELETE', '/jobs', 'json', false, 'json', request);
 }
 
 model DeleteLoggingRequest {
@@ -2679,7 +2584,7 @@ model DeleteLoggingResponse = {
 
 async function deleteLogging(request: DeleteLoggingRequest): DeleteLoggingResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'DeleteLogging', 'DELETE', '/logging', 'none', false, '', request);
+  return @handler.do('RESTFUL', 'DeleteLogging', 'DELETE', '/logging', 'json', false, 'json', request);
 }
 
 model BatchCreateEtlMetaRequest {
@@ -2707,7 +2612,7 @@ model BatchCreateEtlMetaResponse = {
 
 async function batchCreateEtlMeta(request: BatchCreateEtlMetaRequest): BatchCreateEtlMetaResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'BatchCreateEtlMeta', 'POST', '/etlmetas', 'none', false, 'object', request);
+  return @handler.do('RESTFUL', 'BatchCreateEtlMeta', 'POST', '/etlmetas', 'json', false, 'object', request);
 }
 
 model GetAlertRequest {
@@ -2730,7 +2635,7 @@ model GetAlertResponse = {
 
 async function getAlert(request: GetAlertRequest): GetAlertResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'GetAlert', 'GET', '/jobs', 'json', false, '', request);
+  return @handler.do('RESTFUL', 'GetAlert', 'GET', '/jobs', 'json', false, 'json', request);
 }
 
 model StopExportRequest {
@@ -2744,7 +2649,7 @@ model StopExportResponse = {
 
 async function stopExport(request: StopExportRequest): StopExportResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'StopExport', 'PUT', '/jobs', 'none', false, '', request);
+  return @handler.do('RESTFUL', 'StopExport', 'PUT', '/jobs', 'json', false, 'json', request);
 }
 
 model GetConfigRequest {
@@ -2784,7 +2689,7 @@ model GetConfigResponse = {
 
 async function getConfig(request: GetConfigRequest): GetConfigResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'GetConfig', 'GET', '/configs/configName', 'json', false, '', request);
+  return @handler.do('RESTFUL', 'GetConfig', 'GET', '/configs/configName', 'json', false, 'json', request);
 }
 
 model EnableJobRequest {
@@ -2798,7 +2703,7 @@ model EnableJobResponse = {
 
 async function enableJob(request: EnableJobRequest): EnableJobResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'EnableJob', 'PUT', '/jobs', 'none', false, '', request);
+  return @handler.do('RESTFUL', 'EnableJob', 'PUT', '/jobs', 'json', false, 'json', request);
 }
 
 model PutWebtrackingRequest {
@@ -2825,7 +2730,7 @@ model PutWebtrackingResponse = {
 
 async function putWebtracking(request: PutWebtrackingRequest): PutWebtrackingResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'PutWebtracking', 'POST', '/logstores/{logstoreName}/track', 'none', false, 'object', request);
+  return @handler.do('RESTFUL', 'PutWebtracking', 'POST', '/logstores/{logstoreName}/track', 'json', false, 'object', request);
 }
 
 model CreateIndexRequest {
@@ -2853,7 +2758,7 @@ model CreateIndexResponse = {
 
 async function createIndex(request: CreateIndexRequest): CreateIndexResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'CreateIndex', 'POST', '/logstores/<logstoreName>/index', 'none', false, 'object', request);
+  return @handler.do('RESTFUL', 'CreateIndex', 'POST', '/logstores/<logstoreName>/index', 'json', false, 'object', request);
 }
 
 model UpdateChartRequest {
@@ -2872,7 +2777,7 @@ model UpdateChartResponse = {
 
 async function updateChart(request: UpdateChartRequest): UpdateChartResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'UpdateChart', 'PUT', '/dashboards/{dashboardName}/charts/{chartName}', 'none', false, 'object', request);
+  return @handler.do('RESTFUL', 'UpdateChart', 'PUT', '/dashboards/{dashboardName}/charts/{chartName}', 'json', false, 'object', request);
 }
 
 model GetReportRequest {
@@ -2893,7 +2798,7 @@ model GetReportResponse = {
 
 async function getReport(request: GetReportRequest): GetReportResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'GetReport', 'GET', '/jobs', 'json', false, '', request);
+  return @handler.do('RESTFUL', 'GetReport', 'GET', '/jobs', 'json', false, 'json', request);
 }
 
 model GetAppliedConfigsRequest {
@@ -2913,7 +2818,7 @@ model GetAppliedConfigsResponse = {
 
 async function getAppliedConfigs(request: GetAppliedConfigsRequest): GetAppliedConfigsResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'GetAppliedConfigs', 'GET', '/machinegroups/groupName/configs', 'json', false, '', request);
+  return @handler.do('RESTFUL', 'GetAppliedConfigs', 'GET', '/machinegroups/groupName/configs', 'json', false, 'json', request);
 }
 
 model CreateEtlMetaRequest {
@@ -2937,18 +2842,13 @@ model CreateEtlMetaRequest {
   }(name='EtlMeta', position='Query'),
 }
 
-model CreateEtlMetaShrinkRequest {
-  project?: string(name='Project', description='A short description of struct', position='Query'),
-  etlMetaShrink?: string(name='EtlMeta', position='Query'),
-}
-
 model CreateEtlMetaResponse = {
   headers: map[string]string(name='headers'),
 }
 
-async function createEtlMeta(tmpReq: CreateEtlMetaRequest): CreateEtlMetaResponse {
-  @handler.validateRequestModel(tmpReq);
-  return @handler.do('RESTFUL', 'CreateEtlMeta', 'POST', '/etlmetas', 'none', false, '', tmpReq);
+async function createEtlMeta(request: CreateEtlMetaRequest): CreateEtlMetaResponse {
+  @handler.validateRequestModel(request);
+  return @handler.do('RESTFUL', 'CreateEtlMeta', 'POST', '/etlmetas', 'json', false, 'json', request);
 }
 
 model DeleteJobRequest {
@@ -2962,7 +2862,7 @@ model DeleteJobResponse = {
 
 async function deleteJob(request: DeleteJobRequest): DeleteJobResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'DeleteJob', 'DELETE', '/jobs', 'none', false, '', request);
+  return @handler.do('RESTFUL', 'DeleteJob', 'DELETE', '/jobs', 'json', false, 'json', request);
 }
 
 model SplitShardRequest {
@@ -3016,7 +2916,7 @@ model ListProjectResponse = {
 
 async function listProject(request: ListProjectRequest): ListProjectResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'ListProject', 'GET', '/', 'json', false, '', request);
+  return @handler.do('RESTFUL', 'ListProject', 'GET', '/', 'json', false, 'json', request);
 }
 
 model UpdateConsumerGroupRequest {
@@ -3033,7 +2933,7 @@ model UpdateConsumerGroupResponse = {
 
 async function updateConsumerGroup(request: UpdateConsumerGroupRequest): UpdateConsumerGroupResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'UpdateConsumerGroup', 'PUT', '/logstores/logstoreName/consumergroups/consumerGroup', 'none', false, 'object', request);
+  return @handler.do('RESTFUL', 'UpdateConsumerGroup', 'PUT', '/logstores/logstoreName/consumergroups/consumerGroup', 'json', false, 'object', request);
 }
 
 model GetHistogramsRequest {
@@ -3060,7 +2960,7 @@ model GetHistogramsResponse = {
 
 async function getHistograms(request: GetHistogramsRequest): GetHistogramsResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'GetHistograms', 'GET', '/logstores/logstoreName', 'json', false, '', request);
+  return @handler.do('RESTFUL', 'GetHistograms', 'GET', '/logstores/logstoreName', 'json', false, 'json', request);
 }
 
 model UpdateExportRequest {
@@ -3085,7 +2985,7 @@ model UpdateExportResponse = {
 
 async function updateExport(request: UpdateExportRequest): UpdateExportResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'UpdateExport', 'PUT', '/jobs', 'none', false, 'object', request);
+  return @handler.do('RESTFUL', 'UpdateExport', 'PUT', '/jobs', 'json', false, 'object', request);
 }
 
 model EnableAlertRequest {
@@ -3099,7 +2999,7 @@ model EnableAlertResponse = {
 
 async function enableAlert(request: EnableAlertRequest): EnableAlertResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'EnableAlert', 'PUT', '/jobs', 'none', false, '', request);
+  return @handler.do('RESTFUL', 'EnableAlert', 'PUT', '/jobs', 'json', false, 'json', request);
 }
 
 model UpdateLoggingRequest {
@@ -3113,18 +3013,13 @@ model UpdateLoggingRequest {
   }(name='Logging', position='Query'),
 }
 
-model UpdateLoggingShrinkRequest {
-  project?: string(name='Project', description='A short description of struct', position='Query'),
-  loggingShrink?: string(name='Logging', position='Query'),
-}
-
 model UpdateLoggingResponse = {
   headers: map[string]string(name='headers'),
 }
 
-async function updateLogging(tmpReq: UpdateLoggingRequest): UpdateLoggingResponse {
-  @handler.validateRequestModel(tmpReq);
-  return @handler.do('RESTFUL', 'UpdateLogging', 'PUT', '/logging', 'none', false, '', tmpReq);
+async function updateLogging(request: UpdateLoggingRequest): UpdateLoggingResponse {
+  @handler.validateRequestModel(request);
+  return @handler.do('RESTFUL', 'UpdateLogging', 'PUT', '/logging', 'json', false, 'json', request);
 }
 
 model DisableReportRequest {
@@ -3138,7 +3033,7 @@ model DisableReportResponse = {
 
 async function disableReport(request: DisableReportRequest): DisableReportResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'DisableReport', 'PUT', '/jobs', 'none', false, '', request);
+  return @handler.do('RESTFUL', 'DisableReport', 'PUT', '/jobs', 'json', false, 'json', request);
 }
 
 model ListAlertRequest {
@@ -3160,7 +3055,7 @@ model ListAlertResponse = {
 
 async function listAlert(request: ListAlertRequest): ListAlertResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'ListAlert', 'GET', '/jobs', 'json', false, '', request);
+  return @handler.do('RESTFUL', 'ListAlert', 'GET', '/jobs', 'json', false, 'json', request);
 }
 
 model ListETLRequest {
@@ -3180,7 +3075,7 @@ model ListETLResponse = {
 
 async function listETL(request: ListETLRequest): ListETLResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'ListETL', 'GET', '/jobs', 'json', false, '', request);
+  return @handler.do('RESTFUL', 'ListETL', 'GET', '/jobs', 'json', false, 'json', request);
 }
 
 model UpdateEtlJobRequest {
@@ -3215,7 +3110,7 @@ model UpdateEtlJobResponse = {
 
 async function updateEtlJob(request: UpdateEtlJobRequest): UpdateEtlJobResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'UpdateEtlJob', 'PUT', '/etljobs/{etlJobName}', 'none', false, 'object', request);
+  return @handler.do('RESTFUL', 'UpdateEtlJob', 'PUT', '/etljobs/{etlJobName}', 'json', false, 'object', request);
 }
 
 model DeleteDomainRequest {
@@ -3229,7 +3124,7 @@ model DeleteDomainResponse = {
 
 async function deleteDomain(request: DeleteDomainRequest): DeleteDomainResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'DeleteDomain', 'DELETE', '/domains/domainName', 'none', false, '', request);
+  return @handler.do('RESTFUL', 'DeleteDomain', 'DELETE', '/domains/domainName', 'json', false, 'json', request);
 }
 
 model CreateAlertRequest {
@@ -3243,17 +3138,13 @@ model CreateAlertRequest {
   }(name='Alert', position='Query'),
 }
 
-model CreateAlertShrinkRequest {
-  alertShrink?: string(name='Alert', position='Query'),
-}
-
 model CreateAlertResponse = {
   headers: map[string]string(name='headers'),
 }
 
-async function createAlert(tmpReq: CreateAlertRequest): CreateAlertResponse {
-  @handler.validateRequestModel(tmpReq);
-  return @handler.do('RESTFUL', 'CreateAlert', 'POST', '/jobs', 'none', false, '', tmpReq);
+async function createAlert(request: CreateAlertRequest): CreateAlertResponse {
+  @handler.validateRequestModel(request);
+  return @handler.do('RESTFUL', 'CreateAlert', 'POST', '/jobs', 'json', false, 'json', request);
 }
 
 model UpdateProjectRequest {
@@ -3267,7 +3158,7 @@ model UpdateProjectResponse = {
 
 async function updateProject(request: UpdateProjectRequest): UpdateProjectResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'UpdateProject', 'PUT', '/', 'none', false, 'object', request);
+  return @handler.do('RESTFUL', 'UpdateProject', 'PUT', '/', 'json', false, 'object', request);
 }
 
 model RetryShipperTaskRequest {
@@ -3282,7 +3173,7 @@ model RetryShipperTaskResponse = {
 
 async function retryShipperTask(request: RetryShipperTaskRequest): RetryShipperTaskResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'RetryShipperTask', 'PUT', '/logstores/logstoreName/shipper/shipperName/tasks', 'none', false, '', request);
+  return @handler.do('RESTFUL', 'RetryShipperTask', 'PUT', '/logstores/logstoreName/shipper/shipperName/tasks', 'json', false, 'json', request);
 }
 
 model ListExportRequest {
@@ -3315,7 +3206,7 @@ model ListExportResponse = {
 
 async function listExport(request: ListExportRequest): ListExportResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'ListExport', 'GET', '/jobs', 'json', false, '', request);
+  return @handler.do('RESTFUL', 'ListExport', 'GET', '/jobs', 'json', false, 'json', request);
 }
 
 model DeleteMachineGroupRequest {
@@ -3329,7 +3220,7 @@ model DeleteMachineGroupResponse = {
 
 async function deleteMachineGroup(request: DeleteMachineGroupRequest): DeleteMachineGroupResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'DeleteMachineGroup', 'DELETE', '/machinegroups/groupName', 'none', false, '', request);
+  return @handler.do('RESTFUL', 'DeleteMachineGroup', 'DELETE', '/machinegroups/groupName', 'json', false, 'json', request);
 }
 
 model GetShipperTasksRequest {
@@ -3346,7 +3237,7 @@ model GetShipperTasksResponse = {
 
 async function getShipperTasks(request: GetShipperTasksRequest): GetShipperTasksResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'GetShipperTasks', 'GET', '/logstores/{logStore}/shipper/{shipperName}/tasks', 'json', false, '', request);
+  return @handler.do('RESTFUL', 'GetShipperTasks', 'GET', '/logstores/{logStore}/shipper/{shipperName}/tasks', 'json', false, 'json', request);
 }
 
 model ListACLRequest {
@@ -3360,7 +3251,7 @@ model ListACLResponse = {
 
 async function listACL(request: ListACLRequest): ListACLResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'ListACL', 'GET', '/logstores', 'none', false, '', request);
+  return @handler.do('RESTFUL', 'ListACL', 'GET', '/logstores', 'json', false, 'json', request);
 }
 
 model UpdateIngestionRequest {
@@ -3375,7 +3266,7 @@ model UpdateIngestionResponse = {
 
 async function updateIngestion(request: UpdateIngestionRequest): UpdateIngestionResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'UpdateIngestion', 'PUT', '/jobs', 'none', false, 'object', request);
+  return @handler.do('RESTFUL', 'UpdateIngestion', 'PUT', '/jobs', 'json', false, 'object', request);
 }
 
 model CreateETLRequest {
@@ -3394,17 +3285,13 @@ model CreateETLRequest {
   }(name='ETL', position='Query'),
 }
 
-model CreateETLShrinkRequest {
-  ETLShrink?: string(name='ETL', position='Query'),
-}
-
 model CreateETLResponse = {
   headers: map[string]string(name='headers'),
 }
 
-async function createETL(tmpReq: CreateETLRequest): CreateETLResponse {
-  @handler.validateRequestModel(tmpReq);
-  return @handler.do('RESTFUL', 'CreateETL', 'POST', '/jobs', 'none', false, '', tmpReq);
+async function createETL(request: CreateETLRequest): CreateETLResponse {
+  @handler.validateRequestModel(request);
+  return @handler.do('RESTFUL', 'CreateETL', 'POST', '/jobs', 'json', false, 'json', request);
 }
 
 model CreateIngestionRequest {
@@ -3419,6 +3306,6 @@ model CreateIngestionResponse = {
 
 async function createIngestion(request: CreateIngestionRequest): CreateIngestionResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'CreateIngestion', 'POST', '/jobs', 'none', false, 'object', request);
+  return @handler.do('RESTFUL', 'CreateIngestion', 'POST', '/jobs', 'json', false, 'object', request);
 }
 

@@ -3,3 +3,4 @@ output/
 .DS_Store
 imwebhook/
 package-lock.json
+libraries/

@@ -5,7 +5,7 @@ package com.aliyun.main;
 /**
  * <p>Main client.</p>
  */
-public final class Client {
+public class Client {
 
 
 

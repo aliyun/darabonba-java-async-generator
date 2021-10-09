@@ -5,7 +5,8 @@ import com.aliyun.core.http.*;
 import com.aliyun.oss20190517.models.*;
 import darabonba.core.utils.*;
 import darabonba.core.*;
-import darabonba.core.internal.async.*;
+import darabonba.core.async.*;
+import darabonba.core.sync.*;
 import darabonba.core.client.*;
 
 import java.util.concurrent.CompletableFuture;
@@ -41,20 +42,6 @@ public final class DefaultAsyncClient implements AsyncClient {
             return this.handler.execute(params);
         } catch (Exception e) {
             CompletableFuture<GetBucketLocationResponse> future = new CompletableFuture<>();
-            future.completeExceptionally(e);
-            return future;
-        }
-    }
-
-    @Override
-    public CompletableFuture<GetBucketCORSResponse> getBucketCORS(GetBucketCORSRequest request) {
-        try {
-            this.handler.validateRequestModel(request);
-            TeaRequest teaRequest = REQUEST.copy().setStyle(RequestStyle.RESTFUL).setAction("GetBucketCORS").setMethod(HttpMethod.GET).setPathRegex("/?cors").setBodyType(BodyType.XML).setBodyIsForm(false).setReqBodyType(BodyType.XML).formModel(request);
-            ClientExecutionParams params = new ClientExecutionParams().withInput(request).withRequest(teaRequest).withOutput(GetBucketCORSResponse.create());
-            return this.handler.execute(params);
-        } catch (Exception e) {
-            CompletableFuture<GetBucketCORSResponse> future = new CompletableFuture<>();
             future.completeExceptionally(e);
             return future;
         }
@@ -131,11 +118,25 @@ public final class DefaultAsyncClient implements AsyncClient {
     }
 
     @Override
-    public CompletableFuture<PutObjectResponse> putObjectWithRequestBody(PutObjectRequest request, AsyncRequestBody requestBody) {
+    public CompletableFuture<PutObjectResponse> putObjectWithAsyncRequestBody(PutObjectRequest request, AsyncRequestBody requestBody) {
         try {
             this.handler.validateRequestModel(request);
             TeaRequest teaRequest = REQUEST.copy().setStyle(RequestStyle.RESTFUL).setAction("PutObject").setMethod(HttpMethod.PUT).setPathRegex("/{key}").setBodyType(BodyType.BINARY).setBodyIsForm(false).setReqBodyType(BodyType.BINARY).formModel(request);
-            ClientExecutionParams params = new ClientExecutionParams().withInput(request).withRequest(teaRequest).withOutput(PutObjectResponse.create());
+            ClientExecutionParams params = new ClientExecutionParams().withInput(request).withRequest(teaRequest).withRequestBody(requestBody).withOutput(PutObjectResponse.create());
+            return this.handler.execute(params);
+        } catch (Exception e) {
+            CompletableFuture<PutObjectResponse> future = new CompletableFuture<>();
+            future.completeExceptionally(e);
+            return future;
+        }
+    }
+
+    @Override
+    public CompletableFuture<PutObjectResponse> putObjectWithRequestBody(PutObjectRequest request, RequestBody requestBody) {
+        try {
+            this.handler.validateRequestModel(request);
+            TeaRequest teaRequest = REQUEST.copy().setStyle(RequestStyle.RESTFUL).setAction("PutObject").setMethod(HttpMethod.PUT).setPathRegex("/{key}").setBodyType(BodyType.BINARY).setBodyIsForm(false).setReqBodyType(BodyType.BINARY).formModel(request);
+            ClientExecutionParams params = new ClientExecutionParams().withInput(request).withRequest(teaRequest).withRequestBody(requestBody).withOutput(PutObjectResponse.create());
             return this.handler.execute(params);
         } catch (Exception e) {
             CompletableFuture<PutObjectResponse> future = new CompletableFuture<>();
@@ -206,6 +207,34 @@ public final class DefaultAsyncClient implements AsyncClient {
             this.handler.validateRequestModel(request);
             TeaRequest teaRequest = REQUEST.copy().setStyle(RequestStyle.RESTFUL).setAction("UploadPartCopy").setMethod(HttpMethod.PUT).setPathRegex("/{key}").setBodyType(BodyType.XML).setBodyIsForm(false).setReqBodyType(BodyType.BINARY).formModel(request);
             ClientExecutionParams params = new ClientExecutionParams().withInput(request).withRequest(teaRequest).withOutput(UploadPartCopyResponse.create());
+            return this.handler.execute(params);
+        } catch (Exception e) {
+            CompletableFuture<UploadPartCopyResponse> future = new CompletableFuture<>();
+            future.completeExceptionally(e);
+            return future;
+        }
+    }
+
+    @Override
+    public CompletableFuture<UploadPartCopyResponse> uploadPartCopyWithAsyncRequestBody(UploadPartCopyRequest request, AsyncRequestBody requestBody) {
+        try {
+            this.handler.validateRequestModel(request);
+            TeaRequest teaRequest = REQUEST.copy().setStyle(RequestStyle.RESTFUL).setAction("UploadPartCopy").setMethod(HttpMethod.PUT).setPathRegex("/{key}").setBodyType(BodyType.XML).setBodyIsForm(false).setReqBodyType(BodyType.BINARY).formModel(request);
+            ClientExecutionParams params = new ClientExecutionParams().withInput(request).withRequest(teaRequest).withRequestBody(requestBody).withOutput(UploadPartCopyResponse.create());
+            return this.handler.execute(params);
+        } catch (Exception e) {
+            CompletableFuture<UploadPartCopyResponse> future = new CompletableFuture<>();
+            future.completeExceptionally(e);
+            return future;
+        }
+    }
+
+    @Override
+    public CompletableFuture<UploadPartCopyResponse> uploadPartCopyWithRequestBody(UploadPartCopyRequest request, RequestBody requestBody) {
+        try {
+            this.handler.validateRequestModel(request);
+            TeaRequest teaRequest = REQUEST.copy().setStyle(RequestStyle.RESTFUL).setAction("UploadPartCopy").setMethod(HttpMethod.PUT).setPathRegex("/{key}").setBodyType(BodyType.XML).setBodyIsForm(false).setReqBodyType(BodyType.BINARY).formModel(request);
+            ClientExecutionParams params = new ClientExecutionParams().withInput(request).withRequest(teaRequest).withRequestBody(requestBody).withOutput(UploadPartCopyResponse.create());
             return this.handler.execute(params);
         } catch (Exception e) {
             CompletableFuture<UploadPartCopyResponse> future = new CompletableFuture<>();
@@ -425,6 +454,34 @@ public final class DefaultAsyncClient implements AsyncClient {
     }
 
     @Override
+    public CompletableFuture<GetObjectResponse> getObjectWithAsyncRequestBody(GetObjectRequest request, AsyncRequestBody requestBody) {
+        try {
+            this.handler.validateRequestModel(request);
+            TeaRequest teaRequest = REQUEST.copy().setStyle(RequestStyle.RESTFUL).setAction("GetObject").setMethod(HttpMethod.GET).setPathRegex("/{key}").setBodyType(BodyType.BINARY).setBodyIsForm(false).setReqBodyType(BodyType.BINARY).formModel(request);
+            ClientExecutionParams params = new ClientExecutionParams().withInput(request).withRequest(teaRequest).withRequestBody(requestBody).withOutput(GetObjectResponse.create());
+            return this.handler.execute(params);
+        } catch (Exception e) {
+            CompletableFuture<GetObjectResponse> future = new CompletableFuture<>();
+            future.completeExceptionally(e);
+            return future;
+        }
+    }
+
+    @Override
+    public CompletableFuture<GetObjectResponse> getObjectWithRequestBody(GetObjectRequest request, RequestBody requestBody) {
+        try {
+            this.handler.validateRequestModel(request);
+            TeaRequest teaRequest = REQUEST.copy().setStyle(RequestStyle.RESTFUL).setAction("GetObject").setMethod(HttpMethod.GET).setPathRegex("/{key}").setBodyType(BodyType.BINARY).setBodyIsForm(false).setReqBodyType(BodyType.BINARY).formModel(request);
+            ClientExecutionParams params = new ClientExecutionParams().withInput(request).withRequest(teaRequest).withRequestBody(requestBody).withOutput(GetObjectResponse.create());
+            return this.handler.execute(params);
+        } catch (Exception e) {
+            CompletableFuture<GetObjectResponse> future = new CompletableFuture<>();
+            future.completeExceptionally(e);
+            return future;
+        }
+    }
+
+    @Override
     public CompletableFuture<InitiateBucketWormResponse> initiateBucketWorm(InitiateBucketWormRequest request) {
         try {
             this.handler.validateRequestModel(request);
@@ -433,6 +490,20 @@ public final class DefaultAsyncClient implements AsyncClient {
             return this.handler.execute(params);
         } catch (Exception e) {
             CompletableFuture<InitiateBucketWormResponse> future = new CompletableFuture<>();
+            future.completeExceptionally(e);
+            return future;
+        }
+    }
+
+    @Override
+    public CompletableFuture<PutBucketCorsResponse> putBucketCors(PutBucketCorsRequest request) {
+        try {
+            this.handler.validateRequestModel(request);
+            TeaRequest teaRequest = REQUEST.copy().setStyle(RequestStyle.RESTFUL).setAction("PutBucketCors").setMethod(HttpMethod.PUT).setPathRegex("/?cors").setBodyType(BodyType.XML).setBodyIsForm(false).setReqBodyType(BodyType.XML).formModel(request);
+            ClientExecutionParams params = new ClientExecutionParams().withInput(request).withRequest(teaRequest).withOutput(PutBucketCorsResponse.create());
+            return this.handler.execute(params);
+        } catch (Exception e) {
+            CompletableFuture<PutBucketCorsResponse> future = new CompletableFuture<>();
             future.completeExceptionally(e);
             return future;
         }
@@ -472,6 +543,34 @@ public final class DefaultAsyncClient implements AsyncClient {
             this.handler.validateRequestModel(request);
             TeaRequest teaRequest = REQUEST.copy().setStyle(RequestStyle.RESTFUL).setAction("CopyObject").setMethod(HttpMethod.PUT).setPathRegex("/{key}").setBodyType(BodyType.XML).setBodyIsForm(false).setReqBodyType(BodyType.BINARY).formModel(request);
             ClientExecutionParams params = new ClientExecutionParams().withInput(request).withRequest(teaRequest).withOutput(CopyObjectResponse.create());
+            return this.handler.execute(params);
+        } catch (Exception e) {
+            CompletableFuture<CopyObjectResponse> future = new CompletableFuture<>();
+            future.completeExceptionally(e);
+            return future;
+        }
+    }
+
+    @Override
+    public CompletableFuture<CopyObjectResponse> copyObjectWithAsyncRequestBody(CopyObjectRequest request, AsyncRequestBody requestBody) {
+        try {
+            this.handler.validateRequestModel(request);
+            TeaRequest teaRequest = REQUEST.copy().setStyle(RequestStyle.RESTFUL).setAction("CopyObject").setMethod(HttpMethod.PUT).setPathRegex("/{key}").setBodyType(BodyType.XML).setBodyIsForm(false).setReqBodyType(BodyType.BINARY).formModel(request);
+            ClientExecutionParams params = new ClientExecutionParams().withInput(request).withRequest(teaRequest).withRequestBody(requestBody).withOutput(CopyObjectResponse.create());
+            return this.handler.execute(params);
+        } catch (Exception e) {
+            CompletableFuture<CopyObjectResponse> future = new CompletableFuture<>();
+            future.completeExceptionally(e);
+            return future;
+        }
+    }
+
+    @Override
+    public CompletableFuture<CopyObjectResponse> copyObjectWithRequestBody(CopyObjectRequest request, RequestBody requestBody) {
+        try {
+            this.handler.validateRequestModel(request);
+            TeaRequest teaRequest = REQUEST.copy().setStyle(RequestStyle.RESTFUL).setAction("CopyObject").setMethod(HttpMethod.PUT).setPathRegex("/{key}").setBodyType(BodyType.XML).setBodyIsForm(false).setReqBodyType(BodyType.BINARY).formModel(request);
+            ClientExecutionParams params = new ClientExecutionParams().withInput(request).withRequest(teaRequest).withRequestBody(requestBody).withOutput(CopyObjectResponse.create());
             return this.handler.execute(params);
         } catch (Exception e) {
             CompletableFuture<CopyObjectResponse> future = new CompletableFuture<>();
@@ -663,20 +762,6 @@ public final class DefaultAsyncClient implements AsyncClient {
     }
 
     @Override
-    public CompletableFuture<PutBucketCORSResponse> putBucketCORS(PutBucketCORSRequest request) {
-        try {
-            this.handler.validateRequestModel(request);
-            TeaRequest teaRequest = REQUEST.copy().setStyle(RequestStyle.RESTFUL).setAction("PutBucketCORS").setMethod(HttpMethod.PUT).setPathRegex("/?cors").setBodyType(BodyType.XML).setBodyIsForm(false).setReqBodyType(BodyType.XML).formModel(request);
-            ClientExecutionParams params = new ClientExecutionParams().withInput(request).withRequest(teaRequest).withOutput(PutBucketCORSResponse.create());
-            return this.handler.execute(params);
-        } catch (Exception e) {
-            CompletableFuture<PutBucketCORSResponse> future = new CompletableFuture<>();
-            future.completeExceptionally(e);
-            return future;
-        }
-    }
-
-    @Override
     public CompletableFuture<PutBucketVersioningResponse> putBucketVersioning(PutBucketVersioningRequest request) {
         try {
             this.handler.validateRequestModel(request);
@@ -696,6 +781,34 @@ public final class DefaultAsyncClient implements AsyncClient {
             this.handler.validateRequestModel(request);
             TeaRequest teaRequest = REQUEST.copy().setStyle(RequestStyle.RESTFUL).setAction("DeleteObject").setMethod(HttpMethod.DELETE).setPathRegex("/{key}").setBodyType(BodyType.BINARY).setBodyIsForm(false).setReqBodyType(BodyType.BINARY).formModel(request);
             ClientExecutionParams params = new ClientExecutionParams().withInput(request).withRequest(teaRequest).withOutput(DeleteObjectResponse.create());
+            return this.handler.execute(params);
+        } catch (Exception e) {
+            CompletableFuture<DeleteObjectResponse> future = new CompletableFuture<>();
+            future.completeExceptionally(e);
+            return future;
+        }
+    }
+
+    @Override
+    public CompletableFuture<DeleteObjectResponse> deleteObjectWithAsyncRequestBody(DeleteObjectRequest request, AsyncRequestBody requestBody) {
+        try {
+            this.handler.validateRequestModel(request);
+            TeaRequest teaRequest = REQUEST.copy().setStyle(RequestStyle.RESTFUL).setAction("DeleteObject").setMethod(HttpMethod.DELETE).setPathRegex("/{key}").setBodyType(BodyType.BINARY).setBodyIsForm(false).setReqBodyType(BodyType.BINARY).formModel(request);
+            ClientExecutionParams params = new ClientExecutionParams().withInput(request).withRequest(teaRequest).withRequestBody(requestBody).withOutput(DeleteObjectResponse.create());
+            return this.handler.execute(params);
+        } catch (Exception e) {
+            CompletableFuture<DeleteObjectResponse> future = new CompletableFuture<>();
+            future.completeExceptionally(e);
+            return future;
+        }
+    }
+
+    @Override
+    public CompletableFuture<DeleteObjectResponse> deleteObjectWithRequestBody(DeleteObjectRequest request, RequestBody requestBody) {
+        try {
+            this.handler.validateRequestModel(request);
+            TeaRequest teaRequest = REQUEST.copy().setStyle(RequestStyle.RESTFUL).setAction("DeleteObject").setMethod(HttpMethod.DELETE).setPathRegex("/{key}").setBodyType(BodyType.BINARY).setBodyIsForm(false).setReqBodyType(BodyType.BINARY).formModel(request);
+            ClientExecutionParams params = new ClientExecutionParams().withInput(request).withRequest(teaRequest).withRequestBody(requestBody).withOutput(DeleteObjectResponse.create());
             return this.handler.execute(params);
         } catch (Exception e) {
             CompletableFuture<DeleteObjectResponse> future = new CompletableFuture<>();
@@ -775,6 +888,34 @@ public final class DefaultAsyncClient implements AsyncClient {
     }
 
     @Override
+    public CompletableFuture<GetObjectMetaResponse> getObjectMetaWithAsyncRequestBody(GetObjectMetaRequest request, AsyncRequestBody requestBody) {
+        try {
+            this.handler.validateRequestModel(request);
+            TeaRequest teaRequest = REQUEST.copy().setStyle(RequestStyle.RESTFUL).setAction("GetObjectMeta").setMethod(HttpMethod.HEAD).setPathRegex("/{key}?objectMeta").setBodyType(BodyType.XML).setBodyIsForm(false).setReqBodyType(BodyType.BINARY).formModel(request);
+            ClientExecutionParams params = new ClientExecutionParams().withInput(request).withRequest(teaRequest).withRequestBody(requestBody).withOutput(GetObjectMetaResponse.create());
+            return this.handler.execute(params);
+        } catch (Exception e) {
+            CompletableFuture<GetObjectMetaResponse> future = new CompletableFuture<>();
+            future.completeExceptionally(e);
+            return future;
+        }
+    }
+
+    @Override
+    public CompletableFuture<GetObjectMetaResponse> getObjectMetaWithRequestBody(GetObjectMetaRequest request, RequestBody requestBody) {
+        try {
+            this.handler.validateRequestModel(request);
+            TeaRequest teaRequest = REQUEST.copy().setStyle(RequestStyle.RESTFUL).setAction("GetObjectMeta").setMethod(HttpMethod.HEAD).setPathRegex("/{key}?objectMeta").setBodyType(BodyType.XML).setBodyIsForm(false).setReqBodyType(BodyType.BINARY).formModel(request);
+            ClientExecutionParams params = new ClientExecutionParams().withInput(request).withRequest(teaRequest).withRequestBody(requestBody).withOutput(GetObjectMetaResponse.create());
+            return this.handler.execute(params);
+        } catch (Exception e) {
+            CompletableFuture<GetObjectMetaResponse> future = new CompletableFuture<>();
+            future.completeExceptionally(e);
+            return future;
+        }
+    }
+
+    @Override
     public CompletableFuture<GetLiveChannelInfoResponse> getLiveChannelInfo(GetLiveChannelInfoRequest request) {
         try {
             this.handler.validateRequestModel(request);
@@ -783,6 +924,20 @@ public final class DefaultAsyncClient implements AsyncClient {
             return this.handler.execute(params);
         } catch (Exception e) {
             CompletableFuture<GetLiveChannelInfoResponse> future = new CompletableFuture<>();
+            future.completeExceptionally(e);
+            return future;
+        }
+    }
+
+    @Override
+    public CompletableFuture<DeleteBucketCorsResponse> deleteBucketCors(DeleteBucketCorsRequest request) {
+        try {
+            this.handler.validateRequestModel(request);
+            TeaRequest teaRequest = REQUEST.copy().setStyle(RequestStyle.RESTFUL).setAction("DeleteBucketCors").setMethod(HttpMethod.DELETE).setPathRegex("/?cors").setBodyType(BodyType.XML).setBodyIsForm(false).setReqBodyType(BodyType.XML).formModel(request);
+            ClientExecutionParams params = new ClientExecutionParams().withInput(request).withRequest(teaRequest).withOutput(DeleteBucketCorsResponse.create());
+            return this.handler.execute(params);
+        } catch (Exception e) {
+            CompletableFuture<DeleteBucketCorsResponse> future = new CompletableFuture<>();
             future.completeExceptionally(e);
             return future;
         }
@@ -1041,6 +1196,20 @@ public final class DefaultAsyncClient implements AsyncClient {
     }
 
     @Override
+    public CompletableFuture<GetBucketCorsResponse> getBucketCors(GetBucketCorsRequest request) {
+        try {
+            this.handler.validateRequestModel(request);
+            TeaRequest teaRequest = REQUEST.copy().setStyle(RequestStyle.RESTFUL).setAction("GetBucketCors").setMethod(HttpMethod.GET).setPathRegex("/?cors").setBodyType(BodyType.XML).setBodyIsForm(false).setReqBodyType(BodyType.XML).formModel(request);
+            ClientExecutionParams params = new ClientExecutionParams().withInput(request).withRequest(teaRequest).withOutput(GetBucketCorsResponse.create());
+            return this.handler.execute(params);
+        } catch (Exception e) {
+            CompletableFuture<GetBucketCorsResponse> future = new CompletableFuture<>();
+            future.completeExceptionally(e);
+            return future;
+        }
+    }
+
+    @Override
     public CompletableFuture<ListPartsResponse> listParts(ListPartsRequest request) {
         try {
             this.handler.validateRequestModel(request);
@@ -1074,6 +1243,34 @@ public final class DefaultAsyncClient implements AsyncClient {
             this.handler.validateRequestModel(request);
             TeaRequest teaRequest = REQUEST.copy().setStyle(RequestStyle.RESTFUL).setAction("UploadPart").setMethod(HttpMethod.PUT).setPathRegex("/{key}").setBodyType(BodyType.XML).setBodyIsForm(false).setReqBodyType(BodyType.BINARY).formModel(request);
             ClientExecutionParams params = new ClientExecutionParams().withInput(request).withRequest(teaRequest).withOutput(UploadPartResponse.create());
+            return this.handler.execute(params);
+        } catch (Exception e) {
+            CompletableFuture<UploadPartResponse> future = new CompletableFuture<>();
+            future.completeExceptionally(e);
+            return future;
+        }
+    }
+
+    @Override
+    public CompletableFuture<UploadPartResponse> uploadPartWithAsyncRequestBody(UploadPartRequest request, AsyncRequestBody requestBody) {
+        try {
+            this.handler.validateRequestModel(request);
+            TeaRequest teaRequest = REQUEST.copy().setStyle(RequestStyle.RESTFUL).setAction("UploadPart").setMethod(HttpMethod.PUT).setPathRegex("/{key}").setBodyType(BodyType.XML).setBodyIsForm(false).setReqBodyType(BodyType.BINARY).formModel(request);
+            ClientExecutionParams params = new ClientExecutionParams().withInput(request).withRequest(teaRequest).withRequestBody(requestBody).withOutput(UploadPartResponse.create());
+            return this.handler.execute(params);
+        } catch (Exception e) {
+            CompletableFuture<UploadPartResponse> future = new CompletableFuture<>();
+            future.completeExceptionally(e);
+            return future;
+        }
+    }
+
+    @Override
+    public CompletableFuture<UploadPartResponse> uploadPartWithRequestBody(UploadPartRequest request, RequestBody requestBody) {
+        try {
+            this.handler.validateRequestModel(request);
+            TeaRequest teaRequest = REQUEST.copy().setStyle(RequestStyle.RESTFUL).setAction("UploadPart").setMethod(HttpMethod.PUT).setPathRegex("/{key}").setBodyType(BodyType.XML).setBodyIsForm(false).setReqBodyType(BodyType.BINARY).formModel(request);
+            ClientExecutionParams params = new ClientExecutionParams().withInput(request).withRequest(teaRequest).withRequestBody(requestBody).withOutput(UploadPartResponse.create());
             return this.handler.execute(params);
         } catch (Exception e) {
             CompletableFuture<UploadPartResponse> future = new CompletableFuture<>();
@@ -1133,20 +1330,6 @@ public final class DefaultAsyncClient implements AsyncClient {
             return this.handler.execute(params);
         } catch (Exception e) {
             CompletableFuture<CompleteMultipartUploadResponse> future = new CompletableFuture<>();
-            future.completeExceptionally(e);
-            return future;
-        }
-    }
-
-    @Override
-    public CompletableFuture<DeleteBucketCORSResponse> deleteBucketCORS(DeleteBucketCORSRequest request) {
-        try {
-            this.handler.validateRequestModel(request);
-            TeaRequest teaRequest = REQUEST.copy().setStyle(RequestStyle.RESTFUL).setAction("DeleteBucketCORS").setMethod(HttpMethod.DELETE).setPathRegex("/?cors").setBodyType(BodyType.XML).setBodyIsForm(false).setReqBodyType(BodyType.XML).formModel(request);
-            ClientExecutionParams params = new ClientExecutionParams().withInput(request).withRequest(teaRequest).withOutput(DeleteBucketCORSResponse.create());
-            return this.handler.execute(params);
-        } catch (Exception e) {
-            CompletableFuture<DeleteBucketCORSResponse> future = new CompletableFuture<>();
             future.completeExceptionally(e);
             return future;
         }
@@ -1223,11 +1406,25 @@ public final class DefaultAsyncClient implements AsyncClient {
     }
 
     @Override
-    public CompletableFuture<AppendObjectResponse> appendObjectWithRequestBody(AppendObjectRequest request, AsyncRequestBody requestBody) {
+    public CompletableFuture<AppendObjectResponse> appendObjectWithAsyncRequestBody(AppendObjectRequest request, AsyncRequestBody requestBody) {
         try {
             this.handler.validateRequestModel(request);
             TeaRequest teaRequest = REQUEST.copy().setStyle(RequestStyle.RESTFUL).setAction("AppendObject").setMethod(HttpMethod.POST).setPathRegex("/{key}?append").setBodyType(BodyType.XML).setBodyIsForm(true).setReqBodyType(BodyType.BINARY).formModel(request);
-            ClientExecutionParams params = new ClientExecutionParams().withInput(request).withRequest(teaRequest).withOutput(AppendObjectResponse.create());
+            ClientExecutionParams params = new ClientExecutionParams().withInput(request).withRequest(teaRequest).withRequestBody(requestBody).withOutput(AppendObjectResponse.create());
+            return this.handler.execute(params);
+        } catch (Exception e) {
+            CompletableFuture<AppendObjectResponse> future = new CompletableFuture<>();
+            future.completeExceptionally(e);
+            return future;
+        }
+    }
+
+    @Override
+    public CompletableFuture<AppendObjectResponse> appendObjectWithRequestBody(AppendObjectRequest request, RequestBody requestBody) {
+        try {
+            this.handler.validateRequestModel(request);
+            TeaRequest teaRequest = REQUEST.copy().setStyle(RequestStyle.RESTFUL).setAction("AppendObject").setMethod(HttpMethod.POST).setPathRegex("/{key}?append").setBodyType(BodyType.XML).setBodyIsForm(true).setReqBodyType(BodyType.BINARY).formModel(request);
+            ClientExecutionParams params = new ClientExecutionParams().withInput(request).withRequest(teaRequest).withRequestBody(requestBody).withOutput(AppendObjectResponse.create());
             return this.handler.execute(params);
         } catch (Exception e) {
             CompletableFuture<AppendObjectResponse> future = new CompletableFuture<>();

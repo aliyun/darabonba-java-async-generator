@@ -1,7 +1,8 @@
 package com.aliyun.oss20190517;
 
 import com.aliyun.oss20190517.models.*;
-import darabonba.core.internal.async.*;
+import darabonba.core.async.*;
+import darabonba.core.sync.*;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -17,8 +18,6 @@ public interface AsyncClient {
 
     CompletableFuture<GetBucketLocationResponse> getBucketLocation(GetBucketLocationRequest request);
 
-    CompletableFuture<GetBucketCORSResponse> getBucketCORS(GetBucketCORSRequest request);
-
     CompletableFuture<PostVodPlaylistResponse> postVodPlaylist(PostVodPlaylistRequest request);
 
     CompletableFuture<CompleteBucketWormResponse> completeBucketWorm(CompleteBucketWormRequest request);
@@ -29,7 +28,9 @@ public interface AsyncClient {
 
     CompletableFuture<PutObjectResponse> putObject(PutObjectRequest request);
 
-    CompletableFuture<PutObjectResponse> putObjectWithRequestBody(PutObjectRequest request, AsyncRequestBody requestBody);
+    CompletableFuture<PutObjectResponse> putObjectWithAsyncRequestBody(PutObjectRequest request, AsyncRequestBody requestBody);
+
+    CompletableFuture<PutObjectResponse> putObjectWithRequestBody(PutObjectRequest request, RequestBody requestBody);
 
     CompletableFuture<DeleteBucketInventoryResponse> deleteBucketInventory(DeleteBucketInventoryRequest request);
 
@@ -40,6 +41,10 @@ public interface AsyncClient {
     CompletableFuture<GetBucketInventoryResponse> getBucketInventory(GetBucketInventoryRequest request);
 
     CompletableFuture<UploadPartCopyResponse> uploadPartCopy(UploadPartCopyRequest request);
+
+    CompletableFuture<UploadPartCopyResponse> uploadPartCopyWithAsyncRequestBody(UploadPartCopyRequest request, AsyncRequestBody requestBody);
+
+    CompletableFuture<UploadPartCopyResponse> uploadPartCopyWithRequestBody(UploadPartCopyRequest request, RequestBody requestBody);
 
     CompletableFuture<DeleteBucketWebsiteResponse> deleteBucketWebsite(DeleteBucketWebsiteRequest request);
 
@@ -71,13 +76,23 @@ public interface AsyncClient {
 
     CompletableFuture<GetObjectResponse> getObject(GetObjectRequest request);
 
+    CompletableFuture<GetObjectResponse> getObjectWithAsyncRequestBody(GetObjectRequest request, AsyncRequestBody requestBody);
+
+    CompletableFuture<GetObjectResponse> getObjectWithRequestBody(GetObjectRequest request, RequestBody requestBody);
+
     CompletableFuture<InitiateBucketWormResponse> initiateBucketWorm(InitiateBucketWormRequest request);
+
+    CompletableFuture<PutBucketCorsResponse> putBucketCors(PutBucketCorsRequest request);
 
     CompletableFuture<GetBucketResponse> getBucket(GetBucketRequest request);
 
     CompletableFuture<PutObjectTaggingResponse> putObjectTagging(PutObjectTaggingRequest request);
 
     CompletableFuture<CopyObjectResponse> copyObject(CopyObjectRequest request);
+
+    CompletableFuture<CopyObjectResponse> copyObjectWithAsyncRequestBody(CopyObjectRequest request, AsyncRequestBody requestBody);
+
+    CompletableFuture<CopyObjectResponse> copyObjectWithRequestBody(CopyObjectRequest request, RequestBody requestBody);
 
     CompletableFuture<PutBucketLifecycleResponse> putBucketLifecycle(PutBucketLifecycleRequest request);
 
@@ -105,11 +120,13 @@ public interface AsyncClient {
 
     CompletableFuture<PutBucketTransferAccelerationResponse> putBucketTransferAcceleration(PutBucketTransferAccelerationRequest request);
 
-    CompletableFuture<PutBucketCORSResponse> putBucketCORS(PutBucketCORSRequest request);
-
     CompletableFuture<PutBucketVersioningResponse> putBucketVersioning(PutBucketVersioningRequest request);
 
     CompletableFuture<DeleteObjectResponse> deleteObject(DeleteObjectRequest request);
+
+    CompletableFuture<DeleteObjectResponse> deleteObjectWithAsyncRequestBody(DeleteObjectRequest request, AsyncRequestBody requestBody);
+
+    CompletableFuture<DeleteObjectResponse> deleteObjectWithRequestBody(DeleteObjectRequest request, RequestBody requestBody);
 
     CompletableFuture<GetBucketRefererResponse> getBucketReferer(GetBucketRefererRequest request);
 
@@ -121,7 +138,13 @@ public interface AsyncClient {
 
     CompletableFuture<GetObjectMetaResponse> getObjectMeta(GetObjectMetaRequest request);
 
+    CompletableFuture<GetObjectMetaResponse> getObjectMetaWithAsyncRequestBody(GetObjectMetaRequest request, AsyncRequestBody requestBody);
+
+    CompletableFuture<GetObjectMetaResponse> getObjectMetaWithRequestBody(GetObjectMetaRequest request, RequestBody requestBody);
+
     CompletableFuture<GetLiveChannelInfoResponse> getLiveChannelInfo(GetLiveChannelInfoRequest request);
+
+    CompletableFuture<DeleteBucketCorsResponse> deleteBucketCors(DeleteBucketCorsRequest request);
 
     CompletableFuture<GetLiveChannelHistoryResponse> getLiveChannelHistory(GetLiveChannelHistoryRequest request);
 
@@ -159,11 +182,17 @@ public interface AsyncClient {
 
     CompletableFuture<ListObjectsResponse> listObjects(ListObjectsRequest request);
 
+    CompletableFuture<GetBucketCorsResponse> getBucketCors(GetBucketCorsRequest request);
+
     CompletableFuture<ListPartsResponse> listParts(ListPartsRequest request);
 
     CompletableFuture<PutObjectAclResponse> putObjectAcl(PutObjectAclRequest request);
 
     CompletableFuture<UploadPartResponse> uploadPart(UploadPartRequest request);
+
+    CompletableFuture<UploadPartResponse> uploadPartWithAsyncRequestBody(UploadPartRequest request, AsyncRequestBody requestBody);
+
+    CompletableFuture<UploadPartResponse> uploadPartWithRequestBody(UploadPartRequest request, RequestBody requestBody);
 
     CompletableFuture<PutBucketResponse> putBucket(PutBucketRequest request);
 
@@ -172,8 +201,6 @@ public interface AsyncClient {
     CompletableFuture<GetObjectTaggingResponse> getObjectTagging(GetObjectTaggingRequest request);
 
     CompletableFuture<CompleteMultipartUploadResponse> completeMultipartUpload(CompleteMultipartUploadRequest request);
-
-    CompletableFuture<DeleteBucketCORSResponse> deleteBucketCORS(DeleteBucketCORSRequest request);
 
     CompletableFuture<DeleteLiveChannelResponse> deleteLiveChannel(DeleteLiveChannelRequest request);
 
@@ -185,7 +212,9 @@ public interface AsyncClient {
 
     CompletableFuture<AppendObjectResponse> appendObject(AppendObjectRequest request);
 
-    CompletableFuture<AppendObjectResponse> appendObjectWithRequestBody(AppendObjectRequest request, AsyncRequestBody requestBody);
+    CompletableFuture<AppendObjectResponse> appendObjectWithAsyncRequestBody(AppendObjectRequest request, AsyncRequestBody requestBody);
+
+    CompletableFuture<AppendObjectResponse> appendObjectWithRequestBody(AppendObjectRequest request, RequestBody requestBody);
 
     CompletableFuture<ListLiveChannelResponse> listLiveChannel(ListLiveChannelRequest request);
 

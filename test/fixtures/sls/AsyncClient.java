@@ -1,7 +1,8 @@
 package com.aliyun.sls20201230;
 
 import com.aliyun.sls20201230.models.*;
-import darabonba.core.internal.async.*;
+import darabonba.core.async.*;
+import darabonba.core.sync.*;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -49,7 +50,7 @@ public interface AsyncClient {
 
     CompletableFuture<GetLogstoreResponse> getLogstore(GetLogstoreRequest request);
 
-    CompletableFuture<UpdateJobScheduleResponse> updateJobSchedule(UpdateJobScheduleRequest tmpReq);
+    CompletableFuture<UpdateJobScheduleResponse> updateJobSchedule(UpdateJobScheduleRequest request);
 
     CompletableFuture<UpdateMachineGroupResponse> updateMachineGroup(UpdateMachineGroupRequest request);
 
@@ -58,8 +59,6 @@ public interface AsyncClient {
     CompletableFuture<ListDomainsResponse> listDomains(ListDomainsRequest request);
 
     CompletableFuture<DeleteEtlJobResponse> deleteEtlJob(DeleteEtlJobRequest request);
-
-    CompletableFuture<CreateJobResponse> createJob(CreateJobRequest tmpReq);
 
     CompletableFuture<GetIngestionResponse> getIngestion(GetIngestionRequest request);
 
@@ -95,7 +94,7 @@ public interface AsyncClient {
 
     CompletableFuture<GetDashboardResponse> getDashboard(GetDashboardRequest request);
 
-    CompletableFuture<ListJobsResponse> listJobs(ListJobsRequest tmpReq);
+    CompletableFuture<ListJobsResponse> listJobs(ListJobsRequest request);
 
     CompletableFuture<GetJobScheduleResponse> getJobSchedule(GetJobScheduleRequest request);
 
@@ -107,7 +106,7 @@ public interface AsyncClient {
 
     CompletableFuture<CreateProjectResponse> createProject(CreateProjectRequest request);
 
-    CompletableFuture<UpdateEtlMetaResponse> updateEtlMeta(UpdateEtlMetaRequest tmpReq);
+    CompletableFuture<UpdateEtlMetaResponse> updateEtlMeta(UpdateEtlMetaRequest request);
 
     CompletableFuture<PullLogsResponse> pullLogs(PullLogsRequest request);
 
@@ -115,7 +114,7 @@ public interface AsyncClient {
 
     CompletableFuture<GetLoggingResponse> getLogging(GetLoggingRequest request);
 
-    CompletableFuture<CreateLoggingResponse> createLogging(CreateLoggingRequest tmpReq);
+    CompletableFuture<CreateLoggingResponse> createLogging(CreateLoggingRequest request);
 
     CompletableFuture<GetIndexResponse> getIndex(GetIndexRequest request);
 
@@ -133,9 +132,9 @@ public interface AsyncClient {
 
     CompletableFuture<GetRebuildIndexResponse> getRebuildIndex(GetRebuildIndexRequest request);
 
-    CompletableFuture<UpdateJobResponse> updateJob(UpdateJobRequest tmpReq);
+    CompletableFuture<UpdateJobResponse> updateJob(UpdateJobRequest request);
 
-    CompletableFuture<CreateJobScheduleResponse> createJobSchedule(CreateJobScheduleRequest tmpReq);
+    CompletableFuture<CreateJobScheduleResponse> createJobSchedule(CreateJobScheduleRequest request);
 
     CompletableFuture<CreateExportResponse> createExport(CreateExportRequest request);
 
@@ -157,7 +156,7 @@ public interface AsyncClient {
 
     CompletableFuture<DeleteExternalStoreResponse> deleteExternalStore(DeleteExternalStoreRequest request);
 
-    CompletableFuture<BatchUpdateEtlMetaResponse> batchUpdateEtlMeta(BatchUpdateEtlMetaRequest tmpReq);
+    CompletableFuture<BatchUpdateEtlMetaResponse> batchUpdateEtlMeta(BatchUpdateEtlMetaRequest request);
 
     CompletableFuture<AddMachineIntoMachineGroupResponse> addMachineIntoMachineGroup(AddMachineIntoMachineGroupRequest request);
 
@@ -209,7 +208,7 @@ public interface AsyncClient {
 
     CompletableFuture<CreateConsumerGroupResponse> createConsumerGroup(CreateConsumerGroupRequest request);
 
-    CompletableFuture<ListJobSchedulesResponse> listJobSchedules(ListJobSchedulesRequest tmpReq);
+    CompletableFuture<ListJobSchedulesResponse> listJobSchedules(ListJobSchedulesRequest request);
 
     CompletableFuture<ListIngestionResponse> listIngestion(ListIngestionRequest request);
 
@@ -289,7 +288,7 @@ public interface AsyncClient {
 
     CompletableFuture<GetAppliedConfigsResponse> getAppliedConfigs(GetAppliedConfigsRequest request);
 
-    CompletableFuture<CreateEtlMetaResponse> createEtlMeta(CreateEtlMetaRequest tmpReq);
+    CompletableFuture<CreateEtlMetaResponse> createEtlMeta(CreateEtlMetaRequest request);
 
     CompletableFuture<DeleteJobResponse> deleteJob(DeleteJobRequest request);
 
@@ -305,7 +304,7 @@ public interface AsyncClient {
 
     CompletableFuture<EnableAlertResponse> enableAlert(EnableAlertRequest request);
 
-    CompletableFuture<UpdateLoggingResponse> updateLogging(UpdateLoggingRequest tmpReq);
+    CompletableFuture<UpdateLoggingResponse> updateLogging(UpdateLoggingRequest request);
 
     CompletableFuture<DisableReportResponse> disableReport(DisableReportRequest request);
 
@@ -317,7 +316,7 @@ public interface AsyncClient {
 
     CompletableFuture<DeleteDomainResponse> deleteDomain(DeleteDomainRequest request);
 
-    CompletableFuture<CreateAlertResponse> createAlert(CreateAlertRequest tmpReq);
+    CompletableFuture<CreateAlertResponse> createAlert(CreateAlertRequest request);
 
     CompletableFuture<UpdateProjectResponse> updateProject(UpdateProjectRequest request);
 
@@ -333,7 +332,7 @@ public interface AsyncClient {
 
     CompletableFuture<UpdateIngestionResponse> updateIngestion(UpdateIngestionRequest request);
 
-    CompletableFuture<CreateETLResponse> createETL(CreateETLRequest tmpReq);
+    CompletableFuture<CreateETLResponse> createETL(CreateETLRequest request);
 
     CompletableFuture<CreateIngestionResponse> createIngestion(CreateIngestionRequest request);
 

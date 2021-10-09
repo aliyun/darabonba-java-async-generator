@@ -4,6 +4,7 @@
 import TeaAsyncHandler;
 import TeaRequest;
 import AsyncRequestBody;
+import RequestBody;
 import ClientConfiguration;
 import ClientExecutionParams;
 type @product = string
@@ -293,7 +294,7 @@ model Upload {
 }
 
 model InventoryEncryption {
-  SSEOSS?: string(name='SSE-OSS', description='The container that stores the information about the SSE-OSS encryption method'),
+  SSEOSS?: map[string]any(name='SSE-OSS', description='The container that stores the information about the SSE-OSS encryption method'),
   SSEKMS?: SSEKMS(name='SSE-KMS', description='The container that stores the CMK used in the SSE-KMS encryption method'),
 }
 
@@ -493,27 +494,6 @@ async function getBucketLocation(request: GetBucketLocationRequest): GetBucketLo
   return @handler.do('RESTFUL', 'GetBucketLocation', 'GET', '/?location', 'xml', false, 'xml', request);
 }
 
-model GetBucketCORSRequest {
-  bucket?: string(name='bucket', position='Host'),
-}
-
-model GetBucketCORSResponseBody = {
-  CORSRule?: [
-    CORSRule
-  ](name='CORSRule', parentIgnore='CORSConfiguration'),
-  responseVary?: boolean(name='ResponseVary', parentIgnore='CORSConfiguration'),
-}
-
-model GetBucketCORSResponse = {
-  headers: map[string]string(name='headers'),
-  body: GetBucketCORSResponseBody(name='body'),
-}
-
-async function getBucketCORS(request: GetBucketCORSRequest): GetBucketCORSResponse {
-  @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'GetBucketCORS', 'GET', '/?cors', 'xml', false, 'xml', request);
-}
-
 model PostVodPlaylistRequest {
   bucket?: string(name='bucket', position='Host'),
   channel?: string(name='channel', position='Path'),
@@ -597,9 +577,14 @@ async function putObject(request: PutObjectRequest): PutObjectResponse {
   return @handler.do('RESTFUL', 'PutObject', 'PUT', '/{key}', 'binary', false, 'binary', request);
 }
 
-async function putObjectWithRequestBody(request: PutObjectRequest, requestBody: AsyncRequestBody): PutObjectResponse {
+async function putObjectWithAsyncRequestBody(request: PutObjectRequest, requestBody: AsyncRequestBody): PutObjectResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'PutObject', 'PUT', '/{key}', 'binary', false, 'binary', request);
+  return @handler.doAsyncRequestBody('RESTFUL', 'PutObject', 'PUT', '/{key}', 'binary', false, 'binary', request, requestBody);
+}
+
+async function putObjectWithRequestBody(request: PutObjectRequest, requestBody: RequestBody): PutObjectResponse {
+  @handler.validateRequestModel(request);
+  return @handler.doRequestBody('RESTFUL', 'PutObject', 'PUT', '/{key}', 'binary', false, 'binary', request, requestBody);
 }
 
 model DeleteBucketInventoryRequest {
@@ -708,6 +693,16 @@ model UploadPartCopyResponse = {
 async function uploadPartCopy(request: UploadPartCopyRequest): UploadPartCopyResponse {
   @handler.validateRequestModel(request);
   return @handler.do('RESTFUL', 'UploadPartCopy', 'PUT', '/{key}', 'xml', false, 'binary', request);
+}
+
+async function uploadPartCopyWithAsyncRequestBody(request: UploadPartCopyRequest, requestBody: AsyncRequestBody): UploadPartCopyResponse {
+  @handler.validateRequestModel(request);
+  return @handler.doAsyncRequestBody('RESTFUL', 'UploadPartCopy', 'PUT', '/{key}', 'xml', false, 'binary', request, requestBody);
+}
+
+async function uploadPartCopyWithRequestBody(request: UploadPartCopyRequest, requestBody: RequestBody): UploadPartCopyResponse {
+  @handler.validateRequestModel(request);
+  return @handler.doRequestBody('RESTFUL', 'UploadPartCopy', 'PUT', '/{key}', 'xml', false, 'binary', request, requestBody);
 }
 
 model DeleteBucketWebsiteRequest {
@@ -1004,6 +999,16 @@ async function getObject(request: GetObjectRequest): GetObjectResponse {
   return @handler.do('RESTFUL', 'GetObject', 'GET', '/{key}', 'binary', false, 'binary', request);
 }
 
+async function getObjectWithAsyncRequestBody(request: GetObjectRequest, requestBody: AsyncRequestBody): GetObjectResponse {
+  @handler.validateRequestModel(request);
+  return @handler.doAsyncRequestBody('RESTFUL', 'GetObject', 'GET', '/{key}', 'binary', false, 'binary', request, requestBody);
+}
+
+async function getObjectWithRequestBody(request: GetObjectRequest, requestBody: RequestBody): GetObjectResponse {
+  @handler.validateRequestModel(request);
+  return @handler.doRequestBody('RESTFUL', 'GetObject', 'GET', '/{key}', 'binary', false, 'binary', request, requestBody);
+}
+
 model InitiateBucketWormRequest {
   bucket?: string(name='bucket', position='Host'),
   initiateWormConfiguration?: InitiateWormConfiguration(name='initiateWormConfiguration', position='Body'),
@@ -1016,6 +1021,20 @@ model InitiateBucketWormResponse = {
 async function initiateBucketWorm(request: InitiateBucketWormRequest): InitiateBucketWormResponse {
   @handler.validateRequestModel(request);
   return @handler.do('RESTFUL', 'InitiateBucketWorm', 'POST', '/?worm', 'xml', true, 'xml', request);
+}
+
+model PutBucketCorsRequest {
+  bucket?: string(name='bucket', position='Host'),
+  cORSConfiguration?: CORSConfiguration(name='CORSConfiguration', position='Body'),
+}
+
+model PutBucketCorsResponse = {
+  headers: map[string]string(name='headers'),
+}
+
+async function putBucketCors(request: PutBucketCorsRequest): PutBucketCorsResponse {
+  @handler.validateRequestModel(request);
+  return @handler.do('RESTFUL', 'PutBucketCors', 'PUT', '/?cors', 'xml', false, 'xml', request);
 }
 
 model GetBucketRequest {
@@ -1098,6 +1117,16 @@ model CopyObjectResponse = {
 async function copyObject(request: CopyObjectRequest): CopyObjectResponse {
   @handler.validateRequestModel(request);
   return @handler.do('RESTFUL', 'CopyObject', 'PUT', '/{key}', 'xml', false, 'binary', request);
+}
+
+async function copyObjectWithAsyncRequestBody(request: CopyObjectRequest, requestBody: AsyncRequestBody): CopyObjectResponse {
+  @handler.validateRequestModel(request);
+  return @handler.doAsyncRequestBody('RESTFUL', 'CopyObject', 'PUT', '/{key}', 'xml', false, 'binary', request, requestBody);
+}
+
+async function copyObjectWithRequestBody(request: CopyObjectRequest, requestBody: RequestBody): CopyObjectResponse {
+  @handler.validateRequestModel(request);
+  return @handler.doRequestBody('RESTFUL', 'CopyObject', 'PUT', '/{key}', 'xml', false, 'binary', request, requestBody);
 }
 
 model PutBucketLifecycleRequest {
@@ -1315,20 +1344,6 @@ async function putBucketTransferAcceleration(request: PutBucketTransferAccelerat
   return @handler.do('RESTFUL', 'PutBucketTransferAcceleration', 'PUT', '/?transferAcceleration ', 'xml', true, 'xml', request);
 }
 
-model PutBucketCORSRequest {
-  bucket?: string(name='bucket', position='Host'),
-  cORSConfiguration?: CORSConfiguration(name='CORSConfiguration', position='Body'),
-}
-
-model PutBucketCORSResponse = {
-  headers: map[string]string(name='headers'),
-}
-
-async function putBucketCORS(request: PutBucketCORSRequest): PutBucketCORSResponse {
-  @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'PutBucketCORS', 'PUT', '/?cors', 'xml', false, 'xml', request);
-}
-
 model PutBucketVersioningRequest {
   bucket?: string(name='bucket', position='Host'),
   versioningConfiguration?: VersioningConfiguration(name='versioningConfiguration', position='Body'),
@@ -1356,6 +1371,16 @@ model DeleteObjectResponse = {
 async function deleteObject(request: DeleteObjectRequest): DeleteObjectResponse {
   @handler.validateRequestModel(request);
   return @handler.do('RESTFUL', 'DeleteObject', 'DELETE', '/{key}', 'binary', false, 'binary', request);
+}
+
+async function deleteObjectWithAsyncRequestBody(request: DeleteObjectRequest, requestBody: AsyncRequestBody): DeleteObjectResponse {
+  @handler.validateRequestModel(request);
+  return @handler.doAsyncRequestBody('RESTFUL', 'DeleteObject', 'DELETE', '/{key}', 'binary', false, 'binary', request, requestBody);
+}
+
+async function deleteObjectWithRequestBody(request: DeleteObjectRequest, requestBody: RequestBody): DeleteObjectResponse {
+  @handler.validateRequestModel(request);
+  return @handler.doRequestBody('RESTFUL', 'DeleteObject', 'DELETE', '/{key}', 'binary', false, 'binary', request, requestBody);
 }
 
 model GetBucketRefererRequest {
@@ -1452,6 +1477,16 @@ async function getObjectMeta(request: GetObjectMetaRequest): GetObjectMetaRespon
   return @handler.do('RESTFUL', 'GetObjectMeta', 'HEAD', '/{key}?objectMeta', 'xml', false, 'binary', request);
 }
 
+async function getObjectMetaWithAsyncRequestBody(request: GetObjectMetaRequest, requestBody: AsyncRequestBody): GetObjectMetaResponse {
+  @handler.validateRequestModel(request);
+  return @handler.doAsyncRequestBody('RESTFUL', 'GetObjectMeta', 'HEAD', '/{key}?objectMeta', 'xml', false, 'binary', request, requestBody);
+}
+
+async function getObjectMetaWithRequestBody(request: GetObjectMetaRequest, requestBody: RequestBody): GetObjectMetaResponse {
+  @handler.validateRequestModel(request);
+  return @handler.doRequestBody('RESTFUL', 'GetObjectMeta', 'HEAD', '/{key}?objectMeta', 'xml', false, 'binary', request, requestBody);
+}
+
 model GetLiveChannelInfoRequest {
   bucket?: string(name='bucket', position='Host'),
   channel?: string(name='channel', position='Path'),
@@ -1471,6 +1506,19 @@ model GetLiveChannelInfoResponse = {
 async function getLiveChannelInfo(request: GetLiveChannelInfoRequest): GetLiveChannelInfoResponse {
   @handler.validateRequestModel(request);
   return @handler.do('RESTFUL', 'GetLiveChannelInfo', 'GET', '/{channel}?live', 'xml', false, 'xml', request);
+}
+
+model DeleteBucketCorsRequest {
+  bucket?: string(name='bucket', position='Host'),
+}
+
+model DeleteBucketCorsResponse = {
+  headers: map[string]string(name='headers'),
+}
+
+async function deleteBucketCors(request: DeleteBucketCorsRequest): DeleteBucketCorsResponse {
+  @handler.validateRequestModel(request);
+  return @handler.do('RESTFUL', 'DeleteBucketCors', 'DELETE', '/?cors', 'xml', false, 'xml', request);
 }
 
 model GetLiveChannelHistoryRequest {
@@ -1817,6 +1865,27 @@ async function listObjects(request: ListObjectsRequest): ListObjectsResponse {
   return @handler.do('RESTFUL', 'ListObjects', 'GET', '/', 'xml', false, 'xml', request);
 }
 
+model GetBucketCorsRequest {
+  bucket?: string(name='bucket', position='Host'),
+}
+
+model GetBucketCorsResponseBody = {
+  CORSRule?: [
+    CORSRule
+  ](name='CORSRule', parentIgnore='CORSConfiguration'),
+  responseVary?: boolean(name='ResponseVary', parentIgnore='CORSConfiguration'),
+}
+
+model GetBucketCorsResponse = {
+  headers: map[string]string(name='headers'),
+  body: GetBucketCorsResponseBody(name='body'),
+}
+
+async function getBucketCors(request: GetBucketCorsRequest): GetBucketCorsResponse {
+  @handler.validateRequestModel(request);
+  return @handler.do('RESTFUL', 'GetBucketCors', 'GET', '/?cors', 'xml', false, 'xml', request);
+}
+
 model ListPartsRequest {
   bucket?: string(name='bucket', position='Host'),
   key?: string(name='key', position='Path'),
@@ -1878,6 +1947,16 @@ model UploadPartResponse = {
 async function uploadPart(request: UploadPartRequest): UploadPartResponse {
   @handler.validateRequestModel(request);
   return @handler.do('RESTFUL', 'UploadPart', 'PUT', '/{key}', 'xml', false, 'binary', request);
+}
+
+async function uploadPartWithAsyncRequestBody(request: UploadPartRequest, requestBody: AsyncRequestBody): UploadPartResponse {
+  @handler.validateRequestModel(request);
+  return @handler.doAsyncRequestBody('RESTFUL', 'UploadPart', 'PUT', '/{key}', 'xml', false, 'binary', request, requestBody);
+}
+
+async function uploadPartWithRequestBody(request: UploadPartRequest, requestBody: RequestBody): UploadPartResponse {
+  @handler.validateRequestModel(request);
+  return @handler.doRequestBody('RESTFUL', 'UploadPart', 'PUT', '/{key}', 'xml', false, 'binary', request, requestBody);
 }
 
 model PutBucketRequest {
@@ -1959,19 +2038,6 @@ async function completeMultipartUpload(request: CompleteMultipartUploadRequest):
   return @handler.do('RESTFUL', 'CompleteMultipartUpload', 'POST', '/{key}', 'xml', true, 'xml', request);
 }
 
-model DeleteBucketCORSRequest {
-  bucket?: string(name='bucket', position='Host'),
-}
-
-model DeleteBucketCORSResponse = {
-  headers: map[string]string(name='headers'),
-}
-
-async function deleteBucketCORS(request: DeleteBucketCORSRequest): DeleteBucketCORSResponse {
-  @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'DeleteBucketCORS', 'DELETE', '/?cors', 'xml', false, 'xml', request);
-}
-
 model DeleteLiveChannelRequest {
   bucket?: string(name='bucket', position='Host'),
   channel?: string(name='channel', position='Path'),
@@ -2050,9 +2116,14 @@ async function appendObject(request: AppendObjectRequest): AppendObjectResponse 
   return @handler.do('RESTFUL', 'AppendObject', 'POST', '/{key}?append', 'xml', true, 'binary', request);
 }
 
-async function appendObjectWithRequestBody(request: AppendObjectRequest, requestBody: AsyncRequestBody): AppendObjectResponse {
+async function appendObjectWithAsyncRequestBody(request: AppendObjectRequest, requestBody: AsyncRequestBody): AppendObjectResponse {
   @handler.validateRequestModel(request);
-  return @handler.do('RESTFUL', 'AppendObject', 'POST', '/{key}?append', 'xml', true, 'binary', request);
+  return @handler.doAsyncRequestBody('RESTFUL', 'AppendObject', 'POST', '/{key}?append', 'xml', true, 'binary', request, requestBody);
+}
+
+async function appendObjectWithRequestBody(request: AppendObjectRequest, requestBody: RequestBody): AppendObjectResponse {
+  @handler.validateRequestModel(request);
+  return @handler.doRequestBody('RESTFUL', 'AppendObject', 'POST', '/{key}?append', 'xml', true, 'binary', request, requestBody);
 }
 
 model ListLiveChannelRequest {

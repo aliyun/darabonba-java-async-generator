@@ -30,6 +30,8 @@
 	},
 	"libraries": {
 		"TeaRequest": "alibabacloud:DarabonbaCore.TeaRequest:*",
+		"AsyncRequestBody": "alibabacloud:DarabonbaCore.AsyncRequestBody:*",
+		"RequestBody": "alibabacloud:DarabonbaCore.RequestBody:*",
 		"ClientConfiguration": "alibabacloud:DarabonbaCore.ClientConfiguration:*",
 		"ClientExecutionParams": "alibabacloud:DarabonbaCore.ClientExecutionParams:*",
 		"TeaAsyncHandler": "alibabacloud:DarabonbaCore.TeaAsyncHandler:*"

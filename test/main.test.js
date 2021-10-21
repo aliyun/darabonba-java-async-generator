@@ -113,17 +113,4 @@ describe('new Generator', function () {
     });
   });
 
-  it('ecs should ok', function () {
-    const outputDir = path.join(__dirname, 'output/ecs');
-    const mainFilePath = path.join(__dirname, 'fixtures/ecs/main.dara');
-    const pkgContent = fs.readFileSync(path.join(__dirname, 'fixtures/ecs/Darafile'), 'utf8');
-    const pkg = JSON.parse(pkgContent);
-    check(mainFilePath, outputDir, path.join(__dirname, 'fixtures/ecs/DefaultAsyncClient.java'), 'src/main/java/com/aliyun/ecs20140526/DefaultAsyncClient.java', {
-      pkgDir: path.join(__dirname, 'fixtures/ecs'),
-      baseClient: 'com.aliyun.ecs20140526.AsyncClient',
-      package: 'com.aliyun.ecs20140526',
-      ...pkg
-    });
-  });
-
 });

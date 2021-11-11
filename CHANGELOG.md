@@ -1,5 +1,8 @@
 # ChangeLog
 
+## 0.0.5 - 2021-11-11
+> Fix subModel when some model names alike.
+
 ## 0.0.3 - 2021-09-26
 > Add RequestBody && fix formModel && fix main.
 

@@ -47,32 +47,32 @@ public class SelectObjectRequest extends Request {
     /**
      * @return bucketName
      */
-    public String bucketName() {
+    public String getBucketName() {
         return this.bucketName;
     }
 
     /**
      * @return objectName
      */
-    public String objectName() {
+    public String getObjectName() {
         return this.objectName;
     }
 
     /**
      * @return porcess
      */
-    public String porcess() {
+    public String getPorcess() {
         return this.porcess;
     }
 
     /**
      * @return selectRequest
      */
-    public SelectRequest selectRequest() {
+    public SelectRequest getSelectRequest() {
         return this.selectRequest;
     }
 
-    public static final class Builder extends Request.Builder<SelectObjectRequest.Builder> {
+    public static final class Builder extends Request.Builder {
         private String bucketName; 
         private String objectName; 
         private String porcess; 
@@ -160,46 +160,46 @@ public class SelectObjectRequest extends Request {
         /**
          * @return recordDelimiter
          */
-        public String recordDelimiter() {
+        public String getRecordDelimiter() {
             return this.recordDelimiter;
         }
 
         /**
          * @return range
          */
-        public String range() {
+        public String getRange() {
             return this.range;
         }
 
         /**
          * @return fieldDelimiter
          */
-        public String fieldDelimiter() {
+        public String getFieldDelimiter() {
             return this.fieldDelimiter;
         }
 
         /**
          * @return quoteCharacter
          */
-        public String quoteCharacter() {
+        public String getQuoteCharacter() {
             return this.quoteCharacter;
         }
 
         /**
          * @return commentCharacter
          */
-        public String commentCharacter() {
+        public String getCommentCharacter() {
             return this.commentCharacter;
         }
 
         /**
          * @return fileHeaderInfo
          */
-        public String fileHeaderInfo() {
+        public String getFileHeaderInfo() {
             return this.fileHeaderInfo;
         }
 
-        public static final class Builder extends Request.Builder<InputSerializationCSV.Builder> {
+        public static final class Builder {
             private String recordDelimiter; 
             private String range; 
             private String fieldDelimiter; 
@@ -286,18 +286,18 @@ public class SelectObjectRequest extends Request {
         /**
          * @return compressionType
          */
-        public String compressionType() {
+        public String getCompressionType() {
             return this.compressionType;
         }
 
         /**
          * @return inputSerializationCSV
          */
-        public InputSerializationCSV inputSerializationCSV() {
+        public InputSerializationCSV getInputSerializationCSV() {
             return this.inputSerializationCSV;
         }
 
-        public static final class Builder extends Request.Builder<InputSerialization.Builder> {
+        public static final class Builder {
             private String compressionType; 
             private InputSerializationCSV inputSerializationCSV; 
 
@@ -348,18 +348,18 @@ public class SelectObjectRequest extends Request {
         /**
          * @return recordDelimiter
          */
-        public String recordDelimiter() {
+        public String getRecordDelimiter() {
             return this.recordDelimiter;
         }
 
         /**
          * @return fieldDelimiter
          */
-        public String fieldDelimiter() {
+        public String getFieldDelimiter() {
             return this.fieldDelimiter;
         }
 
-        public static final class Builder extends Request.Builder<OutputSerializationCSV.Builder> {
+        public static final class Builder {
             private String recordDelimiter; 
             private String fieldDelimiter; 
 
@@ -422,39 +422,39 @@ public class SelectObjectRequest extends Request {
         /**
          * @return outputSerializationCSV
          */
-        public OutputSerializationCSV outputSerializationCSV() {
+        public OutputSerializationCSV getOutputSerializationCSV() {
             return this.outputSerializationCSV;
         }
 
         /**
          * @return outputRawData
          */
-        public String outputRawData() {
+        public String getOutputRawData() {
             return this.outputRawData;
         }
 
         /**
          * @return outputHeader
          */
-        public String outputHeader() {
+        public String getOutputHeader() {
             return this.outputHeader;
         }
 
         /**
          * @return enablePayloadCrc
          */
-        public String enablePayloadCrc() {
+        public String getEnablePayloadCrc() {
             return this.enablePayloadCrc;
         }
 
         /**
          * @return keepAllColumns
          */
-        public String keepAllColumns() {
+        public String getKeepAllColumns() {
             return this.keepAllColumns;
         }
 
-        public static final class Builder extends Request.Builder<OutputSerialization.Builder> {
+        public static final class Builder {
             private OutputSerializationCSV outputSerializationCSV; 
             private String outputRawData; 
             private String outputHeader; 
@@ -532,18 +532,18 @@ public class SelectObjectRequest extends Request {
         /**
          * @return maxSkippedRecordsAllowed
          */
-        public String maxSkippedRecordsAllowed() {
+        public String getMaxSkippedRecordsAllowed() {
             return this.maxSkippedRecordsAllowed;
         }
 
         /**
          * @return skipPartialDataRecord
          */
-        public String skipPartialDataRecord() {
+        public String getSkipPartialDataRecord() {
             return this.skipPartialDataRecord;
         }
 
-        public static final class Builder extends Request.Builder<Options.Builder> {
+        public static final class Builder {
             private String maxSkippedRecordsAllowed; 
             private String skipPartialDataRecord; 
 
@@ -602,32 +602,32 @@ public class SelectObjectRequest extends Request {
         /**
          * @return inputSerialization
          */
-        public InputSerialization inputSerialization() {
+        public InputSerialization getInputSerialization() {
             return this.inputSerialization;
         }
 
         /**
          * @return expression
          */
-        public String expression() {
+        public String getExpression() {
             return this.expression;
         }
 
         /**
          * @return outputSerialization
          */
-        public OutputSerialization outputSerialization() {
+        public OutputSerialization getOutputSerialization() {
             return this.outputSerialization;
         }
 
         /**
          * @return options
          */
-        public Options options() {
+        public Options getOptions() {
             return this.options;
         }
 
-        public static final class Builder extends Request.Builder<SelectRequest.Builder> {
+        public static final class Builder {
             private InputSerialization inputSerialization; 
             private String expression; 
             private OutputSerialization outputSerialization; 

@@ -65,3 +65,17 @@ model UntagResourcesRequest {
 Default value: false', position='Query'),
   tagKey?: [ string ](name='TagKey', description='The tag key of the resource. Valid values of N: 1 to 20.', position='Query'),
 }
+
+model BatchCreateEtlMetaRequest {
+  metaValue?: {
+    a?: string(name='CreateTime')
+  }(name='MetaValue', position='Body'),
+}
+
+model CreateEtlMetaRequest {
+  etlMeta?: {
+    metaValue?: {
+      b?: string(name='CreateTime'),
+    }(name='MetaValue'),
+  }(name='EtlMeta', position='Query'),
+}

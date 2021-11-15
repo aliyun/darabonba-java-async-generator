@@ -36,19 +36,6 @@ describe('new Generator', function () {
     });
   });
 
-  // it('oss should ok', function () {
-  //   const outputDir = path.join(__dirname, 'output/oss');
-  //   const mainFilePath = path.join(__dirname, 'fixtures/oss/main.dara');
-  //   const pkgContent = fs.readFileSync(path.join(__dirname, 'fixtures/oss/Darafile'), 'utf8');
-  //   const pkg = JSON.parse(pkgContent);
-  //   check(mainFilePath, outputDir, path.join(__dirname, 'fixtures/oss/DefaultAsyncClient.java'), 'src/main/java/com/aliyun/oss20190517/DefaultAsyncClient.java', {
-  //     pkgDir: path.join(__dirname, 'fixtures/oss'),
-  //     baseClient: 'com.aliyun.oss20190517.AsyncClient',
-  //     package: 'com.aliyun.oss20190517',
-  //     ...pkg
-  //   });
-  // });
-
   it('function should ok', function () {
     const outputDir = path.join(__dirname, 'output/function');
     const mainFilePath = path.join(__dirname, 'fixtures/function/main.dara');
@@ -61,19 +48,6 @@ describe('new Generator', function () {
       ...pkg
     });
   });
-
-  // it('sls should ok', function () {
-  //   const outputDir = path.join(__dirname, 'output/sls');
-  //   const mainFilePath = path.join(__dirname, 'fixtures/sls/main.dara');
-  //   const pkgContent = fs.readFileSync(path.join(__dirname, 'fixtures/sls/Darafile'), 'utf8');
-  //   const pkg = JSON.parse(pkgContent);
-  //   check(mainFilePath, outputDir, path.join(__dirname, 'fixtures/sls/DefaultAsyncClient.java'), 'src/main/java/com/aliyun/sls20201230/DefaultAsyncClient.java', {
-  //     pkgDir: path.join(__dirname, 'fixtures/sls'),
-  //     baseClient: 'com.aliyun.sls20201230.AsyncClient',
-  //     package: 'com.aliyun.sls20201230',
-  //     ...pkg
-  //   });
-  // });
 
   it('model should ok', function () {
     const outputDir = path.join(__dirname, 'output/model');
@@ -112,5 +86,31 @@ describe('new Generator', function () {
       ...pkg
     });
   });
+
+  // it('oss should ok', function () {
+  //   const outputDir = path.join(__dirname, 'output/oss');
+  //   const mainFilePath = path.join(__dirname, 'fixtures/oss/main.dara');
+  //   const pkgContent = fs.readFileSync(path.join(__dirname, 'fixtures/oss/Darafile'), 'utf8');
+  //   const pkg = JSON.parse(pkgContent);
+  //   check(mainFilePath, outputDir, path.join(__dirname, 'fixtures/oss/DefaultAsyncClient.java'), 'src/main/java/com/aliyun/oss20190517/DefaultAsyncClient.java', {
+  //     pkgDir: path.join(__dirname, 'fixtures/oss'),
+  //     baseClient: 'com.aliyun.oss20190517.AsyncClient',
+  //     package: 'com.aliyun.oss20190517',
+  //     ...pkg
+  //   });
+  // });
+
+  // it('sls should ok', function () {
+  //   const outputDir = path.join(__dirname, 'output/sls');
+  //   const mainFilePath = path.join(__dirname, 'fixtures/sls/main.dara');
+  //   const pkgContent = fs.readFileSync(path.join(__dirname, 'fixtures/sls/Darafile'), 'utf8');
+  //   const pkg = JSON.parse(pkgContent);
+  //   check(mainFilePath, outputDir, path.join(__dirname, 'fixtures/sls/DefaultAsyncClient.java'), 'src/main/java/com/aliyun/sls20201230/DefaultAsyncClient.java', {
+  //     pkgDir: path.join(__dirname, 'fixtures/sls'),
+  //     baseClient: 'com.aliyun.sls20201230.AsyncClient',
+  //     package: 'com.aliyun.sls20201230',
+  //     ...pkg
+  //   });
+  // });
 
 });

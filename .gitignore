@@ -4,3 +4,6 @@ output/
 imwebhook/
 package-lock.json
 libraries/
+.libraries.json
+oss/
+sls/

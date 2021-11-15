@@ -1,5 +1,8 @@
 # ChangeLog
 
+## 0.0.6 - 2021-11-15
+> And extends for builder.
+
 ## 0.0.5 - 2021-11-11
 > Fix subModel when some model names alike.
 

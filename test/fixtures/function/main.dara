@@ -44,7 +44,7 @@ enum StorageClass: string {
   COLDARCHIVE(value='ColdArchive', description='COLDARCHIVE'),
 }
 
-model ListBucketsRequest {
+model aListBucketsRequest {
   prefix?: string(name='prefix', position='Query'),
   marker?: string(name='marker', position='Query'),
   maxKeys?: long(name='max-keys', position='Query'),

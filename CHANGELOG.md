@@ -1,5 +1,8 @@
 # ChangeLog
 
+## 0.0.8 - 2021-12-15
+> And test cases.
+
 ## 0.0.7 - 2021-11-17
 > And serviceName.
 

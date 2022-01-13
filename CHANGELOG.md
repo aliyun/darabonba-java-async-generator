@@ -1,5 +1,9 @@
 # ChangeLog
 
+## 0.1.0 - 2022-01-13
+> Support response handler.
+> Resolve class name conflict.
+
 ## 0.0.8 - 2021-12-15
 > And test cases.
 

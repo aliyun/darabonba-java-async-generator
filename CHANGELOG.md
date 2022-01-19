@@ -1,5 +1,8 @@
 # ChangeLog
 
+## 0.1.1 - 2022-01-19
+> Fix function params bug
+
 ## 0.1.0 - 2022-01-13
 > Support response handler.
 > Resolve class name conflict.

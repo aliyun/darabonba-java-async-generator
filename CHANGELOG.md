@@ -1,5 +1,8 @@
 # ChangeLog
 
+## 0.1.2 - 2022-01-20
+> Polish Javadoc
+
 ## 0.1.1 - 2022-01-19
 > Fix function params bug
 

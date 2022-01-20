@@ -79,7 +79,7 @@ public class SelectObjectRequest extends Request {
         private SelectRequest selectRequest; 
 
         /**
-         * <p>BucketName.</p>
+         * BucketName.
          */
         public Builder bucketName(String bucketName) {
             this.putHostParameter("BucketName", bucketName);
@@ -88,7 +88,7 @@ public class SelectObjectRequest extends Request {
         }
 
         /**
-         * <p>ObjectName.</p>
+         * ObjectName.
          */
         public Builder objectName(String objectName) {
             this.putPathParameter("ObjectName", objectName);
@@ -97,7 +97,7 @@ public class SelectObjectRequest extends Request {
         }
 
         /**
-         * <p>Porcess.</p>
+         * Porcess.
          */
         public Builder porcess(String porcess) {
             this.putQueryParameter("Porcess", porcess);
@@ -106,7 +106,7 @@ public class SelectObjectRequest extends Request {
         }
 
         /**
-         * <p>SelectRequest.</p>
+         * SelectRequest.
          */
         public Builder selectRequest(SelectRequest selectRequest) {
             this.putBodyParameter("SelectRequest", selectRequest);
@@ -208,7 +208,7 @@ public class SelectObjectRequest extends Request {
             private String fileHeaderInfo; 
 
             /**
-             * <p>RecordDelimiter.</p>
+             * RecordDelimiter.
              */
             public Builder recordDelimiter(String recordDelimiter) {
                 this.recordDelimiter = recordDelimiter;
@@ -216,7 +216,7 @@ public class SelectObjectRequest extends Request {
             }
 
             /**
-             * <p>Range.</p>
+             * Range.
              */
             public Builder range(String range) {
                 this.range = range;
@@ -224,7 +224,7 @@ public class SelectObjectRequest extends Request {
             }
 
             /**
-             * <p>FieldDelimiter.</p>
+             * FieldDelimiter.
              */
             public Builder fieldDelimiter(String fieldDelimiter) {
                 this.fieldDelimiter = fieldDelimiter;
@@ -232,7 +232,7 @@ public class SelectObjectRequest extends Request {
             }
 
             /**
-             * <p>QuoteCharacter.</p>
+             * QuoteCharacter.
              */
             public Builder quoteCharacter(String quoteCharacter) {
                 this.quoteCharacter = quoteCharacter;
@@ -240,7 +240,7 @@ public class SelectObjectRequest extends Request {
             }
 
             /**
-             * <p>CommentCharacter.</p>
+             * CommentCharacter.
              */
             public Builder commentCharacter(String commentCharacter) {
                 this.commentCharacter = commentCharacter;
@@ -248,7 +248,7 @@ public class SelectObjectRequest extends Request {
             }
 
             /**
-             * <p>FileHeaderInfo.</p>
+             * FileHeaderInfo.
              */
             public Builder fileHeaderInfo(String fileHeaderInfo) {
                 this.fileHeaderInfo = fileHeaderInfo;
@@ -302,7 +302,7 @@ public class SelectObjectRequest extends Request {
             private InputSerializationCSV inputSerializationCSV; 
 
             /**
-             * <p>CompressionType.</p>
+             * CompressionType.
              */
             public Builder compressionType(String compressionType) {
                 this.compressionType = compressionType;
@@ -310,7 +310,7 @@ public class SelectObjectRequest extends Request {
             }
 
             /**
-             * <p>CSV.</p>
+             * CSV.
              */
             public Builder inputSerializationCSV(InputSerializationCSV inputSerializationCSV) {
                 this.inputSerializationCSV = inputSerializationCSV;
@@ -364,7 +364,7 @@ public class SelectObjectRequest extends Request {
             private String fieldDelimiter; 
 
             /**
-             * <p>RecordDelimiter.</p>
+             * RecordDelimiter.
              */
             public Builder recordDelimiter(String recordDelimiter) {
                 this.recordDelimiter = recordDelimiter;
@@ -372,7 +372,7 @@ public class SelectObjectRequest extends Request {
             }
 
             /**
-             * <p>FieldDelimiter.</p>
+             * FieldDelimiter.
              */
             public Builder fieldDelimiter(String fieldDelimiter) {
                 this.fieldDelimiter = fieldDelimiter;
@@ -462,7 +462,7 @@ public class SelectObjectRequest extends Request {
             private String keepAllColumns; 
 
             /**
-             * <p>CSV.</p>
+             * CSV.
              */
             public Builder outputSerializationCSV(OutputSerializationCSV outputSerializationCSV) {
                 this.outputSerializationCSV = outputSerializationCSV;
@@ -470,7 +470,7 @@ public class SelectObjectRequest extends Request {
             }
 
             /**
-             * <p>OutputRawData.</p>
+             * OutputRawData.
              */
             public Builder outputRawData(String outputRawData) {
                 this.outputRawData = outputRawData;
@@ -478,7 +478,7 @@ public class SelectObjectRequest extends Request {
             }
 
             /**
-             * <p>OutputHeader.</p>
+             * OutputHeader.
              */
             public Builder outputHeader(String outputHeader) {
                 this.outputHeader = outputHeader;
@@ -486,7 +486,7 @@ public class SelectObjectRequest extends Request {
             }
 
             /**
-             * <p>EnablePayloadCrc.</p>
+             * EnablePayloadCrc.
              */
             public Builder enablePayloadCrc(String enablePayloadCrc) {
                 this.enablePayloadCrc = enablePayloadCrc;
@@ -494,7 +494,7 @@ public class SelectObjectRequest extends Request {
             }
 
             /**
-             * <p>KeepAllColumns.</p>
+             * KeepAllColumns.
              */
             public Builder keepAllColumns(String keepAllColumns) {
                 this.keepAllColumns = keepAllColumns;
@@ -548,7 +548,7 @@ public class SelectObjectRequest extends Request {
             private String skipPartialDataRecord; 
 
             /**
-             * <p>MaxSkippedRecordsAllowed.</p>
+             * MaxSkippedRecordsAllowed.
              */
             public Builder maxSkippedRecordsAllowed(String maxSkippedRecordsAllowed) {
                 this.maxSkippedRecordsAllowed = maxSkippedRecordsAllowed;
@@ -556,7 +556,7 @@ public class SelectObjectRequest extends Request {
             }
 
             /**
-             * <p>SkipPartialDataRecord.</p>
+             * SkipPartialDataRecord.
              */
             public Builder skipPartialDataRecord(String skipPartialDataRecord) {
                 this.skipPartialDataRecord = skipPartialDataRecord;
@@ -634,7 +634,7 @@ public class SelectObjectRequest extends Request {
             private Options options; 
 
             /**
-             * <p>InputSerialization.</p>
+             * InputSerialization.
              */
             public Builder inputSerialization(InputSerialization inputSerialization) {
                 this.inputSerialization = inputSerialization;
@@ -642,7 +642,7 @@ public class SelectObjectRequest extends Request {
             }
 
             /**
-             * <p>Expression.</p>
+             * Expression.
              */
             public Builder expression(String expression) {
                 this.expression = expression;
@@ -650,7 +650,7 @@ public class SelectObjectRequest extends Request {
             }
 
             /**
-             * <p>OutputSerialization.</p>
+             * OutputSerialization.
              */
             public Builder outputSerialization(OutputSerialization outputSerialization) {
                 this.outputSerialization = outputSerialization;
@@ -658,7 +658,7 @@ public class SelectObjectRequest extends Request {
             }
 
             /**
-             * <p>Options.</p>
+             * Options.
              */
             public Builder options(Options options) {
                 this.options = options;

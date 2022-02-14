@@ -1,5 +1,10 @@
 # ChangeLog
 
+## 0.1.3 - 2022-02-14
+> Polish Enum type params.
+> Update Request & Response Model.
+> Add response async handler.
+
 ## 0.1.2 - 2022-01-20
 > Polish Javadoc
 

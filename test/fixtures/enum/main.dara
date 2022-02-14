@@ -4,3 +4,7 @@ enum Integer: number {
   LRS(value=1, description='LRS'),
   ZRS(value=2, description='ZRS'),
 }
+
+model Request = {
+  name?: Integer(name='name', description='The Name.'),
+}

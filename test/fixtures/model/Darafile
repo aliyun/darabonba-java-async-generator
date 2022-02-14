@@ -3,6 +3,8 @@
   "name": "Fix",
   "version": "0.0.1",
   "main": "./main.tea",
+  "productId": "test",
+	"gatewayId": "test",
   "maintainers": [
     {
       "name": "Alibaba Cloud SDK",

@@ -10,7 +10,7 @@ import darabonba.core.TeaModel;
  *
  * <p>SelectObjectRequest</p>
  */
-public class SelectObjectRequest extends Request {
+public class SelectObjectRequest extends TeaModel {
     @Host
     @NameInMap("BucketName")
     private String bucketName;
@@ -23,16 +23,19 @@ public class SelectObjectRequest extends Request {
     @NameInMap("Porcess")
     private String porcess;
 
+    @Query
+    @NameInMap("enumName")
+    private Long enumName;
+
     @Body
     @NameInMap("SelectRequest")
     private SelectRequest selectRequest;
 
-
     private SelectObjectRequest(Builder builder) {
-        super(builder);
         this.bucketName = builder.bucketName;
         this.objectName = builder.objectName;
         this.porcess = builder.porcess;
+        this.enumName = builder.enumName;
         this.selectRequest = builder.selectRequest;
     }
 
@@ -66,16 +69,24 @@ public class SelectObjectRequest extends Request {
     }
 
     /**
+     * @return enumName
+     */
+    public Long getEnumName() {
+        return this.enumName;
+    }
+
+    /**
      * @return selectRequest
      */
     public SelectRequest getSelectRequest() {
         return this.selectRequest;
     }
 
-    public static final class Builder extends Request.Builder<Builder> {
+    public static final class Builder {
         private String bucketName; 
         private String objectName; 
         private String porcess; 
+        private Long enumName; 
         private SelectRequest selectRequest; 
 
         /**
@@ -102,6 +113,24 @@ public class SelectObjectRequest extends Request {
         public Builder porcess(String porcess) {
             this.putQueryParameter("Porcess", porcess);
             this.porcess = porcess;
+            return this;
+        }
+
+        /**
+         * enumName.
+         */
+        public Builder enumName(Long enumName) {
+            this.putQueryParameter("enumName", enumName);
+            this.enumName = enumName;
+            return this;
+        }
+
+        /**
+         * enumName.
+         */
+        public Builder enumName(EnumModule enumName) {
+            this.putQueryParameter("enumName", enumName.getValue());
+            this.enumName = enumName.getValue();
             return this;
         }
 
@@ -138,7 +167,6 @@ public class SelectObjectRequest extends Request {
 
         @NameInMap("FileHeaderInfo")
         private String fileHeaderInfo;
-
 
         private InputSerializationCSV(Builder builder) {
             this.recordDelimiter = builder.recordDelimiter;
@@ -269,7 +297,6 @@ public class SelectObjectRequest extends Request {
         @NameInMap("CSV")
         private InputSerializationCSV inputSerializationCSV;
 
-
         private InputSerialization(Builder builder) {
             this.compressionType = builder.compressionType;
             this.inputSerializationCSV = builder.inputSerializationCSV;
@@ -330,7 +357,6 @@ public class SelectObjectRequest extends Request {
 
         @NameInMap("FieldDelimiter")
         private String fieldDelimiter;
-
 
         private OutputSerializationCSV(Builder builder) {
             this.recordDelimiter = builder.recordDelimiter;
@@ -401,7 +427,6 @@ public class SelectObjectRequest extends Request {
 
         @NameInMap("KeepAllColumns")
         private String keepAllColumns;
-
 
         private OutputSerialization(Builder builder) {
             this.outputSerializationCSV = builder.outputSerializationCSV;
@@ -515,7 +540,6 @@ public class SelectObjectRequest extends Request {
         @NameInMap("SkipPartialDataRecord")
         private String skipPartialDataRecord;
 
-
         private Options(Builder builder) {
             this.maxSkippedRecordsAllowed = builder.maxSkippedRecordsAllowed;
             this.skipPartialDataRecord = builder.skipPartialDataRecord;
@@ -582,7 +606,6 @@ public class SelectObjectRequest extends Request {
 
         @NameInMap("Options")
         private Options options;
-
 
         private SelectRequest(Builder builder) {
             this.inputSerialization = builder.inputSerialization;

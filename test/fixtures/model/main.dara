@@ -1,9 +1,15 @@
 init(){}
 
+enum EnumModule: long {
+  LRS(value=1, description='LRS'),
+  ZRS(value=2, description='ZRS'),
+}
+
 model SelectObjectRequest {
   bucketName?: string(name='BucketName', position='Host'),
   objectName?: string(name='ObjectName', position='Path'),
   porcess?: string(name='Porcess', position='Query'),
+  enumName?: EnumModule(name='enumName', position='Query'),
   selectRequest?: {
     inputSerialization?: {
       compressionType?: string(name='CompressionType'),

@@ -1,5 +1,10 @@
 # ChangeLog
 
+## 0.1.4 - 2022-02-21
+> Add key words.
+> Update serviceName.
+> Support closable.
+
 ## 0.1.3 - 2022-02-14
 > Polish Enum type params.
 > Update Request & Response Model.

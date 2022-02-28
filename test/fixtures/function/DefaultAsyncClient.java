@@ -45,4 +45,25 @@ public final class DefaultAsyncClient implements AsyncClient {
         }
     }
 
+    @Override
+    public void test() {
+        String test1 = "1";
+        String test2 = "2";
+        java.util.List<String> list = java.util.Arrays.asList(
+            test1,
+            test2
+        );
+        java.util.Map<String, String> m = CommonUtil.buildMap(
+            new TeaPair("test1", test1),
+            new TeaPair("test2", test2)
+        );
+        java.util.Map<String, String> result = CommonUtil.merge(String.class,
+            CommonUtil.buildMap(
+                new TeaPair("key", "value"),
+                new TeaPair("key-1", "value-1")
+            ),
+            m
+        );
+    }
+
 }

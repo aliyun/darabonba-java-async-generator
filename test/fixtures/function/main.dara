@@ -66,3 +66,18 @@ async function listBuckets(request: ListBucketsRequest): ListBucketsResponse {
   @handler.validateRequestModel(request);
   return @handler.do('RESTFUL', 'ListBuckets', 'GET', '/ ', 'xml', false, '', request);
 }
+
+function test(): void {
+  var test1: string = '1';
+  var test2: string = '2';
+  var list: [string] = [test1, test2];
+  var m: map[string]string = {
+    test1 = test1,
+    test2 = test2,
+  };
+  var result: map[string]string = {
+    key = 'value',
+    key-1 = 'value-1',
+    ...m,
+  };
+}

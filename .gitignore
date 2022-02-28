@@ -7,4 +7,5 @@ libraries/
 .libraries.json
 oss/
 sls/
+tmp/
 eventbridge/

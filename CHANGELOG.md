@@ -1,5 +1,8 @@
 # ChangeLog
 
+## 0.1.6 - 2022-03-03
+> Support muti-position params.
+
 ## 0.1.5 - 2022-03-01
 > Fix builder name.
 > Remove some depens.

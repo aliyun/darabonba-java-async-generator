@@ -1,5 +1,8 @@
 # ChangeLog
 
+## 0.1.8 - 2022-04-01
+> Deal shrink params.
+
 ## 0.1.7 - 2022-03-04
 > Fix response model.
 

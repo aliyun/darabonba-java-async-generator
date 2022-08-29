@@ -61,7 +61,7 @@ generator.visit(ast);
 
 ## Issues
 
-[Opening an Issue](https://github.com/aliyun/darabonba-java-generator/issues/new/choose), Issues not conforming to the guidelines may be closed immediately.
+[Opening an Issue](https://github.com/aliyun/darabonba-java-async-generator/issues/new/choose), Issues not conforming to the guidelines may be closed immediately.
 
 ## Changelog
 

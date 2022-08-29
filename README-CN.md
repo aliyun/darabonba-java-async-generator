@@ -60,7 +60,7 @@ generator.visit(ast);
 
 ## 问题反馈
 
-[提出问题](https://github.com/aliyun/darabonba-java-generator/issues/new/choose), 不符合指南的问题可能会立即关闭。
+[提出问题](https://github.com/aliyun/darabonba-java-async-generator/issues/new/choose), 不符合指南的问题可能会立即关闭。
 
 ## 发布日志
 

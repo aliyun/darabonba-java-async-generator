@@ -1,5 +1,8 @@
 # ChangeLog
 
+## 1.0.0 - 2022-08-29
+> Release version 1.0.0.
+
 ## 0.1.8 - 2022-04-01
 > Deal shrink params.
 

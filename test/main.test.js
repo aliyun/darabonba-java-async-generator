@@ -119,6 +119,18 @@ describe('new Generator', function () {
     });
   });
 
+  it('iterator should ok', function () {
+    const outputDir = path.join(__dirname, 'output/iterator');
+    const mainFilePath = path.join(__dirname, 'fixtures/iterator/main.dara');
+    const pkgContent = fs.readFileSync(path.join(__dirname, 'fixtures/iterator/Darafile'), 'utf8');
+    const pkg = JSON.parse(pkgContent);
+    check(mainFilePath, outputDir, path.join(__dirname, 'fixtures/iterator/Client.java'), 'src/main/java/com/aliyun/Client.java', {
+      pkgDir: path.join(__dirname, 'fixtures/iterator'),
+      exec: true,
+      ...pkg
+    });
+  });
+
   // it('oss should ok', function () {
   //   const outputDir = path.join(__dirname, 'output/oss');
   //   const mainFilePath = path.join(__dirname, 'fixtures/oss/main.dara');

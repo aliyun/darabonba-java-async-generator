@@ -1,0 +1,219 @@
+import Source;
+
+model Config {
+  subM: {},
+  protocol: string,
+}
+type @protocol = string
+type @pathname = string
+type @compleList = [[string]]
+type @configs = [ Config ];
+
+init(config: Config){
+  @protocol = config.protocol;
+  @configs[0] = config;
+}
+
+model ComplexRequest = {
+  accessKey: string,
+  moduleModelMap: map[string]Source.Request,
+  subModelMap: map[string]Config.subM,
+  complexList: [[map[string]string]],
+  complexList1: [ 
+    {
+      name?: string(name='Name'),
+      code?: int32(name='Code'),
+    }
+  ](name='complexList2'),
+  complexList2: [[[ 
+    {
+      name?: string(name='Name'),
+      code?: int32(name='Code'),
+    }
+  ]]](name='complexList2'),
+  complexList3: [[[ 
+    Config
+  ]]](name='complexList3'),
+  body: readable(name='Body', example='Body', description='Body\nbody'),
+  userTest?: map[string][ map[string]string ](name='UserPsssrivileges'),
+  strs: [ string ](name='Strs', example='Strs', description='Strs'),
+  header: {
+    content: string(name='Content', example='Content', signed='true', description='Body')
+  }(description='header', name='header'),
+  num: number,
+  client: Source,
+  configs: {
+    key: string,
+    value: [ string ],
+    extra: map[string] string
+  },
+  part?: [
+    {
+      partNumber?: string(description='PartNumber', name='PartNumber')
+    }
+  ](description='Part', name='Part'),
+}
+
+model Response {
+  part: ComplexRequest.part,
+  req: Source.Request,
+}
+
+static function arrayAssign3(request: ComplexRequest, config: string): void {
+  request.configs.value[0] = config;
+}
+
+static function mapAccess(request: ComplexRequest): string {
+   var configInfo = request.configs.extra['name'];
+  return configInfo;
+}
+
+static function mapAccess2(configs: Source.Request.configs): string {
+   var configInfo = configs.extra['name'];
+  return configInfo;
+}
+
+static function mapAccess3(): string {
+  var data = {
+    configs  = {
+      value = 'string'
+    } 
+  };
+  return data.configs['value'];
+}
+
+static function mapAssign(request: ComplexRequest, name: string): void {
+  request.configs.extra['name'] = name;
+}
+
+static function arrayAssign2(config: string): [ string ] {
+  var data = {
+    configs = ['a', 'b', 'c']
+  };
+  data.configs[3] = config;
+  return data.configs;
+}
+
+static function arrayAssign(config: string): [ string ] {
+  var configs = ['a', 'b', 'c'];
+  configs[3] = config;
+  return configs;
+}
+
+static function arrayAccess3(request: ComplexRequest): string {
+  var configVal = request.configs.value[0];
+  return configVal;
+}
+
+static function arrayAccess2(): string {
+  var data = {
+    configs = ['a', 'b', 'c']
+  };
+  var config = data.configs[0];
+  return config;
+}
+
+static function arrayAccess(): string {
+  var configs = ['a', 'b', 'c'];
+  var config = configs[0];
+  return config;
+}
+
+function testSubModel(part: ComplexRequest.part, complexList: [[string]]): void {
+ return;
+}
+
+async function hello(request: object, strs: [ string ]): [ string ] {
+  return array1();
+}
+
+static async function print(reqeust: $Request, reqs: [ ComplexRequest ], response: $Response, val: map[string]string): Source.Request {return null;}
+
+api Complex1(request: ComplexRequest, client: Source): Source.RuntimeObject {
+  var name = 'complex';
+  var mapVal = {test="ok"};
+  __request.protocol = @protocol;
+  __request.port = request.num;
+  __request.method = 'GET';
+  __request.pathname = `/${@pathname}`;
+  __request.query = {
+    date = '2019',
+  };
+} returns {
+  if (true && true){
+    retry;
+    return null;
+  } else if(true || false){
+    return new Source.RuntimeObject{};
+  }
+  client.print(request, '1');
+  hello(request, ["1","2"]);
+  hello(null, null);
+	Complex3(null);
+  return {};
+} runtime {
+  timeouted = 'retry'
+} 
+
+api Complex2(request: ComplexRequest, str: [ string ], val: map[string]string): object {
+  var name = 'complex';
+  var config = new Source.Config{};
+  var client = new Source(config);
+  __request.protocol = 'HTTP';
+  __request.port = 80;
+  __request.method = 'GET';
+  __request.pathname = '/';
+  __request.query = {
+    date = '2019',
+    protocol = __request.protocol,
+  };
+}
+
+api Complex3(request: ComplexRequest): ComplexRequest {
+  var name = 'complex';
+  __request.protocol = templateString();
+  __request.port = 80;
+  __request.method = 'GET';
+  __request.pathname = '/';
+  __request.body = 'body';
+  __request.query = {
+    date = '2019',
+  };
+} returns {
+  var resp = __response;
+  var req = new Source.Request{
+    accesskey = request.accessKey,
+    region = resp.statusMessage
+  };
+  array0(request);
+  req.accesskey = 'accesskey';
+  req.accesskey = request.accessKey;
+  printNull();
+  Source.array(request, '1');
+  return {
+    ...__request.query
+  };
+}
+
+static async function printNull(): void {
+  var str = templateString();
+}
+
+static async function conflict(sconf: Source.Config, conf:Config): void {
+  sconf.protocol = conf.protocol;
+}
+
+static function array0(req: object): [ any ] {
+  var longTest = 1L;
+  var doubleTest = 1d;
+  var floatTest = 1f;
+  return [];
+}
+
+static function array1(): [ string ] {
+  return ["1"];
+}
+
+async function templateString(): string {
+  return `/${@protocol}`;
+}

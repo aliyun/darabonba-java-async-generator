@@ -3,9 +3,9 @@ output/
 .DS_Store
 imwebhook/
 package-lock.json
-libraries/
-.libraries.json
 oss/
 sls/
 tmp/
 eventbridge/
+.nyc_output
+coverage

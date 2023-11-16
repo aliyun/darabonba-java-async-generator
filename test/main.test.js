@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 'use strict';
 
 const path = require('path');
@@ -83,6 +84,37 @@ describe('new Generator', function () {
     check(mainFilePath, outputDir, path.join(__dirname, 'fixtures/main/Client.java'), 'src/main/java/com/aliyun/main/Client.java', {
       pkgDir: path.join(__dirname, 'fixtures/main'),
       package: 'com.aliyun.main',
+      ...pkg
+    });
+  });
+
+  it('builder should ok', function () {
+    const outputDir = path.join(__dirname, 'output/builder');
+    const mainFilePath = path.join(__dirname, 'fixtures/builder/main.dara');
+    const pkgContent = fs.readFileSync(path.join(__dirname, 'fixtures/builder/Darafile'), 'utf8');
+    const pkg = JSON.parse(pkgContent);
+    check(mainFilePath, outputDir, path.join(__dirname, 'fixtures/builder/DefaultAsyncClient.java'), 'src/main/java/com/aliyun/DefaultAsyncClient.java', {
+      pkgDir: path.join(__dirname, 'fixtures/builder'),
+      exec: true,
+      ...pkg
+    });
+  });
+
+  it('complex should ok', function () {
+    const outputDir = path.join(__dirname, 'output/complex');
+    const mainFilePath = path.join(__dirname, 'fixtures/complex/main.dara');
+    const pkgContent = fs.readFileSync(path.join(__dirname, 'fixtures/complex/Darafile'), 'utf8');
+    const pkg = JSON.parse(pkgContent);
+    check(mainFilePath, outputDir, path.join(__dirname, 'fixtures/complex/NameTest.java'), 'src/main/java/com/aliyun/NameTest.java', {
+      pkgDir: path.join(__dirname, 'fixtures/complex'),
+      ...pkg
+    });
+    check(mainFilePath, outputDir, path.join(__dirname, 'fixtures/complex/ComplexRequest.java'), 'src/main/java/com/aliyun/models/ComplexRequest.java', {
+      pkgDir: path.join(__dirname, 'fixtures/complex'),
+      ...pkg
+    });
+    check(mainFilePath, outputDir, path.join(__dirname, 'fixtures/complex/ImplementsTest.java'), 'src/main/java/com/aliyun/ImplementsTest.java', {
+      pkgDir: path.join(__dirname, 'fixtures/complex'),
       ...pkg
     });
   });

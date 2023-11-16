@@ -1,0 +1,18 @@
+{
+    "scope": "darabonba",
+    "name": "main",
+    "version": "0.0.1",
+    "main": "./main.dara",
+    "libraries": {
+        "Source": "darabonba:import:*"
+    },
+    "java": {
+        "package": "com.aliyun",
+        "implements": "ImplementsTest",
+        "className": "NameTest",
+        "NoException": true
+    },
+    "releases": {
+        "java": "com.aliyun:darabonba-java-core:0.0.1"
+    }
+}

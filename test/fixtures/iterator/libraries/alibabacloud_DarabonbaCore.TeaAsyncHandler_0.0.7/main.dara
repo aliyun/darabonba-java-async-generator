@@ -1,0 +1,38 @@
+/**
+ *
+ */
+
+import TeaRequest;
+import ClientConfiguration;
+import AsyncRequestBody;
+import RequestBody;
+import AsyncResponseHandler;
+
+init(configuration: ClientConfiguration){}
+/**
+ * Execute request
+ * @return response
+ */
+api do(style: string, action: string, method: string, pathRegex: string, bodyType: string, bodyIsForm: boolean, reqBodyType: string, requestModel: $Model): any{
+}
+
+api doAsyncRequestBody(style: string, action: string, method: string, pathRegex: string, bodyType: string, bodyIsForm: boolean, reqBodyType: string, requestModel: $Model, requestBody: AsyncRequestBody): any{
+}
+
+api doRequestBody(style: string, action: string, method: string, pathRegex: string, bodyType: string, bodyIsForm: boolean, reqBodyType: string, requestModel: $Model, requestBody: RequestBody): any{
+}
+
+api doResponseHandler(style: string, action: string, method: string, pathRegex: string, bodyType: string, bodyIsForm: boolean, reqBodyType: string, requestModel: $Model, responseHandler: AsyncResponseHandler): any{
+}
+
+api doSSERequest(style: string, action: string, method: string, pathRegex: string, bodyType: string, bodyIsForm: boolean, reqBodyType: string, requestModel: $Model): any{
+}
+
+/**
+ * Validate params for RequestModel
+ */
+function validateRequestModel(model: $Model): void;
+
+function execute(teaRequest: TeaRequest, model: $Model): $Model;
+
+function close(): void;

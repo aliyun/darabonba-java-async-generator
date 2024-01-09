@@ -1,0 +1,10 @@
+{
+  "alibabacloud:DarabonbaCore.TeaRequest:*": "libraries/alibabacloud_DarabonbaCore.TeaRequest_0.0.2",
+  "alibabacloud:DarabonbaCore.AsyncRequestBody:*": "libraries/alibabacloud_DarabonbaCore.AsyncRequestBody_0.0.2",
+  "alibabacloud:DarabonbaCore.RequestBody:*": "libraries/alibabacloud_DarabonbaCore.RequestBody_0.0.2",
+  "alibabacloud:DarabonbaCore.AsyncResponseHandler:*": "libraries/alibabacloud_DarabonbaCore.AsyncResponseHandler_0.0.1",
+  "alibabacloud:DarabonbaCore.ClientConfiguration:*": "libraries/alibabacloud_DarabonbaCore.ClientConfiguration_0.0.2",
+  "alibabacloud:DarabonbaCore.ClientExecutionParams:*": "libraries/alibabacloud_DarabonbaCore.ClientExecutionParams_0.0.1",
+  "alibabacloud:DarabonbaCore.TeaAsyncHandler:*": "libraries/alibabacloud_DarabonbaCore.TeaAsyncHandler_0.0.7",
+  "alibabacloud:DarabonbaCore.Pop:*": "libraries/alibabacloud_DarabonbaCore.Pop_0.0.2"
+}

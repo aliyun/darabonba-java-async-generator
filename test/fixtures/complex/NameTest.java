@@ -26,6 +26,10 @@ public final class NameTest implements ImplementsTest {
         this.REQUEST = TeaRequest.create().setProduct(product).setEndpointRule(endpointRule).setEndpointMap(endpointMap).setVersion(version);
     }
 
+    public static void assign(ComplexRequest request) {
+        request = request.toBuilder().accessKey("test").build();
+    }
+
     public static void arrayAssign3(ComplexRequest request, String config) {
         request.getConfigs().getValue().set(0, config);
     }
@@ -141,7 +145,7 @@ public final class NameTest implements ImplementsTest {
 
     public static CompletableFuture<Void> conflict(com.import.models.Config sconf, com.aliyun.models.Config conf) {
         try {
-            sconf.protocol = conf.getProtocol();
+            sconf = sconf.toBuilder().protocol(conf.getProtocol()).build();
         } catch (Exception e) {
             CompletableFuture<Void> future = new CompletableFuture<>();
             future.completeExceptionally(e);

@@ -119,6 +119,25 @@ describe('new Generator', function () {
     });
   });
 
+  it('iterator should ok', function () {
+    const outputDir = path.join(__dirname, 'output/iterator');
+    const mainFilePath = path.join(__dirname, 'fixtures/iterator/main.dara');
+    const pkgContent = fs.readFileSync(path.join(__dirname, 'fixtures/iterator/Darafile'), 'utf8');
+    const pkg = JSON.parse(pkgContent);
+    check(mainFilePath, outputDir, path.join(__dirname, 'fixtures/iterator/DefaultAsyncClient.java'), 'src/main/java/com/aliyun/DefaultAsyncClient.java', {
+      pkgDir: path.join(__dirname, 'fixtures/iterator'),
+      ...pkg
+    });
+    check(mainFilePath, outputDir, path.join(__dirname, 'fixtures/iterator/AsyncClient.java'), 'src/main/java/com/aliyun/AsyncClient.java', {
+      pkgDir: path.join(__dirname, 'fixtures/iterator'),
+      ...pkg
+    });
+    check(mainFilePath, outputDir, path.join(__dirname, 'fixtures/iterator/ChatResponseBodyIterator.java'), 'src/main/java/com/aliyun/models/ChatResponseBodyIterator.java', {
+      pkgDir: path.join(__dirname, 'fixtures/iterator'),
+      ...pkg
+    });
+  });
+
   // it('oss should ok', function () {
   //   const outputDir = path.join(__dirname, 'output/oss');
   //   const mainFilePath = path.join(__dirname, 'fixtures/oss/main.dara');

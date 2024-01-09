@@ -59,6 +59,10 @@ model Response {
   req: Source.Request,
 }
 
+static function assign(request: ComplexRequest): void {
+  request.accessKey = "test";
+}
+
 static function arrayAssign3(request: ComplexRequest, config: string): void {
   request.configs.value[0] = config;
 }

@@ -1,5 +1,8 @@
 # ChangeLog
 
+## 1.0.2 - 2024-01-09
+> Support sign version for base client.
+
 ## 1.0.1 - 2022-09-24
 > Support sign version for base client.
 

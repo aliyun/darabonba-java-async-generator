@@ -1,6 +1,6 @@
 {
   "name": "@darabonba/java-async-generator",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "The darabonba generator for Java Async",
   "main": "lib/generator",
   "directories": {

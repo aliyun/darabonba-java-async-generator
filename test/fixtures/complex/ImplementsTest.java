@@ -2,6 +2,7 @@
 package com.aliyun;
 
 import com.aliyun.models.*;
+import darabonba.core.*;
 import darabonba.core.async.*;
 import darabonba.core.sync.*;
 

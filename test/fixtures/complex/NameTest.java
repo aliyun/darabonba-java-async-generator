@@ -47,14 +47,17 @@ public final class NameTest implements ImplementsTest {
     public static String mapAccess3() {
         java.util.Map<String, java.util.Map<String, String>> data = CommonUtil.buildMap(
             new TeaPair("configs", CommonUtil.buildMap(
-                new TeaPair("value", "string")
+                new TeaPair("value", "string"),
+                new TeaPair("\"\"", "\"\"")
             ))
         );
+        data.get("configs").get("\"\"");
         return data.get("configs").get("value");
     }
 
     public static void mapAssign(ComplexRequest request, String name) {
         request.getConfigs().getExtra().put("name", name);
+        request.getConfigs().getExtra().put("\"name\"", name);
     }
 
     public static java.util.List<String> arrayAssign2(String config) {

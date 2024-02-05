@@ -78,6 +78,8 @@ function test(): void {
   var result: map[string]string = {
     key = 'value',
     key1 = 'value-1',
+    'key-1' = 'value-1',
+    '"' = '"',
     ...m,
   };
 }

@@ -80,14 +80,17 @@ static function mapAccess2(configs: Source.Request.configs): string {
 static function mapAccess3(): string {
   var data = {
     configs  = {
-      value = 'string'
+      value = 'string',
+      '""' = '""',
     } 
   };
+  data.configs['""'];
   return data.configs['value'];
 }
 
 static function mapAssign(request: ComplexRequest, name: string): void {
   request.configs.extra['name'] = name;
+  request.configs.extra['"name"'] = name;
 }
 
 static function arrayAssign2(config: string): [ string ] {

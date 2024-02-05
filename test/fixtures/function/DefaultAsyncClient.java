@@ -60,7 +60,9 @@ public final class DefaultAsyncClient implements AsyncClient {
         java.util.Map<String, String> result = CommonUtil.merge(String.class,
             CommonUtil.buildMap(
                 new TeaPair("key", "value"),
-                new TeaPair("key1", "value-1")
+                new TeaPair("key1", "value-1"),
+                new TeaPair("key-1", "value-1"),
+                new TeaPair("\"", "\"")
             ),
             m
         );

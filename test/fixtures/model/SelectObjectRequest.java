@@ -11,23 +11,23 @@ import darabonba.core.TeaModel;
  */
 public class SelectObjectRequest extends TeaModel {
     @com.aliyun.core.annotation.Host
-    @NameInMap("BucketName")
+    @com.aliyun.core.annotation.NameInMap("BucketName")
     private String bucketName;
 
     @com.aliyun.core.annotation.Path
-    @NameInMap("ObjectName")
+    @com.aliyun.core.annotation.NameInMap("ObjectName")
     private String objectName;
 
     @com.aliyun.core.annotation.Query
-    @NameInMap("Porcess")
+    @com.aliyun.core.annotation.NameInMap("Porcess")
     private String porcess;
 
     @com.aliyun.core.annotation.Query
-    @NameInMap("enumName")
+    @com.aliyun.core.annotation.NameInMap("enumName")
     private Long enumName;
 
     @com.aliyun.core.annotation.Body
-    @NameInMap("SelectRequest")
+    @com.aliyun.core.annotation.NameInMap("SelectRequest")
     private SelectRequest selectRequest;
 
     private SelectObjectRequest(Builder builder) {
@@ -149,22 +149,22 @@ public class SelectObjectRequest extends TeaModel {
     } 
 
     public static class InputSerializationCSV extends TeaModel {
-        @NameInMap("RecordDelimiter")
+        @com.aliyun.core.annotation.NameInMap("RecordDelimiter")
         private String recordDelimiter;
 
-        @NameInMap("Range")
+        @com.aliyun.core.annotation.NameInMap("Range")
         private String range;
 
-        @NameInMap("FieldDelimiter")
+        @com.aliyun.core.annotation.NameInMap("FieldDelimiter")
         private String fieldDelimiter;
 
-        @NameInMap("QuoteCharacter")
+        @com.aliyun.core.annotation.NameInMap("QuoteCharacter")
         private String quoteCharacter;
 
-        @NameInMap("CommentCharacter")
+        @com.aliyun.core.annotation.NameInMap("CommentCharacter")
         private String commentCharacter;
 
-        @NameInMap("FileHeaderInfo")
+        @com.aliyun.core.annotation.NameInMap("FileHeaderInfo")
         private String fileHeaderInfo;
 
         private InputSerializationCSV(Builder builder) {
@@ -290,10 +290,10 @@ public class SelectObjectRequest extends TeaModel {
 
     }
     public static class InputSerialization extends TeaModel {
-        @NameInMap("CompressionType")
+        @com.aliyun.core.annotation.NameInMap("CompressionType")
         private String compressionType;
 
-        @NameInMap("CSV")
+        @com.aliyun.core.annotation.NameInMap("CSV")
         private InputSerializationCSV inputSerializationCSV;
 
         private InputSerialization(Builder builder) {
@@ -351,10 +351,10 @@ public class SelectObjectRequest extends TeaModel {
 
     }
     public static class OutputSerializationCSV extends TeaModel {
-        @NameInMap("RecordDelimiter")
+        @com.aliyun.core.annotation.NameInMap("RecordDelimiter")
         private String recordDelimiter;
 
-        @NameInMap("FieldDelimiter")
+        @com.aliyun.core.annotation.NameInMap("FieldDelimiter")
         private String fieldDelimiter;
 
         private OutputSerializationCSV(Builder builder) {
@@ -412,19 +412,19 @@ public class SelectObjectRequest extends TeaModel {
 
     }
     public static class OutputSerialization extends TeaModel {
-        @NameInMap("CSV")
+        @com.aliyun.core.annotation.NameInMap("CSV")
         private OutputSerializationCSV outputSerializationCSV;
 
-        @NameInMap("OutputRawData")
+        @com.aliyun.core.annotation.NameInMap("OutputRawData")
         private String outputRawData;
 
-        @NameInMap("OutputHeader")
+        @com.aliyun.core.annotation.NameInMap("OutputHeader")
         private String outputHeader;
 
-        @NameInMap("EnablePayloadCrc")
+        @com.aliyun.core.annotation.NameInMap("EnablePayloadCrc")
         private String enablePayloadCrc;
 
-        @NameInMap("KeepAllColumns")
+        @com.aliyun.core.annotation.NameInMap("KeepAllColumns")
         private String keepAllColumns;
 
         private OutputSerialization(Builder builder) {
@@ -533,10 +533,10 @@ public class SelectObjectRequest extends TeaModel {
 
     }
     public static class Options extends TeaModel {
-        @NameInMap("MaxSkippedRecordsAllowed")
+        @com.aliyun.core.annotation.NameInMap("MaxSkippedRecordsAllowed")
         private String maxSkippedRecordsAllowed;
 
-        @NameInMap("SkipPartialDataRecord")
+        @com.aliyun.core.annotation.NameInMap("SkipPartialDataRecord")
         private String skipPartialDataRecord;
 
         private Options(Builder builder) {
@@ -594,16 +594,16 @@ public class SelectObjectRequest extends TeaModel {
 
     }
     public static class SelectRequest extends TeaModel {
-        @NameInMap("InputSerialization")
+        @com.aliyun.core.annotation.NameInMap("InputSerialization")
         private InputSerialization inputSerialization;
 
-        @NameInMap("Expression")
+        @com.aliyun.core.annotation.NameInMap("Expression")
         private String expression;
 
-        @NameInMap("OutputSerialization")
+        @com.aliyun.core.annotation.NameInMap("OutputSerialization")
         private OutputSerialization outputSerialization;
 
-        @NameInMap("Options")
+        @com.aliyun.core.annotation.NameInMap("Options")
         private Options options;
 
         private SelectRequest(Builder builder) {

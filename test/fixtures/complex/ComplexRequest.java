@@ -10,62 +10,62 @@ import darabonba.core.TeaModel;
  * <p>ComplexRequest</p>
  */
 public class ComplexRequest extends TeaModel {
-    @NameInMap("accessKey")
-    @Validation(required = true)
+    @com.aliyun.core.annotation.NameInMap("accessKey")
+    @com.aliyun.core.annotation.Validation(required = true)
     private String accessKey;
 
-    @NameInMap("moduleModelMap")
-    @Validation(required = true)
+    @com.aliyun.core.annotation.NameInMap("moduleModelMap")
+    @com.aliyun.core.annotation.Validation(required = true)
     private java.util.Map < String, Request> moduleModelMap;
 
-    @NameInMap("subModelMap")
-    @Validation(required = true)
+    @com.aliyun.core.annotation.NameInMap("subModelMap")
+    @com.aliyun.core.annotation.Validation(required = true)
     private java.util.Map < String, Config.ConfigSubM> subModelMap;
 
-    @NameInMap("complexList")
-    @Validation(required = true)
+    @com.aliyun.core.annotation.NameInMap("complexList")
+    @com.aliyun.core.annotation.Validation(required = true)
     private java.util.List < java.util.List < java.util.Map<String, String>> > complexList;
 
-    @NameInMap("complexList2")
-    @Validation(required = true)
+    @com.aliyun.core.annotation.NameInMap("complexList2")
+    @com.aliyun.core.annotation.Validation(required = true)
     private java.util.List < ComplexList1> complexList1;
 
-    @NameInMap("complexList2")
-    @Validation(required = true)
+    @com.aliyun.core.annotation.NameInMap("complexList2")
+    @com.aliyun.core.annotation.Validation(required = true)
     private java.util.List < java.util.List < java.util.List < ComplexList2> > > complexList2;
 
-    @NameInMap("complexList3")
-    @Validation(required = true)
+    @com.aliyun.core.annotation.NameInMap("complexList3")
+    @com.aliyun.core.annotation.Validation(required = true)
     private java.util.List < java.util.List < java.util.List < undefined > > > complexList3;
 
-    @NameInMap("Body")
-    @Validation(required = true)
+    @com.aliyun.core.annotation.NameInMap("Body")
+    @com.aliyun.core.annotation.Validation(required = true)
     private java.io.InputStream body;
 
-    @NameInMap("UserPsssrivileges")
+    @com.aliyun.core.annotation.NameInMap("UserPsssrivileges")
     private java.util.Map < String, java.util.List<java.util.Map<String, String>>> userTest;
 
-    @NameInMap("Strs")
-    @Validation(required = true)
+    @com.aliyun.core.annotation.NameInMap("Strs")
+    @com.aliyun.core.annotation.Validation(required = true)
     private java.util.List < String > strs;
 
-    @NameInMap("header")
-    @Validation(required = true)
+    @com.aliyun.core.annotation.NameInMap("header")
+    @com.aliyun.core.annotation.Validation(required = true)
     private ComplexRequestHeader header;
 
-    @NameInMap("num")
-    @Validation(required = true)
+    @com.aliyun.core.annotation.NameInMap("num")
+    @com.aliyun.core.annotation.Validation(required = true)
     private Number num;
 
-    @NameInMap("client")
-    @Validation(required = true)
+    @com.aliyun.core.annotation.NameInMap("client")
+    @com.aliyun.core.annotation.Validation(required = true)
     private com.import.DefaultAsyncClient client;
 
-    @NameInMap("configs")
-    @Validation(required = true)
+    @com.aliyun.core.annotation.NameInMap("configs")
+    @com.aliyun.core.annotation.Validation(required = true)
     private Configs configs;
 
-    @NameInMap("Part")
+    @com.aliyun.core.annotation.NameInMap("Part")
     private java.util.List < Part> part;
 
     private ComplexRequest(Builder builder) {
@@ -345,10 +345,10 @@ public class ComplexRequest extends TeaModel {
     } 
 
     public static class ComplexList1 extends TeaModel {
-        @NameInMap("Name")
+        @com.aliyun.core.annotation.NameInMap("Name")
         private String name;
 
-        @NameInMap("Code")
+        @com.aliyun.core.annotation.NameInMap("Code")
         private Integer code;
 
         private ComplexList1(Builder builder) {
@@ -406,10 +406,10 @@ public class ComplexRequest extends TeaModel {
 
     }
     public static class ComplexList2 extends TeaModel {
-        @NameInMap("Name")
+        @com.aliyun.core.annotation.NameInMap("Name")
         private String name;
 
-        @NameInMap("Code")
+        @com.aliyun.core.annotation.NameInMap("Code")
         private Integer code;
 
         private ComplexList2(Builder builder) {
@@ -467,8 +467,8 @@ public class ComplexRequest extends TeaModel {
 
     }
     public static class ComplexRequestHeader extends TeaModel {
-        @NameInMap("Content")
-        @Validation(required = true)
+        @com.aliyun.core.annotation.NameInMap("Content")
+        @com.aliyun.core.annotation.Validation(required = true)
         private String content;
 
         private ComplexRequestHeader(Builder builder) {
@@ -509,16 +509,16 @@ public class ComplexRequest extends TeaModel {
 
     }
     public static class Configs extends TeaModel {
-        @NameInMap("key")
-        @Validation(required = true)
+        @com.aliyun.core.annotation.NameInMap("key")
+        @com.aliyun.core.annotation.Validation(required = true)
         private String key;
 
-        @NameInMap("value")
-        @Validation(required = true)
+        @com.aliyun.core.annotation.NameInMap("value")
+        @com.aliyun.core.annotation.Validation(required = true)
         private java.util.List < String > value;
 
-        @NameInMap("extra")
-        @Validation(required = true)
+        @com.aliyun.core.annotation.NameInMap("extra")
+        @com.aliyun.core.annotation.Validation(required = true)
         private java.util.Map < String, String > extra;
 
         private Configs(Builder builder) {
@@ -593,7 +593,7 @@ public class ComplexRequest extends TeaModel {
 
     }
     public static class Part extends TeaModel {
-        @NameInMap("PartNumber")
+        @com.aliyun.core.annotation.NameInMap("PartNumber")
         private String partNumber;
 
         private Part(Builder builder) {

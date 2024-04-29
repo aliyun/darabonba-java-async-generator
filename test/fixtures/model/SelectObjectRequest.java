@@ -1,7 +1,6 @@
 // This file is auto-generated, don't edit it. Thanks.
 package com.aliyun.test.models;
 
-import com.aliyun.core.annotation.*;
 import darabonba.core.RequestModel;
 import darabonba.core.TeaModel;
 
@@ -11,23 +10,23 @@ import darabonba.core.TeaModel;
  * <p>SelectObjectRequest</p>
  */
 public class SelectObjectRequest extends TeaModel {
-    @Host
+    @com.aliyun.core.annotation.Host
     @NameInMap("BucketName")
     private String bucketName;
 
-    @Path
+    @com.aliyun.core.annotation.Path
     @NameInMap("ObjectName")
     private String objectName;
 
-    @Query
+    @com.aliyun.core.annotation.Query
     @NameInMap("Porcess")
     private String porcess;
 
-    @Query
+    @com.aliyun.core.annotation.Query
     @NameInMap("enumName")
     private Long enumName;
 
-    @Body
+    @com.aliyun.core.annotation.Body
     @NameInMap("SelectRequest")
     private SelectRequest selectRequest;
 

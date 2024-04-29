@@ -1,21 +1,17 @@
 [English](/README.md) | 简体中文
 
 [![NPM version][npm-image]][npm-url]
-[![build status][travis-image]][travis-url]
+![CI Build][action-url]
 [![codecov][cov-image]][cov-url]
-[![David deps][david-image]][david-url]
 [![npm download][download-image]][download-url]
 
 [npm-image]: https://img.shields.io/npm/v/@darabonba/java-async-generator.svg?style=flat-square
 [npm-url]: https://npmjs.org/package/@darabonba/java-async-generator
-[travis-image]: https://img.shields.io/travis/aliyun/darabonba-java-async-generator.svg?style=flat-square
-[travis-url]: https://travis-ci.org/aliyun/darabonba-java-async-generator
 [cov-image]: https://codecov.io/gh/aliyun/darabonba-java-async-generator/branch/master/graph/badge.svg
 [cov-url]: https://codecov.io/gh/aliyun/darabonba-java-async-generator
-[david-image]: https://img.shields.io/david/aliyun/darabonba-java-async-generator.svg?style=flat-square
-[david-url]: https://david-dm.org/aliyun/darabonba-java-async-generator
 [download-image]: https://img.shields.io/npm/dm/@darabonba/java-async-generator.svg?style=flat-square
 [download-url]: https://npmjs.org/package/@darabonba/java-async-generator
+[action-url]: https://github.com/aliyun/darabonba-java-async-generator/actions/workflows/ci.yml/badge.svg
 
 # Darabonba Java 生成器
 

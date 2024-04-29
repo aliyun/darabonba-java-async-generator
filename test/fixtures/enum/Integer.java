@@ -1,9 +1,7 @@
 // This file is auto-generated, don't edit it. Thanks.
 package com.aliyun.test.models;
 
-import com.aliyun.core.annotation.EnumType;
-
-@EnumType
+@com.aliyun.core.annotation.EnumType
 public enum Integer {
 
     LRS(1, "LRS"),

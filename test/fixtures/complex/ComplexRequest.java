@@ -5,10 +5,13 @@ import darabonba.core.RequestModel;
 import darabonba.core.TeaModel;
 
 /**
+ * @deprecated Test4 is deprecated, use Test3 instead.
+ * 
  * {@link ComplexRequest} extends {@link RequestModel}
  *
  * <p>ComplexRequest</p>
  */
+@Deprecated
 public class ComplexRequest extends TeaModel {
     @com.aliyun.core.annotation.NameInMap("accessKey")
     @com.aliyun.core.annotation.Validation(required = true)
@@ -273,9 +276,11 @@ public class ComplexRequest extends TeaModel {
         }
 
         /**
-         * Body
-         * <p>
-         * body
+         * <p>Body
+         * body</p>
+         * 
+         * <strong>example:</strong>
+         * <p>Body</p>
          */
         public Builder body(java.io.InputStream body) {
             this.body = body;
@@ -291,7 +296,10 @@ public class ComplexRequest extends TeaModel {
         }
 
         /**
-         * Strs
+         * <p>Strs</p>
+         * 
+         * <strong>example:</strong>
+         * <p>Strs</p>
          */
         public Builder strs(java.util.List < String > strs) {
             this.strs = strs;
@@ -299,7 +307,7 @@ public class ComplexRequest extends TeaModel {
         }
 
         /**
-         * header
+         * <p>header</p>
          */
         public Builder header(ComplexRequestHeader header) {
             this.header = header;
@@ -331,7 +339,7 @@ public class ComplexRequest extends TeaModel {
         }
 
         /**
-         * Part
+         * <p>Part</p>
          */
         public Builder part(java.util.List < Part> part) {
             this.part = part;
@@ -344,6 +352,12 @@ public class ComplexRequest extends TeaModel {
 
     } 
 
+    /**
+     * 
+     * {@link ComplexRequest} extends {@link TeaModel}
+     *
+     * <p>ComplexRequest</p>
+     */
     public static class ComplexList1 extends TeaModel {
         @com.aliyun.core.annotation.NameInMap("Name")
         private String name;
@@ -405,6 +419,12 @@ public class ComplexRequest extends TeaModel {
         } 
 
     }
+    /**
+     * 
+     * {@link ComplexRequest} extends {@link TeaModel}
+     *
+     * <p>ComplexRequest</p>
+     */
     public static class ComplexList2 extends TeaModel {
         @com.aliyun.core.annotation.NameInMap("Name")
         private String name;
@@ -466,6 +486,12 @@ public class ComplexRequest extends TeaModel {
         } 
 
     }
+    /**
+     * 
+     * {@link ComplexRequest} extends {@link TeaModel}
+     *
+     * <p>ComplexRequest</p>
+     */
     public static class ComplexRequestHeader extends TeaModel {
         @com.aliyun.core.annotation.NameInMap("Content")
         @com.aliyun.core.annotation.Validation(required = true)
@@ -494,7 +520,10 @@ public class ComplexRequest extends TeaModel {
             private String content; 
 
             /**
-             * Body
+             * <p>Body</p>
+             * 
+             * <strong>example:</strong>
+             * <p>Content</p>
              */
             public Builder content(String content) {
                 this.content = content;
@@ -508,6 +537,12 @@ public class ComplexRequest extends TeaModel {
         } 
 
     }
+    /**
+     * 
+     * {@link ComplexRequest} extends {@link TeaModel}
+     *
+     * <p>ComplexRequest</p>
+     */
     public static class Configs extends TeaModel {
         @com.aliyun.core.annotation.NameInMap("key")
         @com.aliyun.core.annotation.Validation(required = true)
@@ -592,6 +627,12 @@ public class ComplexRequest extends TeaModel {
         } 
 
     }
+    /**
+     * 
+     * {@link ComplexRequest} extends {@link TeaModel}
+     *
+     * <p>ComplexRequest</p>
+     */
     public static class Part extends TeaModel {
         @com.aliyun.core.annotation.NameInMap("PartNumber")
         private String partNumber;
@@ -619,7 +660,7 @@ public class ComplexRequest extends TeaModel {
             private String partNumber; 
 
             /**
-             * PartNumber
+             * <p>PartNumber</p>
              */
             public Builder partNumber(String partNumber) {
                 this.partNumber = partNumber;

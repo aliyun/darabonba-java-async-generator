@@ -37,6 +37,33 @@ describe('new Generator', function () {
     });
   });
 
+  it('annotation should ok', function () {
+    const outputDir = path.join(__dirname, 'output/annotation');
+    const mainFilePath = path.join(__dirname, 'fixtures/annotation/main.dara');
+    const pkgContent = fs.readFileSync(path.join(__dirname, 'fixtures/annotation/Darafile'), 'utf8');
+    const pkg = JSON.parse(pkgContent);
+    check(mainFilePath, outputDir, path.join(__dirname, 'fixtures/annotation/DefaultAsyncClient.java'), 'src/main/java/com/aliyun/DefaultAsyncClient.java', {
+      pkgDir: path.join(__dirname, 'fixtures/annotation'),
+      ...pkg
+    });
+    check(mainFilePath, outputDir, path.join(__dirname, 'fixtures/annotation/Test1.java'), 'src/main/java/com/aliyun/models/Test1.java', {
+      pkgDir: path.join(__dirname, 'fixtures/annotation'),
+      ...pkg
+    });
+    check(mainFilePath, outputDir, path.join(__dirname, 'fixtures/annotation/Test2.java'), 'src/main/java/com/aliyun/models/Test2.java', {
+      pkgDir: path.join(__dirname, 'fixtures/annotation'),
+      ...pkg
+    });
+    check(mainFilePath, outputDir, path.join(__dirname, 'fixtures/annotation/Test3.java'), 'src/main/java/com/aliyun/models/Test3.java', {
+      pkgDir: path.join(__dirname, 'fixtures/annotation'),
+      ...pkg
+    });
+    check(mainFilePath, outputDir, path.join(__dirname, 'fixtures/annotation/Test4.java'), 'src/main/java/com/aliyun/models/Test4.java', {
+      pkgDir: path.join(__dirname, 'fixtures/annotation'),
+      ...pkg
+    });
+  });
+
   it('function should ok', function () {
     const outputDir = path.join(__dirname, 'output/function');
     const mainFilePath = path.join(__dirname, 'fixtures/function/main.dara');

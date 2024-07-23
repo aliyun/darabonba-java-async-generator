@@ -5,6 +5,7 @@ import darabonba.core.RequestModel;
 import darabonba.core.TeaModel;
 
 /**
+ * 
  * {@link SelectObjectRequest} extends {@link RequestModel}
  *
  * <p>SelectObjectRequest</p>
@@ -148,6 +149,12 @@ public class SelectObjectRequest extends TeaModel {
 
     } 
 
+    /**
+     * 
+     * {@link SelectObjectRequest} extends {@link TeaModel}
+     *
+     * <p>SelectObjectRequest</p>
+     */
     public static class InputSerializationCSV extends TeaModel {
         @com.aliyun.core.annotation.NameInMap("RecordDelimiter")
         private String recordDelimiter;
@@ -289,6 +296,12 @@ public class SelectObjectRequest extends TeaModel {
         } 
 
     }
+    /**
+     * 
+     * {@link SelectObjectRequest} extends {@link TeaModel}
+     *
+     * <p>SelectObjectRequest</p>
+     */
     public static class InputSerialization extends TeaModel {
         @com.aliyun.core.annotation.NameInMap("CompressionType")
         private String compressionType;
@@ -350,6 +363,12 @@ public class SelectObjectRequest extends TeaModel {
         } 
 
     }
+    /**
+     * 
+     * {@link SelectObjectRequest} extends {@link TeaModel}
+     *
+     * <p>SelectObjectRequest</p>
+     */
     public static class OutputSerializationCSV extends TeaModel {
         @com.aliyun.core.annotation.NameInMap("RecordDelimiter")
         private String recordDelimiter;
@@ -411,6 +430,12 @@ public class SelectObjectRequest extends TeaModel {
         } 
 
     }
+    /**
+     * 
+     * {@link SelectObjectRequest} extends {@link TeaModel}
+     *
+     * <p>SelectObjectRequest</p>
+     */
     public static class OutputSerialization extends TeaModel {
         @com.aliyun.core.annotation.NameInMap("CSV")
         private OutputSerializationCSV outputSerializationCSV;
@@ -532,6 +557,12 @@ public class SelectObjectRequest extends TeaModel {
         } 
 
     }
+    /**
+     * 
+     * {@link SelectObjectRequest} extends {@link TeaModel}
+     *
+     * <p>SelectObjectRequest</p>
+     */
     public static class Options extends TeaModel {
         @com.aliyun.core.annotation.NameInMap("MaxSkippedRecordsAllowed")
         private String maxSkippedRecordsAllowed;
@@ -593,6 +624,12 @@ public class SelectObjectRequest extends TeaModel {
         } 
 
     }
+    /**
+     * 
+     * {@link SelectObjectRequest} extends {@link TeaModel}
+     *
+     * <p>SelectObjectRequest</p>
+     */
     public static class SelectRequest extends TeaModel {
         @com.aliyun.core.annotation.NameInMap("InputSerialization")
         private InputSerialization inputSerialization;

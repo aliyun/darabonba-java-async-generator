@@ -17,7 +17,7 @@
     "url": "git@github.com:aliyun/darabonba-java-async-generator.git"
   },
   "devDependencies": {
-    "eslint": "^6",
+    "eslint": "^9",
     "expect.js": "^0.3.1",
     "mocha": "^10.4.0",
     "nyc": "^17.0.0"

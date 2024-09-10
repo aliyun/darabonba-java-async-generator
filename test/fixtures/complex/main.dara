@@ -1,7 +1,12 @@
 import Source;
 
 model Config {
-  subM: {},
+  subM: {
+    subObject: {
+      key: string,
+      value: string,
+    },
+  },
   protocol: string,
 }
 type @protocol = string
@@ -48,13 +53,17 @@ model ComplexRequest = {
   configs: {
     key: string,
     value: [ string ],
-    extra: map[string] string
+    extra: map[string] string,
+    object: Config.subM.subObject,
   },
   part?: [
     {
       partNumber?: string(description='PartNumber', name='PartNumber')
     }
   ](description='Part', name='Part'),
+  configCopy: Source.Request.configs,
+  configCopyArray: [ Source.Request.configs ](description='Configs', name='Configs'),
+  subMArray: [ Config.subM ](name='subMArray'),
 }
 
 model Response {

@@ -1,5 +1,8 @@
 # ChangeLog
 
+## 1.0.4 - 2024-12-17
+> Support subModel in complex array.
+
 ## 1.0.3 - 2024-04-29
 > Resolve params conflic with annotation.
 

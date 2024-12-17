@@ -1,6 +1,8 @@
 // This file is auto-generated, don't edit it. Thanks.
 package com.aliyun.models;
 
+import com.import.*;
+import com.import.models.*;
 import darabonba.core.RequestModel;
 import darabonba.core.TeaModel;
 
@@ -16,38 +18,38 @@ public class ComplexRequest extends TeaModel {
 
     @com.aliyun.core.annotation.NameInMap("moduleModelMap")
     @com.aliyun.core.annotation.Validation(required = true)
-    private java.util.Map < String, Request> moduleModelMap;
+    private java.util.Map<String, Request> moduleModelMap;
 
     @com.aliyun.core.annotation.NameInMap("subModelMap")
     @com.aliyun.core.annotation.Validation(required = true)
-    private java.util.Map < String, Config.ConfigSubM> subModelMap;
+    private java.util.Map<String, Config.SubM> subModelMap;
 
     @com.aliyun.core.annotation.NameInMap("complexList")
     @com.aliyun.core.annotation.Validation(required = true)
-    private java.util.List < java.util.List < java.util.Map<String, String>> > complexList;
+    private java.util.List<java.util.List<java.util.Map<String, String>>> complexList;
 
     @com.aliyun.core.annotation.NameInMap("complexList2")
     @com.aliyun.core.annotation.Validation(required = true)
-    private java.util.List < ComplexList1> complexList1;
+    private java.util.List<ComplexList1> complexList1;
 
     @com.aliyun.core.annotation.NameInMap("complexList2")
     @com.aliyun.core.annotation.Validation(required = true)
-    private java.util.List < java.util.List < java.util.List < ComplexList2> > > complexList2;
+    private java.util.List<java.util.List<java.util.List<ComplexList2>>> complexList2;
 
     @com.aliyun.core.annotation.NameInMap("complexList3")
     @com.aliyun.core.annotation.Validation(required = true)
-    private java.util.List < java.util.List < java.util.List < undefined > > > complexList3;
+    private java.util.List<java.util.List<java.util.List<Config>>> complexList3;
 
     @com.aliyun.core.annotation.NameInMap("Body")
     @com.aliyun.core.annotation.Validation(required = true)
     private java.io.InputStream body;
 
     @com.aliyun.core.annotation.NameInMap("UserPsssrivileges")
-    private java.util.Map < String, java.util.List<java.util.Map<String, String>>> userTest;
+    private java.util.Map<String, java.util.List<java.util.Map<String, String>>> userTest;
 
     @com.aliyun.core.annotation.NameInMap("Strs")
     @com.aliyun.core.annotation.Validation(required = true)
-    private java.util.List < String > strs;
+    private java.util.List<String> strs;
 
     @com.aliyun.core.annotation.NameInMap("header")
     @com.aliyun.core.annotation.Validation(required = true)
@@ -66,7 +68,11 @@ public class ComplexRequest extends TeaModel {
     private Configs configs;
 
     @com.aliyun.core.annotation.NameInMap("Part")
-    private java.util.List < Part> part;
+    private java.util.List<Part> part;
+
+    @com.aliyun.core.annotation.NameInMap("configCopy")
+    @com.aliyun.core.annotation.Validation(required = true)
+    private Request.Configs configCopy;
 
     private ComplexRequest(Builder builder) {
         this.accessKey = builder.accessKey;
@@ -84,6 +90,7 @@ public class ComplexRequest extends TeaModel {
         this.client = builder.client;
         this.configs = builder.configs;
         this.part = builder.part;
+        this.configCopy = builder.configCopy;
     }
 
     public static Builder builder() {
@@ -104,42 +111,42 @@ public class ComplexRequest extends TeaModel {
     /**
      * @return moduleModelMap
      */
-    public java.util.Map < String, Request> getModuleModelMap() {
+    public java.util.Map<String, Request> getModuleModelMap() {
         return this.moduleModelMap;
     }
 
     /**
      * @return subModelMap
      */
-    public java.util.Map < String, Config.ConfigSubM> getSubModelMap() {
+    public java.util.Map<String, Config.SubM> getSubModelMap() {
         return this.subModelMap;
     }
 
     /**
      * @return complexList
      */
-    public java.util.List < java.util.List < java.util.Map<String, String>> > getComplexList() {
+    public java.util.List<java.util.List<java.util.Map<String, String>>> getComplexList() {
         return this.complexList;
     }
 
     /**
      * @return complexList1
      */
-    public java.util.List < ComplexList1> getComplexList1() {
+    public java.util.List<ComplexList1> getComplexList1() {
         return this.complexList1;
     }
 
     /**
      * @return complexList2
      */
-    public java.util.List < java.util.List < java.util.List < ComplexList2> > > getComplexList2() {
+    public java.util.List<java.util.List<java.util.List<ComplexList2>>> getComplexList2() {
         return this.complexList2;
     }
 
     /**
      * @return complexList3
      */
-    public java.util.List < java.util.List < java.util.List < undefined > > > getComplexList3() {
+    public java.util.List<java.util.List<java.util.List<Config>>> getComplexList3() {
         return this.complexList3;
     }
 
@@ -153,14 +160,14 @@ public class ComplexRequest extends TeaModel {
     /**
      * @return userTest
      */
-    public java.util.Map < String, java.util.List<java.util.Map<String, String>>> getUserTest() {
+    public java.util.Map<String, java.util.List<java.util.Map<String, String>>> getUserTest() {
         return this.userTest;
     }
 
     /**
      * @return strs
      */
-    public java.util.List < String > getStrs() {
+    public java.util.List<String> getStrs() {
         return this.strs;
     }
 
@@ -195,26 +202,34 @@ public class ComplexRequest extends TeaModel {
     /**
      * @return part
      */
-    public java.util.List < Part> getPart() {
+    public java.util.List<Part> getPart() {
         return this.part;
+    }
+
+    /**
+     * @return configCopy
+     */
+    public Request.Configs getConfigCopy() {
+        return this.configCopy;
     }
 
     public static final class Builder {
         private String accessKey; 
-        private java.util.Map < String, Request> moduleModelMap; 
-        private java.util.Map < String, Config.ConfigSubM> subModelMap; 
-        private java.util.List < java.util.List < java.util.Map<String, String>> > complexList; 
-        private java.util.List < ComplexList1> complexList1; 
-        private java.util.List < java.util.List < java.util.List < ComplexList2> > > complexList2; 
-        private java.util.List < java.util.List < java.util.List < undefined > > > complexList3; 
+        private java.util.Map<String, Request> moduleModelMap; 
+        private java.util.Map<String, Config.SubM> subModelMap; 
+        private java.util.List<java.util.List<java.util.Map<String, String>>> complexList; 
+        private java.util.List<ComplexList1> complexList1; 
+        private java.util.List<java.util.List<java.util.List<ComplexList2>>> complexList2; 
+        private java.util.List<java.util.List<java.util.List<Config>>> complexList3; 
         private java.io.InputStream body; 
-        private java.util.Map < String, java.util.List<java.util.Map<String, String>>> userTest; 
-        private java.util.List < String > strs; 
+        private java.util.Map<String, java.util.List<java.util.Map<String, String>>> userTest; 
+        private java.util.List<String> strs; 
         private ComplexRequestHeader header; 
         private Number num; 
         private com.import.DefaultAsyncClient client; 
         private Configs configs; 
-        private java.util.List < Part> part; 
+        private java.util.List<Part> part; 
+        private Request.Configs configCopy; 
 
         /**
          * accessKey.
@@ -227,7 +242,7 @@ public class ComplexRequest extends TeaModel {
         /**
          * moduleModelMap.
          */
-        public Builder moduleModelMap(java.util.Map < String, Request> moduleModelMap) {
+        public Builder moduleModelMap(java.util.Map<String, Request> moduleModelMap) {
             this.moduleModelMap = moduleModelMap;
             return this;
         }
@@ -235,7 +250,7 @@ public class ComplexRequest extends TeaModel {
         /**
          * subModelMap.
          */
-        public Builder subModelMap(java.util.Map < String, Config.ConfigSubM> subModelMap) {
+        public Builder subModelMap(java.util.Map<String, Config.SubM> subModelMap) {
             this.subModelMap = subModelMap;
             return this;
         }
@@ -243,7 +258,7 @@ public class ComplexRequest extends TeaModel {
         /**
          * complexList.
          */
-        public Builder complexList(java.util.List < java.util.List < java.util.Map<String, String>> > complexList) {
+        public Builder complexList(java.util.List<java.util.List<java.util.Map<String, String>>> complexList) {
             this.complexList = complexList;
             return this;
         }
@@ -251,7 +266,7 @@ public class ComplexRequest extends TeaModel {
         /**
          * complexList2.
          */
-        public Builder complexList1(java.util.List < ComplexList1> complexList1) {
+        public Builder complexList1(java.util.List<ComplexList1> complexList1) {
             this.complexList1 = complexList1;
             return this;
         }
@@ -259,7 +274,7 @@ public class ComplexRequest extends TeaModel {
         /**
          * complexList2.
          */
-        public Builder complexList2(java.util.List < java.util.List < java.util.List < ComplexList2> > > complexList2) {
+        public Builder complexList2(java.util.List<java.util.List<java.util.List<ComplexList2>>> complexList2) {
             this.complexList2 = complexList2;
             return this;
         }
@@ -267,7 +282,7 @@ public class ComplexRequest extends TeaModel {
         /**
          * complexList3.
          */
-        public Builder complexList3(java.util.List < java.util.List < java.util.List < undefined > > > complexList3) {
+        public Builder complexList3(java.util.List<java.util.List<java.util.List<Config>>> complexList3) {
             this.complexList3 = complexList3;
             return this;
         }
@@ -285,7 +300,7 @@ public class ComplexRequest extends TeaModel {
         /**
          * UserPsssrivileges.
          */
-        public Builder userTest(java.util.Map < String, java.util.List<java.util.Map<String, String>>> userTest) {
+        public Builder userTest(java.util.Map<String, java.util.List<java.util.Map<String, String>>> userTest) {
             this.userTest = userTest;
             return this;
         }
@@ -293,7 +308,7 @@ public class ComplexRequest extends TeaModel {
         /**
          * Strs
          */
-        public Builder strs(java.util.List < String > strs) {
+        public Builder strs(java.util.List<String> strs) {
             this.strs = strs;
             return this;
         }
@@ -333,8 +348,16 @@ public class ComplexRequest extends TeaModel {
         /**
          * Part
          */
-        public Builder part(java.util.List < Part> part) {
+        public Builder part(java.util.List<Part> part) {
             this.part = part;
+            return this;
+        }
+
+        /**
+         * configCopy.
+         */
+        public Builder configCopy(Request.Configs configCopy) {
+            this.configCopy = configCopy;
             return this;
         }
 
@@ -515,16 +538,21 @@ public class ComplexRequest extends TeaModel {
 
         @com.aliyun.core.annotation.NameInMap("value")
         @com.aliyun.core.annotation.Validation(required = true)
-        private java.util.List < String > value;
+        private java.util.List<String> value;
 
         @com.aliyun.core.annotation.NameInMap("extra")
         @com.aliyun.core.annotation.Validation(required = true)
-        private java.util.Map < String, String > extra;
+        private java.util.Map<String, String> extra;
+
+        @com.aliyun.core.annotation.NameInMap("object")
+        @com.aliyun.core.annotation.Validation(required = true)
+        private Config.SubObject object;
 
         private Configs(Builder builder) {
             this.key = builder.key;
             this.value = builder.value;
             this.extra = builder.extra;
+            this.object = builder.object;
         }
 
         public static Builder builder() {
@@ -545,21 +573,29 @@ public class ComplexRequest extends TeaModel {
         /**
          * @return value
          */
-        public java.util.List < String > getValue() {
+        public java.util.List<String> getValue() {
             return this.value;
         }
 
         /**
          * @return extra
          */
-        public java.util.Map < String, String > getExtra() {
+        public java.util.Map<String, String> getExtra() {
             return this.extra;
+        }
+
+        /**
+         * @return object
+         */
+        public Config.SubObject getObject() {
+            return this.object;
         }
 
         public static final class Builder {
             private String key; 
-            private java.util.List < String > value; 
-            private java.util.Map < String, String > extra; 
+            private java.util.List<String> value; 
+            private java.util.Map<String, String> extra; 
+            private Config.SubObject object; 
 
             /**
              * key.
@@ -572,7 +608,7 @@ public class ComplexRequest extends TeaModel {
             /**
              * value.
              */
-            public Builder value(java.util.List < String > value) {
+            public Builder value(java.util.List<String> value) {
                 this.value = value;
                 return this;
             }
@@ -580,8 +616,16 @@ public class ComplexRequest extends TeaModel {
             /**
              * extra.
              */
-            public Builder extra(java.util.Map < String, String > extra) {
+            public Builder extra(java.util.Map<String, String> extra) {
                 this.extra = extra;
+                return this;
+            }
+
+            /**
+             * object.
+             */
+            public Builder object(Config.SubObject object) {
+                this.object = object;
                 return this;
             }
 

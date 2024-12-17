@@ -107,7 +107,7 @@ public final class NameTest implements ImplementsTest {
     }
 
     @Override
-    public void testSubModel(ComplexRequest.ComplexRequestPart part, java.util.List<java.util.List<String>> complexList) {
+    public void testSubModel(ComplexRequest.Part part, java.util.List<java.util.List<String>> complexList) {
         return ;
     }
 

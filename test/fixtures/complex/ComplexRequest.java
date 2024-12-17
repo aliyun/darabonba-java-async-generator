@@ -114,6 +114,10 @@ public class ComplexRequest extends TeaModel {
         return builder().build();
     }
 
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
     /**
      * @return accessKey
      */
@@ -259,6 +263,30 @@ public class ComplexRequest extends TeaModel {
         private Request.Configs configCopy; 
         private java.util.List<Request.Configs> configCopyArray; 
         private java.util.List<Config.SubM> subMArray; 
+
+        private Builder() {
+        } 
+
+        private Builder(ComplexRequest model) {
+            this.accessKey = model.accessKey;
+            this.moduleModelMap = model.moduleModelMap;
+            this.subModelMap = model.subModelMap;
+            this.complexList = model.complexList;
+            this.complexList1 = model.complexList1;
+            this.complexList2 = model.complexList2;
+            this.complexList3 = model.complexList3;
+            this.body = model.body;
+            this.userTest = model.userTest;
+            this.strs = model.strs;
+            this.header = model.header;
+            this.num = model.num;
+            this.client = model.client;
+            this.configs = model.configs;
+            this.part = model.part;
+            this.configCopy = model.configCopy;
+            this.configCopyArray = model.configCopyArray;
+            this.subMArray = model.subMArray;
+        } 
 
         /**
          * accessKey.
@@ -461,6 +489,14 @@ public class ComplexRequest extends TeaModel {
             private String name; 
             private Integer code; 
 
+            private Builder() {
+            } 
+
+            private Builder(ComplexList1 model) {
+                this.name = model.name;
+                this.code = model.code;
+            } 
+
             /**
              * Name.
              */
@@ -528,6 +564,14 @@ public class ComplexRequest extends TeaModel {
             private String name; 
             private Integer code; 
 
+            private Builder() {
+            } 
+
+            private Builder(ComplexList2 model) {
+                this.name = model.name;
+                this.code = model.code;
+            } 
+
             /**
              * Name.
              */
@@ -583,6 +627,13 @@ public class ComplexRequest extends TeaModel {
 
         public static final class Builder {
             private String content; 
+
+            private Builder() {
+            } 
+
+            private Builder(ComplexRequestHeader model) {
+                this.content = model.content;
+            } 
 
             /**
              * <p>Body</p>
@@ -674,6 +725,16 @@ public class ComplexRequest extends TeaModel {
             private java.util.Map<String, String> extra; 
             private Config.SubObject object; 
 
+            private Builder() {
+            } 
+
+            private Builder(Configs model) {
+                this.key = model.key;
+                this.value = model.value;
+                this.extra = model.extra;
+                this.object = model.object;
+            } 
+
             /**
              * key.
              */
@@ -744,6 +805,13 @@ public class ComplexRequest extends TeaModel {
 
         public static final class Builder {
             private String partNumber; 
+
+            private Builder() {
+            } 
+
+            private Builder(Part model) {
+                this.partNumber = model.partNumber;
+            } 
 
             /**
              * <p>PartNumber</p>

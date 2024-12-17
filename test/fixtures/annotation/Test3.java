@@ -26,7 +26,17 @@ public class Test3 extends TeaModel {
         return builder().build();
     }
 
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
     public static final class Builder {
+
+        private Builder() {
+        } 
+
+        private Builder(Test3 model) {
+        } 
 
         public Test3 build() {
             return new Test3(this);

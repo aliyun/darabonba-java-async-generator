@@ -35,6 +35,10 @@ public class Test4 extends TeaModel {
         return builder().build();
     }
 
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
     /**
      * @return test
      */
@@ -52,6 +56,14 @@ public class Test4 extends TeaModel {
     public static final class Builder {
         private String test; 
         private String test2; 
+
+        private Builder() {
+        } 
+
+        private Builder(Test4 model) {
+            this.test = model.test;
+            this.test2 = model.test2;
+        } 
 
         /**
          * <p>The natural language that is used to filter responses. For more information, visit <a href="https://tools.ietf.org/html/rfc7231">RFC 7231</a>. Valid values:</p>

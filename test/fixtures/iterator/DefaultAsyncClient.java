@@ -79,4 +79,14 @@ public final class DefaultAsyncClient implements AsyncClient {
         return new ResponseIterable<>(iterator);
     }
 
+    @Override
+    public ResponseIterable<String> test7(ChatRequest request) {
+        this.handler.validateRequestModel(request);
+        TeaRequest teaRequest = REQUEST.copy().setStyle(RequestStyle.SSE).setAction("chatString").setMethod(HttpMethod.POST).setPathRegex("/gw/v1/api/doc/docChat").setBodyType(BodyType.STRING).setBodyIsForm(false).setReqBodyType(BodyType.JSON).formModel(request);
+        ChatStringResponseBodyIterator iterator = ChatStringResponseBodyIterator.create();
+        ClientExecutionParams params = new ClientExecutionParams().withInput(request).withRequest(teaRequest).withHttpResponseHandler(new SSEHttpResponseHandler(iterator));
+        this.handler.execute(params);
+        return new ResponseIterable<>(iterator);
+    }
+
 }

@@ -28,6 +28,9 @@ api doResponseHandler(style: string, action: string, method: string, pathRegex: 
 api doSSERequest(style: string, action: string, method: string, pathRegex: string, bodyType: string, bodyIsForm: boolean, reqBodyType: string, requestModel: $Model): any{
 }
 
+api doSSERequestReturnString(style: string, action: string, method: string, pathRegex: string, bodyType: string, bodyIsForm: boolean, reqBodyType: string, requestModel: $Model): string{
+}
+
 /**
  * Validate params for RequestModel
  */

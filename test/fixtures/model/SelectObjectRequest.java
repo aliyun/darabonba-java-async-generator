@@ -47,6 +47,10 @@ public class SelectObjectRequest extends TeaModel {
         return builder().build();
     }
 
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
     /**
      * @return bucketName
      */
@@ -88,6 +92,17 @@ public class SelectObjectRequest extends TeaModel {
         private String porcess; 
         private Long enumName; 
         private SelectRequest selectRequest; 
+
+        private Builder() {
+        } 
+
+        private Builder(SelectObjectRequest model) {
+            this.bucketName = model.bucketName;
+            this.objectName = model.objectName;
+            this.porcess = model.porcess;
+            this.enumName = model.enumName;
+            this.selectRequest = model.selectRequest;
+        } 
 
         /**
          * BucketName.
@@ -241,6 +256,18 @@ public class SelectObjectRequest extends TeaModel {
             private String commentCharacter; 
             private String fileHeaderInfo; 
 
+            private Builder() {
+            } 
+
+            private Builder(InputSerializationCSV model) {
+                this.recordDelimiter = model.recordDelimiter;
+                this.range = model.range;
+                this.fieldDelimiter = model.fieldDelimiter;
+                this.quoteCharacter = model.quoteCharacter;
+                this.commentCharacter = model.commentCharacter;
+                this.fileHeaderInfo = model.fileHeaderInfo;
+            } 
+
             /**
              * RecordDelimiter.
              */
@@ -340,6 +367,14 @@ public class SelectObjectRequest extends TeaModel {
             private String compressionType; 
             private InputSerializationCSV inputSerializationCSV; 
 
+            private Builder() {
+            } 
+
+            private Builder(InputSerialization model) {
+                this.compressionType = model.compressionType;
+                this.inputSerializationCSV = model.inputSerializationCSV;
+            } 
+
             /**
              * CompressionType.
              */
@@ -406,6 +441,14 @@ public class SelectObjectRequest extends TeaModel {
         public static final class Builder {
             private String recordDelimiter; 
             private String fieldDelimiter; 
+
+            private Builder() {
+            } 
+
+            private Builder(OutputSerializationCSV model) {
+                this.recordDelimiter = model.recordDelimiter;
+                this.fieldDelimiter = model.fieldDelimiter;
+            } 
 
             /**
              * RecordDelimiter.
@@ -510,6 +553,17 @@ public class SelectObjectRequest extends TeaModel {
             private String enablePayloadCrc; 
             private String keepAllColumns; 
 
+            private Builder() {
+            } 
+
+            private Builder(OutputSerialization model) {
+                this.outputSerializationCSV = model.outputSerializationCSV;
+                this.outputRawData = model.outputRawData;
+                this.outputHeader = model.outputHeader;
+                this.enablePayloadCrc = model.enablePayloadCrc;
+                this.keepAllColumns = model.keepAllColumns;
+            } 
+
             /**
              * CSV.
              */
@@ -601,6 +655,14 @@ public class SelectObjectRequest extends TeaModel {
             private String maxSkippedRecordsAllowed; 
             private String skipPartialDataRecord; 
 
+            private Builder() {
+            } 
+
+            private Builder(Options model) {
+                this.maxSkippedRecordsAllowed = model.maxSkippedRecordsAllowed;
+                this.skipPartialDataRecord = model.skipPartialDataRecord;
+            } 
+
             /**
              * MaxSkippedRecordsAllowed.
              */
@@ -691,6 +753,16 @@ public class SelectObjectRequest extends TeaModel {
             private String expression; 
             private OutputSerialization outputSerialization; 
             private Options options; 
+
+            private Builder() {
+            } 
+
+            private Builder(SelectRequest model) {
+                this.inputSerialization = model.inputSerialization;
+                this.expression = model.expression;
+                this.outputSerialization = model.outputSerialization;
+                this.options = model.options;
+            } 
 
             /**
              * InputSerialization.

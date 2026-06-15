@@ -18,7 +18,7 @@ public interface ImplementsTest {
         return builder().build();
     }
 
-    void testSubModel(ComplexRequest.ComplexRequestPart part, java.util.List<java.util.List<String>> complexList);
+    void testSubModel(ComplexRequest.Part part, java.util.List<java.util.List<String>> complexList);
 
     CompletableFuture<java.util.List<String>> hello(java.util.Map<String, ?> request, java.util.List<String> strs);
 

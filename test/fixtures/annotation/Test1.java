@@ -37,6 +37,10 @@ public class Test1 extends TeaModel {
         return builder().build();
     }
 
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
     /**
      * @return test
      */
@@ -54,6 +58,14 @@ public class Test1 extends TeaModel {
     public static final class Builder {
         private String test; 
         private String test2; 
+
+        private Builder() {
+        } 
+
+        private Builder(Test1 model) {
+            this.test = model.test;
+            this.test2 = model.test2;
+        } 
 
         /**
          * <p>test desc</p>

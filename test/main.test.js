@@ -10,11 +10,16 @@ const DSL = require('@darabonba/parser');
 let Generator = require('../lib/generator');
 
 function check(mainFilePath, outputDir, expectedPath, testPath = 'src/main/java/com/aliyun/oss20190517/DefaultAsyncClient.java', options = {}) {
+  const java =  options.java || {
+    package: 'com.aliyun.test',
+    clientName: 'Client',
+    modelDirName: 'models'
+  };
   const generator = new Generator({
     outputDir,
     baseClient: 'com.aliyun.test.Client',
     package: 'com.aliyun.test',
-    java: {},
+    ...java,
     ...options
   });
 
@@ -32,7 +37,7 @@ describe('new Generator', function () {
       new Generator({});
     }, function (err) {
       assert.deepStrictEqual(err.message,
-        'Darafile -> java -> javaPackage should not empty, please add java option into Darafile.example:\n        "java": {"package": "com.aliyun.test"}');
+        '`option.outputDir` should not empty');
       return true;
     });
   });
@@ -163,32 +168,14 @@ describe('new Generator', function () {
       pkgDir: path.join(__dirname, 'fixtures/iterator'),
       ...pkg
     });
+    check(mainFilePath, outputDir, path.join(__dirname, 'fixtures/iterator/ChatStringResponseBodyIterator.java'), 'src/main/java/com/aliyun/models/ChatStringResponseBodyIterator.java', {
+      pkgDir: path.join(__dirname, 'fixtures/iterator'),
+      ...pkg
+    });
+    check(mainFilePath, outputDir, path.join(__dirname, 'fixtures/iterator/ChatAnyResponseBodyIterator.java'), 'src/main/java/com/aliyun/models/ChatAnyResponseBodyIterator.java', {
+      pkgDir: path.join(__dirname, 'fixtures/iterator'),
+      ...pkg
+    });
   });
-
-  // it('oss should ok', function () {
-  //   const outputDir = path.join(__dirname, 'output/oss');
-  //   const mainFilePath = path.join(__dirname, 'fixtures/oss/main.dara');
-  //   const pkgContent = fs.readFileSync(path.join(__dirname, 'fixtures/oss/Darafile'), 'utf8');
-  //   const pkg = JSON.parse(pkgContent);
-  //   check(mainFilePath, outputDir, path.join(__dirname, 'fixtures/oss/DefaultAsyncClient.java'), 'src/main/java/com/aliyun/oss20190517/DefaultAsyncClient.java', {
-  //     pkgDir: path.join(__dirname, 'fixtures/oss'),
-  //     baseClient: 'com.aliyun.oss20190517.AsyncClient',
-  //     package: 'com.aliyun.oss20190517',
-  //     ...pkg
-  //   });
-  // });
-
-  // it('sls should ok', function () {
-  //   const outputDir = path.join(__dirname, 'output/sls');
-  //   const mainFilePath = path.join(__dirname, 'fixtures/sls/main.dara');
-  //   const pkgContent = fs.readFileSync(path.join(__dirname, 'fixtures/sls/Darafile'), 'utf8');
-  //   const pkg = JSON.parse(pkgContent);
-  //   check(mainFilePath, outputDir, path.join(__dirname, 'fixtures/sls/DefaultAsyncClient.java'), 'src/main/java/com/aliyun/sls20201230/DefaultAsyncClient.java', {
-  //     pkgDir: path.join(__dirname, 'fixtures/sls'),
-  //     baseClient: 'com.aliyun.sls20201230.AsyncClient',
-  //     package: 'com.aliyun.sls20201230',
-  //     ...pkg
-  //   });
-  // });
 
 });

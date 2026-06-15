@@ -2,7 +2,6 @@
 package com.aliyun.models;
 
 import darabonba.core.sse.SSEResponseIterator;
-import darabonba.core.utils.CommonUtil;
 
 import java.util.*;
 

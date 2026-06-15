@@ -172,6 +172,10 @@ describe('new Generator', function () {
       pkgDir: path.join(__dirname, 'fixtures/iterator'),
       ...pkg
     });
+    check(mainFilePath, outputDir, path.join(__dirname, 'fixtures/iterator/ChatAnyResponseBodyIterator.java'), 'src/main/java/com/aliyun/models/ChatAnyResponseBodyIterator.java', {
+      pkgDir: path.join(__dirname, 'fixtures/iterator'),
+      ...pkg
+    });
   });
 
 });

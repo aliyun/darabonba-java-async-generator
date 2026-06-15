@@ -35,4 +35,6 @@ public interface AsyncClient extends SdkAutoCloseable {
 
     ResponseIterable<String> test7(ChatRequest request);
 
+    ResponseIterable<Object> test8(ChatRequest request);
+
 }

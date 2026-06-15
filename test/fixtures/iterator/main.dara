@@ -75,3 +75,8 @@ function test7(request: ChatRequest): iterator[string]{
     @handler.validateRequestModel(request);
     yield @handler.doSSERequestReturnString('SSE', 'chatString', 'POST', '/gw/v1/api/doc/docChat', 'string', false, 'json', request);
 }
+
+function test8(request: ChatRequest): iterator[any]{
+    @handler.validateRequestModel(request);
+    yield @handler.doSSERequest('SSE', 'chatAny', 'POST', '/gw/v1/api/doc/docChat', 'json', false, 'json', request);
+}

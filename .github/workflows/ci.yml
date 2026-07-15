@@ -15,9 +15,11 @@ jobs:
     runs-on: ubuntu-latest
 
     strategy:
+      # nyc@17 engines.node is >=18; Node 12 fails on optional chaining in nyc deps
+      fail-fast: false
       matrix:
-        node-version: [12.x, 14.x, 16.x, 18.x, 20.x]
-    name: Node.js ${{ matrix.node-version }} Test on ${{ matrix.operating-system }}
+        node-version: [18.x, 20.x]
+    name: Node.js ${{ matrix.node-version }} Test
 
     steps:
     - uses: actions/checkout@v3

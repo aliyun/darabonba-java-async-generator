@@ -5,9 +5,9 @@ name: Node.js CI
 
 on:
   push:
-    branches: [ master ]
+    branches: [ master, darabonba2.0 ]
   pull_request:
-    branches: [ master ]
+    branches: [ master, darabonba2.0 ]
 
 jobs:
   build:
@@ -16,7 +16,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [12.x, 14.x, 16.x, 18.x, 20.x]
+        node-version: [18.x, 20.x]
     name: Node.js ${{ matrix.node-version }} Test on ${{ matrix.operating-system }}
 
     steps:

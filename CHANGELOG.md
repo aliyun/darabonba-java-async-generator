@@ -1,5 +1,8 @@
 # ChangeLog
 
+## 2.0.4 - 2026-07-18
+> Rename nested Request/Response submodels to avoid shadowing gateway models.
+
 ## 2.0.3 - 2026-06-15
 > Fix sse.
 

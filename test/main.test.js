@@ -178,4 +178,17 @@ describe('new Generator', function () {
     });
   });
 
+  it('nested Request submodel should not shadow gateway Request', function () {
+    const outputDir = path.join(__dirname, 'output/request-shadow');
+    const mainFilePath = path.join(__dirname, 'fixtures/request-shadow/main.dara');
+    const pkgContent = fs.readFileSync(path.join(__dirname, 'fixtures/request-shadow/Darafile'), 'utf8');
+    const pkg = JSON.parse(pkgContent);
+    check(mainFilePath, outputDir, path.join(__dirname, 'fixtures/request-shadow/ListCateContentRequest.java'), 'src/main/java/com/aliyun/test/models/ListCateContentRequest.java', {
+      pkgDir: path.join(__dirname, 'fixtures/request-shadow'),
+      baseClient: 'com.aliyun.test.AsyncClient',
+      package: 'com.aliyun.test',
+      ...pkg
+    });
+  });
+
 });

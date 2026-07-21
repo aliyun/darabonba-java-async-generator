@@ -1,5 +1,8 @@
 # ChangeLog
 
+## 1.0.3 - 2026-07-15
+> Rename nested Request/Response submodels to avoid shadowing gateway.pop.models.Request|Response (fixes Java compile: Builder does not take type parameters).
+
 ## 1.0.2 - 2024-01-09
 > Support sign version for base client.
 

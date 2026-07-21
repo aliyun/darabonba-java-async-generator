@@ -1,0 +1,45 @@
+import BaseClientBuilder;
+import TeaAsyncHandler;
+import TeaRequest;
+import ClientConfiguration;
+import ClientExecutionParams;
+extends BaseClientBuilder;
+type @product = string
+type @version = string
+type @endpointRule = string
+type @endpointMap = map[string]string
+type @REQUEST = TeaRequest
+type @handler = TeaAsyncHandler
+
+init(configuration: ClientConfiguration){
+  @handler = new TeaAsyncHandler(configuration);
+  @product = 'Test';
+  @version = '2020-01-01';
+  @endpointRule = '';
+  @endpointMap = {};
+}
+
+/**
+ * Nested field named request must not shadow gateway.pop.models.Request.
+ */
+model ListCateContentRequest {
+  request: {
+    cateId: long(name='CateId'),
+    pageNum: int32(name='PageNum'),
+  }(name='Request', description='This parameter is required.', shrink='json', position='Body'),
+}
+
+model ListCateContentResponseBody = {
+  code?: int32(name='Code'),
+}
+
+model ListCateContentResponse = {
+  headers?: map[string]string(name='headers'),
+  statusCode?: int32(name='statusCode'),
+  body?: ListCateContentResponseBody(name='body'),
+}
+
+async function listCateContent(request: ListCateContentRequest): ListCateContentResponse {
+  @handler.validateRequestModel(request);
+  return @handler.do('RESTFUL', 'ListCateContent', 'POST', '/v1.0/ssp/ListCateContent', 'json', true, 'form', request);
+}
